@@ -1,0 +1,12 @@
+*.pt
+*.pth
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+
+runs/
+
+**/__pycache__/**
