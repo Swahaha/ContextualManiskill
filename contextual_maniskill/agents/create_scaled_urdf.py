@@ -9,16 +9,23 @@ _temp_files = []
 
 def create_scaled_urdf(original_urdf_path, link_name, scale, output_path=None):
     """
-    Create a new URDF with scaled dimensions for a specific link
+    Create a new URDF with scaled dimensions for a specific link.
+    
+    This revised version dynamically adjusts the connection joints so that
+    the scaled link (panda_link5) remains properly attached to link4 and link6.
+    It assumes that only the z-axis of link5 is being scaled (thus changing its length).
+    
+    Additionally, it adjusts joint5 to help move link5 upward relative to link4,
+    reducing the overlap between the two.
     
     Args:
-        original_urdf_path: Path to the original URDF file
-        link_name: Name of the link to scale
-        scale: [x, y, z] scaling factors
+        original_urdf_path: Path to the original URDF file.
+        link_name: Name of the link to scale (currently only "panda_link5" is supported).
+        scale: [x, y, z] scaling factors (we assume only z is different from 1).
         output_path: Where to save the new URDF. If None, creates a temporary file.
     
     Returns:
-        Path to the new URDF file
+        Path to the new URDF file.
     """
     # Parse the URDF
     tree = ET.parse(original_urdf_path)
@@ -26,6 +33,16 @@ def create_scaled_urdf(original_urdf_path, link_name, scale, output_path=None):
     
     # Get directory of original URDF to resolve relative paths
     urdf_dir = os.path.dirname(os.path.abspath(original_urdf_path))
+    
+    # FIRST: Remove collision elements from links 0-5 (if desired)
+    # for i in range(6):  # Links 0 through 5
+    target_link_name = f"panda_link{5}"
+    for link in root.findall(".//link"):
+        if link.get("name") == target_link_name:
+            collisions = link.findall("collision")
+            for collision in collisions:
+                link.remove(collision)
+            print(f"Removed all collision elements from {target_link_name}")
     
     # Convert all mesh paths to absolute paths
     for mesh_elem in root.findall(".//mesh"):
@@ -35,102 +52,98 @@ def create_scaled_urdf(original_urdf_path, link_name, scale, output_path=None):
                 abs_path = os.path.join(urdf_dir, rel_path)
                 mesh_elem.set("filename", abs_path)
     
-    # Find link5
     if link_name == "panda_link5":
-        # Scale the visual and collision meshes
+        # --- Determine original effective length of link5 ---
+        default_length = 0.088  # default approximation in meters
+        link5_length = default_length
+        for joint in root.findall(".//joint"):
+            if joint.get("name") == "panda_joint6":
+                origin = joint.find("origin")
+                if origin is not None and "xyz" in origin.attrib:
+                    xyz = origin.get("xyz").split()
+                    measured = abs(float(xyz[1]))  # assume local y holds the length
+                    if measured > 1e-5:
+                        link5_length = measured
+                        print(f"Determined link5 length from joint6: {link5_length} m")
+                    else:
+                        print("Joint6 origin y is zero; using default link5 length.")
+                break
+        
+        # --- Scale the visual and collision meshes for link5 ---
         for link in root.findall(".//link"):
             if link.get("name") == "panda_link5":
-                print(f"Found link5, applying scale: {scale}")
-                
-                # Scale visual meshes
+                print(f"Found {link_name}, applying scale: {scale}")
                 for visual in link.findall(".//visual/geometry/mesh"):
                     visual.set("scale", f"{scale[0]} {scale[1]} {scale[2]}")
-                    print("Scaled visual mesh")
-                
-                # Scale collision meshes
+                    print("Scaled visual mesh for link5")
                 for collision in link.findall(".//collision/geometry/mesh"):
                     collision.set("scale", f"{scale[0]} {scale[1]} {scale[2]}")
-                    print("Scaled collision mesh")
-                
-                # Update inertial properties - optional but helps with dynamics
-                # inertial = link.find("inertial")
-                # if inertial is not None:
-                #     # Scale mass by volume increase
-                #     mass_elem = inertial.find("mass")
-                #     if mass_elem is not None:
-                #         original_mass = float(mass_elem.get("value"))
-                #         # Mass scales with volume
-                #         new_mass = original_mass * scale[2]  # For z-only scaling
-                #         mass_elem.set("value", str(new_mass))
-                #         print(f"Updated mass from {original_mass} to {new_mass}")
-                    
-                    # Scale inertia tensor
-                    # inertia = inertial.find("inertia")
-                    # if inertia is not None:
-                    #     # Simple scaling approximation for z-only scaling
-                    #     for prop in ["ixx", "iyy", "izz", "ixy", "ixz", "iyz"]:
-                    #         if prop in inertia.attrib:
-                    #             orig_val = float(inertia.get(prop))
-                    #             # For z-only scaling, different components scale differently
-                    #             if prop in ["ixx", "iyy"]:
-                    #                 # These scale with z² and mass
-                    #                 new_val = orig_val * scale[2]**3
-                    #             elif prop == "izz":
-                    #                 # This scales only with mass for z-direction
-                    #                 new_val = orig_val * scale[2]
-                    #             else:
-                    #                 # Products of inertia - approximation
-                    #                 new_val = orig_val * scale[2]**2
-                                
-                    #             inertia.set(prop, str(new_val))
-                    #     print("Updated inertia tensor")
+                    print("Scaled collision mesh for link5")
+                break
         
-        # CRITICAL: Update joint6 position to match the scaled link5
+        # --- Compute extra length added due to z-scaling ---
+        extra_length = link5_length * (scale[2] - 1.0)
+        print(f"Computed extra length for link5: {extra_length} m (original_length: {link5_length}, scale_z: {scale[2]})")
+        
+        # --- Adjust joint6 (connection between link5 and link6) ---
+        # Place joint6 at the tip of the scaled link5.
+        # new_joint6_y = link5_length * scale[2]
+        new_joint6_y = -0.01 * (scale[2] - 1.0)
         for joint in root.findall(".//joint"):
             if joint.get("name") == "panda_joint6":
                 origin = joint.find("origin")
                 if origin is not None:
-                    # Extract current position
-                    xyz_str = origin.get("xyz", "0 0 0")
-                    xyz = xyz_str.split()
-                    x, y, z = float(xyz[0]), float(xyz[1]), float(xyz[2])
-                    
-                    # Analyze joint orientations from URDF:
-                    # - joint5 has -1.57 rad (90°) around x, which means:
-                    #   * link5's +z becomes +y in global space
-                    # - joint6 is at (0,0,0) relative to link5
-                    
-                    # When we scale link5 in z by 2, we need to:
-                    # 1. Keep the joint at the end of the scaled link
-                    # 2. Since z maps to y, we adjust y-coordinate (after rotations)
-                    
-                    # For a scaling factor of 2 in z, we need to add the following offset:
-                    # The original link5 extends about 0.1m along its local z-axis
-                    offset = 0.1 * (scale[2] - 1.0)  # Additional length
-                    
-                    # Apply offset - after rotation, link5's z becomes global y
-                    new_y = y + offset
-                    
-                    # Set new position
-                    origin.set("xyz", f"{x} {new_y} {z}")
-                    print(f"Updated joint6 position to keep connection: {x} {new_y} {z}")
-                    break
+                    origin.set("xyz", f"0 {new_joint6_y} 0")
+                    print(f"Adjusted joint6 origin to: 0 {new_joint6_y} 0")
+                break
+        
+        # --- Adjust link5's internal geometry origins ---
+        # To keep the connection at joint5 (between link4 and link5) fixed, we need to shift
+        # the internal geometry downward in link5's local frame by the full extra length.
+        print(f"Shifting link5 geometry origins by {extra_length} m in local y")
+        for link in root.findall(".//link"):
+            if link.get("name") == "panda_link5":
+                for visual in link.findall("visual"):
+                    origin = visual.find("origin")
+                    if origin is not None and "xyz" in origin.attrib:
+                        xyz_vals = [float(v) for v in origin.get("xyz").split()]
+                        xyz_vals[1] -= extra_length
+                        origin.set("xyz", " ".join(str(v) for v in xyz_vals))
+                        print(f"Shifted visual origin for panda_link5 by -{extra_length} m in local y")
+                for collision in link.findall("collision"):
+                    origin = collision.find("origin")
+                    if origin is not None and "xyz" in origin.attrib:
+                        xyz_vals = [float(v) for v in origin.get("xyz").split()]
+                        xyz_vals[1] -= extra_length
+                        origin.set("xyz", " ".join(str(v) for v in xyz_vals))
+                        print(f"Shifted collision origin for panda_link5 by -{extra_length} m in local y")
+                break
+        
+        # --- Adjust joint5 (connection between link4 and link5) ---
+        # Move joint5 upward relative to link4 to further alleviate overlap.
+        # For instance, add a fixed offset (tunable) to joint5's y coordinate.
+        extra_joint5_offset = 0.2*(scale[2]-1.0) # This value may need further tuning.
+        for joint in root.findall(".//joint"):
+            if joint.get("name") == "panda_joint5":
+                origin = joint.find("origin")
+                if origin is not None and "xyz" in origin.attrib:
+                    xyz_vals = [float(v) for v in origin.get("xyz").split()]
+                    xyz_vals[1] += extra_joint5_offset
+                    origin.set("xyz", " ".join(str(v) for v in xyz_vals))
+                    print(f"Adjusted joint5 origin by adding {extra_joint5_offset} m to local y")
+                break
     else:
         print(f"Warning: Special handling is only implemented for panda_link5, not {link_name}")
     
-    # Always use a temporary file
+    # Write to a temporary file if output_path is not provided
     temp_file = tempfile.NamedTemporaryFile(suffix=".urdf", delete=False)
-    temp_file.close()  # Close it so we can write to it with ET
+    temp_file.close()
     output_path = temp_file.name
     
-    # Register for cleanup at exit
     _temp_files.append(output_path)
-    
-    # Ensure cleanup is registered (only need to do this once)
     if len(_temp_files) == 1:
         atexit.register(lambda: [os.unlink(f) for f in _temp_files if os.path.exists(f)])
     
-    # Write the modified URDF
     tree.write(output_path)
     print(f"Wrote scaled URDF to temporary file: {output_path}")
     return output_path
@@ -143,11 +156,10 @@ if __name__ == "__main__":
     urdf_path = sys.argv[1]
     link_name = sys.argv[2]
     
-    # Parse scale arguments
     if len(sys.argv) >= 6:
         scale = [float(sys.argv[3]), float(sys.argv[4]), float(sys.argv[5])]
     elif len(sys.argv) >= 5:
-        scale = [float(sys.argv[3]), float(sys.argv[4]), 1.0]
+        scale = [float(sys.argv[3]), 1.0, float(sys.argv[4])]
     else:
         scale = [float(sys.argv[3]), 1.0, 1.0]
         

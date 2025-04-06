@@ -55,7 +55,7 @@ class Args:
     # Algorithm specific arguments
     env_id: str = "ContextualPickCube-v1"
     """the id of the environment"""
-    total_timesteps: int = 10000000
+    total_timesteps: int = 100000000
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
