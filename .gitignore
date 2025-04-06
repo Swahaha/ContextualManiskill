@@ -11,4 +11,6 @@ runs/
 
 **/__pycache__/**
 
+depricated/
+
 *.egg-info
