@@ -21,9 +21,7 @@ from mani_skill.utils.wrappers.flatten import FlattenActionSpaceWrapper
 from mani_skill.utils.wrappers.record import RecordEpisode
 from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 
-# Import custom environments
 import contextual_maniskill.envs
-
 # HyperPPO-specific import: Graph HyperNetwork-based actor
 from model.core import hyperActor  # <-- reference to your HyperPPO code
 
@@ -55,11 +53,11 @@ class Args:
     # Algorithm specific arguments
     env_id: str = "ContextualPickCube-v1"
     """the id of the environment"""
-    total_timesteps: int = 100000000
+    total_timesteps: int = 1000_000_000
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
-    learning_rate: float = 1e-5
+    learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
     num_envs: int = 512
     """the number of parallel environments"""
@@ -81,9 +79,9 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.9
+    gamma: float = 0.99
     """the discount factor gamma"""
-    gae_lambda: float = 0.9
+    gae_lambda: float = 0.95
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
@@ -95,23 +93,23 @@ class Args:
     """the surrogate clipping coefficient"""
     clip_vloss: bool = False
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
-    ent_coef: float = 0.01
+    ent_coef: float = 0.0
     """coefficient of the entropy"""
-    vf_coef: float = 0.3
+    vf_coef: float = 0.5
     """coefficient of the value function"""
     max_grad_norm: float = 0.5
     """the maximum norm for the gradient clipping"""
 
-    # 0.1 was stopping basically every time at epoch 0, so moved to 0.2.
-    target_kl: float = 0.2
+    target_kl: float = 0.1
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 25
+    eval_freq: int = 250
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
     finite_horizon_gae: bool = False
+
 
     # to be filled in runtime
     batch_size: int = 0
@@ -120,6 +118,8 @@ class Args:
     """the mini-batch size (computed in runtime)"""
     num_iterations: int = 0
     """the number of iterations (computed in runtime)"""
+
+
 
     # Parameter for fixed link scaling
     link7_scale_x: float = 1.0
@@ -168,10 +168,9 @@ class HyperAgent(nn.Module):
             nn.Tanh(),
             layer_init(nn.Linear(256, 1)),
         )
-
         # -- HyperNetwork-based Actor (Policy) --
+        # allowable_layers = [16, 32, 64, 128, 256]
         allowable_layers = [8,16, 32, 64]
-        # allowable_layers = [16, 32, 64]
         self.hyper_actor = hyperActor(
             act_dim=act_dim,
             obs_dim=obs_dim,
@@ -247,9 +246,8 @@ if __name__ == "__main__":
         "panda_link5": {"scale": [1.0, 1.0, args.link7_scale_x]}
     }
 
-    print(f"Using panda_link5 x-scale: {args.link7_scale_x}")
 
-    # Create environments with the custom URDF for scaled links
+
     envs = gym.make(
         args.env_id,
         num_envs=args.num_envs if not args.evaluate else 1,
@@ -258,8 +256,6 @@ if __name__ == "__main__":
         link_modifications=link_mods,
         **env_kwargs
     )
-    
-    # Apply identical modifications to eval environments
     eval_envs = gym.make(
         args.env_id,
         num_envs=args.num_eval_envs,
@@ -297,7 +293,7 @@ if __name__ == "__main__":
             save_trajectory=args.evaluate,
             trajectory_name="trajectory",
             max_steps_per_video=args.num_eval_steps,
-            video_fps=15,
+            video_fps=30
         )
 
     envs = ManiSkillVectorEnv(envs, args.num_envs, ignore_terminations=not args.partial_reset, record_metrics=True)
@@ -391,16 +387,25 @@ if __name__ == "__main__":
     def clip_action(action: torch.Tensor):
         return torch.clamp(action.detach(), action_space_low, action_space_high)
 
-    # Initialize variables outside the loop
-    v_loss = torch.tensor(0.0).to(device)
-    pg_loss = torch.tensor(0.0).to(device)
-    entropy_loss = torch.tensor(0.0).to(device)
-    approx_kl = torch.tensor(0.0).to(device)
+
+    # def clip_action(action: torch.Tensor):
+    #     print(f"Raw Action (Before Clipping): {action.mean().item()}, Min: {action.min().item()}, Max: {action.max().item()}")
+
+    #     # Keep the gripper fixed at 4cm width (Panda Robot)
+    #     action[:, -2:] = torch.clamp(action[:, -2:], 0.02, 0.04)  # Gripper range [0.02, 0.04]
+
+    #     action = torch.clamp(action, action_space_low + 0.01, action_space_high - 0.01)
+
+    #     print(f"Clipped Action (After Clipping): {action.mean().item()}, Min: {action.min().item()}, Max: {action.max().item()}")
+    #     return action
+
+
+    # def clip_action(action: torch.Tensor):
+    #     action[:, -2:] = 0.04 
+    #     return torch.clamp(action.detach(), action_space_low+0.01, action_space_high-0.01)
 
     for iteration in range(1, args.num_iterations + 1):
         print(f"Epoch: {iteration}, global_step={global_step}")
-        
-        # Sample new architecture for actor
         print(f"Sampling new architecture")
         agent.hyper_actor.change_graph(repeat_sample=False)
 
@@ -539,9 +544,9 @@ if __name__ == "__main__":
 
                 with torch.no_grad():
                     approx_kl = ((ratio - 1) - logratio).mean()
-                    if args.target_kl is not None and approx_kl > args.target_kl:
-                        print(f"Early stopping at epoch {epoch} due to KL={approx_kl.item():.4f}")
-                        break
+                    # if args.target_kl is not None and approx_kl > args.target_kl:
+                    #     print(f"Early stopping at epoch {epoch} due to KL={approx_kl.item():.4f}")
+                    #     break
 
                 # Normalize advantage
                 if args.norm_adv:
@@ -573,10 +578,6 @@ if __name__ == "__main__":
                 total_loss.backward()
                 nn.utils.clip_grad_norm_(agent.parameters(), args.max_grad_norm)
                 optimizer.step()
-
-            # Check if we need to break out of the outer loop too
-            if args.target_kl is not None and approx_kl > args.target_kl:
-                break
 
         update_time = time.time() - update_time
 

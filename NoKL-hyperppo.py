@@ -15,12 +15,13 @@ from torch.distributions.normal import Normal
 from torch.utils.tensorboard import SummaryWriter
 
 # ManiSkill specific imports
-import mani_skill.envs
+
 from mani_skill.utils import gym_utils
 from mani_skill.utils.wrappers.flatten import FlattenActionSpaceWrapper
 from mani_skill.utils.wrappers.record import RecordEpisode
 from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 
+import contextual_maniskill.envs
 # HyperPPO-specific import: Graph HyperNetwork-based actor
 from model.core import hyperActor  # <-- reference to your HyperPPO code
 
@@ -50,7 +51,7 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "PickCube-v1"
+    env_id: str = "ContextualPickCube-v1"
     """the id of the environment"""
     total_timesteps: int = 10000000
     """total timesteps of the experiments"""
@@ -78,9 +79,9 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.8
+    gamma: float = 0.99
     """the discount factor gamma"""
-    gae_lambda: float = 0.9
+    gae_lambda: float = 0.95
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
@@ -117,6 +118,12 @@ class Args:
     """the mini-batch size (computed in runtime)"""
     num_iterations: int = 0
     """the number of iterations (computed in runtime)"""
+
+
+
+    # Parameter for fixed link scaling
+    link7_scale_x: float = 1.0
+    """Scale factor for panda_link7 in x direction (length)"""
 
 def layer_init(layer, std=np.sqrt(2), bias_const=0.0):
     torch.nn.init.orthogonal_(layer.weight, std)
@@ -163,7 +170,7 @@ class HyperAgent(nn.Module):
         )
         # -- HyperNetwork-based Actor (Policy) --
         # allowable_layers = [16, 32, 64, 128, 256]
-        allowable_layers = [16, 32, 64]
+        allowable_layers = [8,16, 32, 64]
         self.hyper_actor = hyperActor(
             act_dim=act_dim,
             obs_dim=obs_dim,
@@ -234,16 +241,27 @@ if __name__ == "__main__":
     if args.control_mode is not None:
         env_kwargs["control_mode"] = args.control_mode
 
+    # Set up link modifications with the specified scale
+    link_mods = {
+        "panda_link5": {"scale": [1.0, 1.0, args.link7_scale_x]}
+    }
+
+
+
     envs = gym.make(
         args.env_id,
         num_envs=args.num_envs if not args.evaluate else 1,
         reconfiguration_freq=args.reconfiguration_freq,
+        robot_uids="contextual_panda",
+        link_modifications=link_mods,
         **env_kwargs
     )
     eval_envs = gym.make(
         args.env_id,
         num_envs=args.num_eval_envs,
         reconfiguration_freq=args.eval_reconfiguration_freq,
+        robot_uids="contextual_panda",
+        link_modifications=link_mods,
         **env_kwargs
     )
 
@@ -526,6 +544,9 @@ if __name__ == "__main__":
 
                 with torch.no_grad():
                     approx_kl = ((ratio - 1) - logratio).mean()
+                    if args.target_kl is not None and approx_kl > args.target_kl:
+                        print(f"Early stopping at epoch {epoch} due to KL={approx_kl.item():.4f}")
+                        break
 
                 # Normalize advantage
                 if args.norm_adv:
