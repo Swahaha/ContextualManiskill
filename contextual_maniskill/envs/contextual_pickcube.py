@@ -1,18 +1,13 @@
-from typing import Any, Dict, Union
-from typing import Optional
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 import numpy as np
 import sapien
 import torch
 
 import mani_skill.envs.utils.randomization as randomization
-from mani_skill.agents.robots import Fetch, Panda, XArm6Robotiq
-from mani_skill.envs.sapien_env import BaseEnv
-
-from mani_skill.agents import REGISTERED_AGENTS
 # from mani_skill.agents.base_agent import BaseAgent
-from contextual_maniskill.agents.contextual_baseagent import ContextualBaseAgent
-
+from mani_skill.agents.robots import Panda
+from mani_skill.envs.sapien_env import BaseEnv
 from mani_skill.sensors.camera import CameraConfig
 from mani_skill.utils import sapien_utils
 from mani_skill.utils.building import actors
@@ -20,38 +15,20 @@ from mani_skill.utils.registration import register_env
 from mani_skill.utils.scene_builder.table import TableSceneBuilder
 from mani_skill.utils.structs.pose import Pose
 
-from contextual_maniskill.agents.robots.panda.contextual_panda import ContextualPanda
+
+# from contextual_maniskill.agents.base_agent import ContextualBaseAgent
+from contextual_maniskill.agents.contextual_panda import ContextualPanda
 
 @register_env("ContextualPickCube-v1", max_episode_steps=50)
 class ContextualPickCubeEnv(BaseEnv):
-    """
-    **Task Description:**
-    A simple task where the objective is to grasp a red cube and move it to a target goal position.
-
-    **Randomizations:**
-    - the cube's xy position is randomized on top of a table in the region [0.1, 0.1] x [-0.1, -0.1]. It is placed flat on the table
-    - the cube's z-axis rotation is randomized to a random angle
-    - the target goal position (marked by a green sphere) of the cube has its xy position randomized in the region [0.1, 0.1] x [-0.1, -0.1] and z randomized in [0, 0.3]
-
-    **Success Conditions:**
-    - the cube position is within `goal_thresh` (default 0.025m) euclidean distance of the goal position
-    - the robot is static (q velocity < 0.2)
-    """
-
-    _sample_video_link = "https://github.com/haosulab/ManiSkill/raw/main/figures/environment_demos/PickCube-v1_rt.mp4"
-    SUPPORTED_ROBOTS = [
-        "panda",
-        "contextual_panda",
-    ]
-    agent: Union[Panda, Fetch, XArm6Robotiq, ContextualPanda]
     cube_half_size = 0.02
     goal_thresh = 0.025
 
-    def __init__(self, *args, robot_uids="panda", robot_init_qpos_noise=0.02, link_modifications=None, **kwargs):
+    def __init__(self, *args, robot_uids="contextual_panda", robot_init_qpos_noise=0.02, **kwargs):
+        self.panda_link5_z_scale = kwargs.pop("panda_link5_z_scale", 1.0)
         self.robot_init_qpos_noise = robot_init_qpos_noise
-        self.link_modifications = link_modifications  # Store for later use
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
-
+        print("Initializing ContextualPickCubeEnv...")
     @property
     def _default_sensor_configs(self):
         pose = sapien_utils.look_at(eye=[0.3, 0, 0.6], target=[-0.1, 0, 0.1])
@@ -59,75 +36,34 @@ class ContextualPickCubeEnv(BaseEnv):
 
     @property
     def _default_human_render_camera_configs(self):
-        pose = sapien_utils.look_at([-1.4, -0.2, 1.0], [-0.4, 0.0, 0.8])
-        return CameraConfig("render_camera", pose, 512, 512, 1.0, 0.01, 100)
-    # return CameraConfig("render_camera", pose, 512, 512, 1, 0.01, 100)
-    
-    
-    # @property
-    # def _default_sensor_configs(self):
-    #     # Zoom out by moving the camera position farther back
-    #     # Original: eye=[0.3, 0, 0.6], target=[-0.1, 0, 0.1]
-    #     # Zoomed out: increase the distance while maintaining direction
-    #     pose = sapien_utils.look_at(eye=[0.5, 0, 0.8], target=[-0.1, 0, 0.1])
-    #     return [CameraConfig("base_camera", pose, 128, 128, np.pi/3, 0.01, 100)]
-
-    # @property
-    # def _default_human_render_camera_configs(self):
-    #     # Zoom out the render camera
-    #     # Original: [0.6, 0.7, 0.6], [0.0, 0.0, 0.35]
-    #     # Zoomed out: multiply the eye position by a factor (e.g., 1.5)
-    #     pose = sapien_utils.look_at([0.9, 1.0, 0.9], [0.0, 0.0, 0.35])
-    #     return CameraConfig("render_camera", pose, 512, 512, np.pi/4, 0.01, 100)
+        pose = sapien_utils.look_at([0.8, 0.9, 0.6], [0.0, 0.0, 0.35])
+        return CameraConfig("render_camera", pose, 512, 512, 1, 0.01, 100)
 
     def _load_agent(self, options: dict, initial_agent_poses: Optional[Union[sapien.Pose, Pose]] = sapien.Pose(p=[-0.615, 0, 0]), build_separate: bool = False):
         """
-        loads the agent/controllable articulations into the environment. The default function provides a convenient way to setup the agent/robot by a robot_uid
-        (stored in self.robot_uids) without requiring the user to have to write the robot building and controller code themselves. For more
-        advanced use-cases you can override this function to have more control over the agent/robot building process.
-
-        Args:
-            options (dict): The options for the environment.
-            initial_agent_poses (Optional[Union[sapien.Pose, Pose]]): The initial poses of the agent/robot. Providing these poses and ensuring they are picked such that
-                they do not collide with objects if spawned there is highly recommended to ensure more stable simulation (the agent pose can be changed later during episode initialization).
-            build_separate (bool): Whether to build the agent/robot separately. If True, the agent/robot will be built separately for each parallel environment and then merged
-                together to be accessible under one view/object. This is useful for randomizing physical and visual properties of the agent/robot which is only permitted for
-                articulations built separately in each environment.
+        Loads a Panda or ContextualPanda robot with the specified link5_z_scale.
         """
-        agents = []
-        robot_uids = self.robot_uids
-        if not isinstance(initial_agent_poses, list):
-            initial_agent_poses = [initial_agent_poses]
-        if robot_uids == "none" or robot_uids == ("none", ):
-            self.agent = None
-            return
-        if robot_uids is not None:
-            if not isinstance(robot_uids, tuple):
-                robot_uids = [robot_uids]
-            for i, robot_uid in enumerate(robot_uids):
-                if isinstance(robot_uid, type(ContextualBaseAgent)):
-                    agent_cls = robot_uid
-                else:
-                    if robot_uid not in REGISTERED_AGENTS:
-                        raise RuntimeError(
-                            f"Agent {robot_uid} not found in the dict of registered agents. If the id is not a typo then make sure to apply the @register_agent() decorator."
-                        )
-                    agent_cls = REGISTERED_AGENTS[robot_uid].agent_cls
-                agent: ContextualBaseAgent = agent_cls(
-                    self.scene,
-                    self._control_freq,
-                    self._control_mode,
-                    agent_idx=i if len(robot_uids) > 1 else None,
-                    initial_pose=initial_agent_poses[i] if initial_agent_poses is not None else None,
-                    build_separate=build_separate,
-                    link_modifications=self.link_modifications,
-                )
-                agents.append(agent)
-        if len(agents) == 1:
-            self.agent = agents[0]
+        if self.robot_uids == "panda":
+            self.agent = Panda(
+                self.scene,
+                self._control_freq,
+                self._control_mode,
+                agent_idx=None,
+                initial_pose=initial_agent_poses,
+                build_separate=build_separate,
+            )
+        elif self.robot_uids == "contextual_panda":
+            self.agent = ContextualPanda(
+                self.scene,
+                self._control_freq,
+                self._control_mode,
+                agent_idx=None,
+                initial_pose=initial_agent_poses,
+                build_separate=build_separate,
+                link5_z_scale=self.panda_link5_z_scale,
+            )
         else:
-            assert "This task does not support multi-agent"
-            
+            raise ValueError(f"Unsupported robot_uids: {self.robot_uids}")
 
     def _load_scene(self, options: dict):
         self.table_scene = TableSceneBuilder(

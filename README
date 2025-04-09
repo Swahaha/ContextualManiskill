@@ -1,3 +1,5 @@
 Repo for dynamic Maniskill tasks
 
-For dyanmic robot configuration, "link5" is scaled and collision removed.
+install package to run code
+
+pip install --upgrade mani_skill
