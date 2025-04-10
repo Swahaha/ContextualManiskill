@@ -17,6 +17,7 @@ from mani_skill.utils.structs.pose import Pose
 
 
 # from contextual_maniskill.agents.base_agent import ContextualBaseAgent
+from contextual_maniskill.utils.scene_builder.table.contexutual_scene_builder import ContextualTableSceneBuilder
 from contextual_maniskill.agents.contextual_panda import ContextualPanda
 
 @register_env("ContextualPickCube-v1", max_episode_steps=50)
@@ -66,7 +67,7 @@ class ContextualPickCubeEnv(BaseEnv):
             raise ValueError(f"Unsupported robot_uids: {self.robot_uids}")
 
     def _load_scene(self, options: dict):
-        self.table_scene = TableSceneBuilder(
+        self.table_scene = ContextualTableSceneBuilder(
             self, robot_init_qpos_noise=self.robot_init_qpos_noise
         )
         self.table_scene.build()

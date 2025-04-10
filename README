@@ -3,3 +3,14 @@ Repo for dynamic Maniskill tasks
 install package to run code
 
 pip install --upgrade mani_skill
+
+
+
+/envs
+directory that manages the contextual envs that we want to use
+
+/agents
+directory to dynamically scale the links of the "panda", currently generate tmp urdf with scaled links
+
+/utils
+directory to generate the tabletop scene **REQUIRED** as it has the code to reset the env with the robot

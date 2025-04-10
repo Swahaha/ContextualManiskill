@@ -108,7 +108,7 @@ class Args:
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 25
+    eval_freq: int = 250
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
@@ -123,7 +123,7 @@ class Args:
     num_iterations: int = 0
     """the number of iterations (computed in runtime)"""
 
-    panda_link5_z_scale: float = 1.4
+    panda_link5_z_scale: float = 2.0
     """Scale factor for panda_link5 in z direction (length)"""
 
 
@@ -241,13 +241,21 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
 
     # Environment setup
-    env_kwargs = dict(
-        obs_mode="state", 
-        render_mode="rgb_array", 
-        sim_backend="physx_cuda",
-        robot_uids="contextual_panda",
-        panda_link5_z_scale=args.panda_link5_z_scale
-    )
+    if args.env_id == "ContextualPickCube-v1":
+        env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+            robot_uids="contextual_panda",
+            panda_link5_z_scale=args.panda_link5_z_scale
+        )
+    elif args.env_id == "PickCube-v1":
+        env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+            robot_uids="panda",
+        )
     if args.control_mode is not None:
         env_kwargs["control_mode"] = args.control_mode
 
