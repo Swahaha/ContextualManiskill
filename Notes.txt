@@ -4,6 +4,15 @@ nohup python NoKL-hyperppo.py --env_id="PickCube-v1"  \\
 --num_envs=2048 --update_epochs=8 --num_minibatches=32   \\ 
 --total_timesteps=2_000_000_000 --eval_freq=50 > training_log_name.txt 2>&1 &
 
+
+nohup python NoKL-hyperppo.py --env_id="PickCube-v1"  --num_envs=2048 --update_epochs=8 --num_minibatches=32   --total_timesteps=20_000_000 --eval_freq=50 > training_log_name.txt 2>&1 &
+
+
 Make sure to run "export CUDA_VISIBLE_DEVICES=3" before doing anything
 
+
+
+
+ContextualPickCube-v1__hyperppo__1__1744899412 is the 17-april-1.1
+ContextualPickCube-v1__hyperppo__1__1744899549 is the 17-april-ent_coef0.01
 

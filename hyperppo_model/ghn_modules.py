@@ -1,7 +1,7 @@
-from .model import *
+from hyperppo_model.model import *
 import time
 
-from .utils import capacity, default_device
+from hyperppo_model.utils import capacity, default_device
 
 import numpy as np
 import copy

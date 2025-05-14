@@ -26,8 +26,10 @@ from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 
 #required to load the environment
 import contextual_maniskill.envs.contextual_pickcube
+import contextual_maniskill.envs.contextual_push_t
+
 # HyperPPO-specific import: Graph HyperNetwork-based actor
-from hyperppo_model.core import hyperActor  # <-- reference to your HyperPPO code
+from hyperppo_model.core import hyperActor 
 
 @dataclass
 class Args:
@@ -55,13 +57,13 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "ContextualPickCube-v1"
+    env_id: str = "ContextualPushT-v1"
     """the id of the environment"""
     total_timesteps: int = 1_000_000_000
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
-    learning_rate: float = 3e-4
+    learning_rate: float = 1e-4
     """the learning rate of the optimizer"""
     num_envs: int = 512
     """the number of parallel environments"""
@@ -83,7 +85,7 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.8
+    gamma: float = 0.9
     """the discount factor gamma"""
     gae_lambda: float = 0.9
     """the lambda for the general advantage estimation"""
@@ -97,9 +99,9 @@ class Args:
     """the surrogate clipping coefficient"""
     clip_vloss: bool = False
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
-    ent_coef: float = 0.0
+    ent_coef: float = 0.01
     """coefficient of the entropy"""
-    vf_coef: float = 0.5
+    vf_coef: float = 0.3
     """coefficient of the value function"""
     max_grad_norm: float = 0.5
     """the maximum norm for the gradient clipping"""
@@ -108,7 +110,7 @@ class Args:
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 250
+    eval_freq: int = 50
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
@@ -123,7 +125,7 @@ class Args:
     num_iterations: int = 0
     """the number of iterations (computed in runtime)"""
 
-    panda_link5_z_scale: float = 2.0
+    panda_link5_z_scale: float = 1.0
     """Scale factor for panda_link5 in z direction (length)"""
 
 
@@ -247,6 +249,14 @@ if __name__ == "__main__":
             render_mode="rgb_array", 
             sim_backend="physx_cuda",
             robot_uids="contextual_panda",
+            panda_link5_z_scale=args.panda_link5_z_scale
+        )
+    elif args.env_id == "ContextualPushT-v1":
+        env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+            robot_uids="contextual_panda_stick",
             panda_link5_z_scale=args.panda_link5_z_scale
         )
     elif args.env_id == "PickCube-v1":
@@ -437,6 +447,12 @@ if __name__ == "__main__":
                         num_episodes += mask.sum()
                         for k, v in eval_infos["final_info"]["episode"].items():
                             eval_metrics[k].append(v)
+
+                    # if "final_info" in eval_infos:
+                    #     mask = eval_infos["_final_info"]
+                    #     num_episodes += mask.sum()
+                    #     for k, v in eval_infos["final_info"]["episode"].items():
+                    #         eval_metrics[k].append(v)
             print(f"Evaluated {args.num_eval_steps * args.num_eval_envs} steps resulting in {num_episodes} episodes")
             for k, v in eval_metrics.items():
                 mean_ = torch.stack(v).float().mean()
@@ -450,7 +466,7 @@ if __name__ == "__main__":
         if args.save_model and iteration % args.eval_freq == 1:
             model_path = f"runs/{run_name}/ckpt_{iteration}.pt"
             torch.save(agent.state_dict(), model_path)
-            print(f"model saved to {model_path}")
+            print(f"model saved to {model_path}", flush = True)
 
         # Possibly anneal learning rate
         if args.anneal_lr:

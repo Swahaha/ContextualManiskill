@@ -8,7 +8,7 @@ from torch.nn.parallel import parallel_apply
 from torch.nn.parallel.replicate import replicate
 from torch.nn.parallel.scatter_gather import gather
 
-from .ghn_modules import MLP_GHN, MlpNetwork
+from hyperppo_model.ghn_modules import MLP_GHN, MlpNetwork
 
 def layer_init(layer, std=np.sqrt(2), bias_const=0.0):
     torch.nn.init.orthogonal_(layer.weight, std)
@@ -353,7 +353,7 @@ class hyperActor(nn.Module):
 
     ############################################################### forward helper functions, mostly only for debugging purposes ######################################################
     def sample(self, state, epsilon=1e-6):
-        mu, log_std = self.forward(state)
+        mu, log_std = self.forward(state, track = False)
         std = log_std.exp()
         dist = Normal(mu, std)
         e = dist.rsample().to(state.device)
@@ -368,7 +368,7 @@ class hyperActor(nn.Module):
         returns the action based on a squashed gaussian policy. That means the samples are obtained according to:
         a(s,e)= tanh(mu(s)+sigma(s)+e)
         """
-        mu, log_std = self.forward(state)
+        mu, log_std = self.forward(state, track=False)
         std = log_std.exp()
         dist = Normal(mu, std)
         e = dist.rsample().to(state.device)
@@ -376,12 +376,12 @@ class hyperActor(nn.Module):
         return action.detach().cpu()
     
     def get_det_action(self, state):
-        mu, log_std = self.forward(state)
+        mu, log_std = self.forward(state, track=False)
         return torch.tanh(mu).detach().cpu()
 
 
     def get_logprob(self,obs, actions, epsilon=1e-6):
-        mu, log_std = self.forward(obs)
+        mu, log_std = self.forward(obs, track=False)
         std = log_std.exp()
         dist = Normal(mu, std)
         log_prob = dist.log_prob(actions).sum(1, keepdim=True)

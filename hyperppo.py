@@ -21,8 +21,10 @@ from mani_skill.utils.wrappers.flatten import FlattenActionSpaceWrapper
 from mani_skill.utils.wrappers.record import RecordEpisode
 from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 
+import contextual_maniskill.envs.contextual_pickcube
+
 # HyperPPO-specific import: Graph HyperNetwork-based actor
-from model.core import hyperActor  # <-- reference to your HyperPPO code
+from hyperppo_model.core import hyperActor 
 
 @dataclass
 class Args:
@@ -50,15 +52,15 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "PickCube-v1"
+    env_id: str = "ContextualPickCube-v1"
     """the id of the environment"""
-    total_timesteps: int = 10000000
+    total_timesteps: int = 1_000_000_000
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
-    num_envs: int = 512
+    num_envs: int = 2048
     """the number of parallel environments"""
     num_eval_envs: int = 8
     """the number of parallel evaluation environments"""
@@ -84,7 +86,7 @@ class Args:
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
-    update_epochs: int = 4
+    update_epochs: int = 8
     """the K epochs to update the policy"""
     norm_adv: bool = True
     """Toggles advantages normalization"""
@@ -92,7 +94,7 @@ class Args:
     """the surrogate clipping coefficient"""
     clip_vloss: bool = False
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
-    ent_coef: float = 0.0
+    ent_coef: float = 0.2
     """coefficient of the entropy"""
     vf_coef: float = 0.5
     """coefficient of the value function"""
@@ -103,7 +105,7 @@ class Args:
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 25
+    eval_freq: int = 50
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
@@ -117,6 +119,10 @@ class Args:
     """the mini-batch size (computed in runtime)"""
     num_iterations: int = 0
     """the number of iterations (computed in runtime)"""
+
+    # for scaling panda arm length
+    panda_link5_z_scale: float = 1
+    """Scale factor for panda_link5 in z direction (length)"""
 
 def layer_init(layer, std=np.sqrt(2), bias_const=0.0):
     torch.nn.init.orthogonal_(layer.weight, std)
@@ -161,8 +167,9 @@ class HyperAgent(nn.Module):
             nn.Tanh(),
             layer_init(nn.Linear(256, 1)),
         )
+
         # -- HyperNetwork-based Actor (Policy) --
-        # allowable_layers = [16, 32, 64, 128, 256]
+        # allowable_layers = [16, 32, 64, 128]
         allowable_layers = [16, 32, 64]
         self.hyper_actor = hyperActor(
             act_dim=act_dim,
@@ -230,9 +237,31 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
 
     # Environment setup
-    env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda")
+        # Environment setup
+    if args.env_id == "ContextualPickCube-v1":
+        env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+            robot_uids="contextual_panda",
+            panda_link5_z_scale=args.panda_link5_z_scale
+        )
+    elif args.env_id == "PickCube-v1":
+        env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+            robot_uids="panda",
+        )
     if args.control_mode is not None:
         env_kwargs["control_mode"] = args.control_mode
+
+        
+    # Old Environment Setup 
+
+    # env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda")
+    # if args.control_mode is not None:
+    #     env_kwargs["control_mode"] = args.control_mode
 
     envs = gym.make(
         args.env_id,
@@ -368,23 +397,6 @@ if __name__ == "__main__":
 
     def clip_action(action: torch.Tensor):
         return torch.clamp(action.detach(), action_space_low, action_space_high)
-
-
-    # def clip_action(action: torch.Tensor):
-    #     print(f"Raw Action (Before Clipping): {action.mean().item()}, Min: {action.min().item()}, Max: {action.max().item()}")
-
-    #     # Keep the gripper fixed at 4cm width (Panda Robot)
-    #     action[:, -2:] = torch.clamp(action[:, -2:], 0.02, 0.04)  # Gripper range [0.02, 0.04]
-
-    #     action = torch.clamp(action, action_space_low + 0.01, action_space_high - 0.01)
-
-    #     print(f"Clipped Action (After Clipping): {action.mean().item()}, Min: {action.min().item()}, Max: {action.max().item()}")
-    #     return action
-
-
-    # def clip_action(action: torch.Tensor):
-    #     action[:, -2:] = 0.04 
-    #     return torch.clamp(action.detach(), action_space_low+0.01, action_space_high-0.01)
 
     for iteration in range(1, args.num_iterations + 1):
         print(f"Epoch: {iteration}, global_step={global_step}")
@@ -557,6 +569,10 @@ if __name__ == "__main__":
                 total_loss.backward()
                 nn.utils.clip_grad_norm_(agent.parameters(), args.max_grad_norm)
                 optimizer.step()
+
+
+            if args.target_kl is not None and approx_kl > args.target_kl:
+                break
 
         update_time = time.time() - update_time
 

@@ -1,0 +1,266 @@
+nohup: ignoring input
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Saving eval videos to runs/ContextualPushT-v1__ppo__1__1746730756/videos
+Running training
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+####
+args.num_iterations=781 args.num_envs=512 args.num_eval_envs=8
+args.minibatch_size=800 args.batch_size=25600 args.update_epochs=4
+####
+Epoch: 1, global_step=0
+Evaluating
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 0 episodes
+model saved to runs/ContextualPushT-v1__ppo__1__1746730756/ckpt_1.pt
+SPS: 3385
+Epoch: 2, global_step=25600
+SPS: 4522
+Epoch: 3, global_step=51200
+SPS: 5211
+Epoch: 4, global_step=76800
+SPS: 5527
+Epoch: 5, global_step=102400
+SPS: 5823
+Epoch: 6, global_step=128000
+SPS: 5972
+Epoch: 7, global_step=153600
+SPS: 6181
+Epoch: 8, global_step=179200
+SPS: 6243
+Epoch: 9, global_step=204800
+SPS: 6375
+Epoch: 10, global_step=230400
+SPS: 6408
+Epoch: 11, global_step=256000
+SPS: 6485
+Epoch: 12, global_step=281600
+SPS: 6487
+Epoch: 13, global_step=307200
+SPS: 6551
+Epoch: 14, global_step=332800
+SPS: 6561
+Epoch: 15, global_step=358400
+SPS: 6603
+Epoch: 16, global_step=384000
+SPS: 6612
+Epoch: 17, global_step=409600
+SPS: 6649
+Epoch: 18, global_step=435200
+SPS: 6663
+Epoch: 19, global_step=460800
+SPS: 6695
+Epoch: 20, global_step=486400
+SPS: 6688
+Epoch: 21, global_step=512000
+SPS: 6715
+Epoch: 22, global_step=537600
+SPS: 6735
+Epoch: 23, global_step=563200
+SPS: 6757
+Epoch: 24, global_step=588800
+SPS: 6768
+Epoch: 25, global_step=614400
+SPS: 6785
+Epoch: 26, global_step=640000
+Evaluating
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 0 episodes
+model saved to runs/ContextualPushT-v1__ppo__1__1746730756/ckpt_26.pt
+SPS: 6569
+Epoch: 27, global_step=665600
+SPS: 6596
+Epoch: 28, global_step=691200
+SPS: 6608
+Epoch: 29, global_step=716800
+SPS: 6633
+Epoch: 30, global_step=742400
+SPS: 6643
+Epoch: 31, global_step=768000
+SPS: 6660
+Epoch: 32, global_step=793600
+SPS: 6668
+Epoch: 33, global_step=819200
+SPS: 6687
+Epoch: 34, global_step=844800
+SPS: 6697
+Epoch: 35, global_step=870400
+SPS: 6714
+Epoch: 36, global_step=896000
+SPS: 6725
+Epoch: 37, global_step=921600
+SPS: 6738
+Epoch: 38, global_step=947200
+SPS: 6747
+Epoch: 39, global_step=972800
+SPS: 6763
+Epoch: 40, global_step=998400
+SPS: 6767
+Epoch: 41, global_step=1024000
+SPS: 6781
+Epoch: 42, global_step=1049600
+SPS: 6786
+Epoch: 43, global_step=1075200
+SPS: 6797
+Epoch: 44, global_step=1100800
+SPS: 6804
+Epoch: 45, global_step=1126400
+SPS: 6812
+Epoch: 46, global_step=1152000
+SPS: 6817
+Epoch: 47, global_step=1177600
+SPS: 6824
+Epoch: 48, global_step=1203200
+SPS: 6823
+Epoch: 49, global_step=1228800
+SPS: 6831
+Epoch: 50, global_step=1254400
+SPS: 6831
+Epoch: 51, global_step=1280000
+Evaluating
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 0 episodes
+model saved to runs/ContextualPushT-v1__ppo__1__1746730756/ckpt_51.pt
+SPS: 6713
+Epoch: 52, global_step=1305600
+SPS: 6717
+Epoch: 53, global_step=1331200
+SPS: 6725
+Epoch: 54, global_step=1356800
+SPS: 6726
+Epoch: 55, global_step=1382400
+SPS: 6734
+Epoch: 56, global_step=1408000
+SPS: 6739
+Epoch: 57, global_step=1433600
+SPS: 6747
+Epoch: 58, global_step=1459200
+SPS: 6751
+Epoch: 59, global_step=1484800
+SPS: 6754
+Epoch: 60, global_step=1510400
+SPS: 6755
+Epoch: 61, global_step=1536000
+SPS: 6759
+Epoch: 62, global_step=1561600
+SPS: 6760
+Epoch: 63, global_step=1587200
+SPS: 6762
+Epoch: 64, global_step=1612800
+SPS: 6760
+Epoch: 65, global_step=1638400
+SPS: 6764
+Epoch: 66, global_step=1664000
+SPS: 6768
+Epoch: 67, global_step=1689600
+SPS: 6775
+Epoch: 68, global_step=1715200
+SPS: 6775
+Epoch: 69, global_step=1740800
+SPS: 6779
+Epoch: 70, global_step=1766400
+SPS: 6779
+Epoch: 71, global_step=1792000
+SPS: 6784
+Epoch: 72, global_step=1817600
+SPS: 6782
+Epoch: 73, global_step=1843200
+SPS: 6784
+Epoch: 74, global_step=1868800
+SPS: 6784
+Epoch: 75, global_step=1894400
+SPS: 6786
+Epoch: 76, global_step=1920000
+Evaluating
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 0 episodes
+model saved to runs/ContextualPushT-v1__ppo__1__1746730756/ckpt_76.pt
+SPS: 6698
+Epoch: 77, global_step=1945600
+SPS: 6702
+Epoch: 78, global_step=1971200
+SPS: 6700
+Epoch: 79, global_step=1996800
+SPS: 6704
+Epoch: 80, global_step=2022400
+SPS: 6701
+Epoch: 81, global_step=2048000
+SPS: 6704
+Epoch: 82, global_step=2073600
+SPS: 6699
+Epoch: 83, global_step=2099200
+SPS: 6701
+Epoch: 84, global_step=2124800
+SPS: 6698
+Epoch: 85, global_step=2150400
+SPS: 6700
+Epoch: 86, global_step=2176000
+SPS: 6698
+Epoch: 87, global_step=2201600
+SPS: 6700
+Epoch: 88, global_step=2227200
+SPS: 6699
+Epoch: 89, global_step=2252800
+SPS: 6700
+Epoch: 90, global_step=2278400
+SPS: 6697
+Epoch: 91, global_step=2304000
+SPS: 6698
+Epoch: 92, global_step=2329600
+SPS: 6694
+Epoch: 93, global_step=2355200
+SPS: 6694
+Epoch: 94, global_step=2380800
+SPS: 6691
+Epoch: 95, global_step=2406400
+SPS: 6690
+Epoch: 96, global_step=2432000
+SPS: 6687
+Epoch: 97, global_step=2457600
+SPS: 6686
+Epoch: 98, global_step=2483200
+SPS: 6682
+Epoch: 99, global_step=2508800
+SPS: 6683
+Epoch: 100, global_step=2534400
+SPS: 6675
+Epoch: 101, global_step=2560000
+Evaluating
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
