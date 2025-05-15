@@ -1,0 +1,18 @@
+nohup: ignoring input
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/torch/nn/modules/linear.py:125: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:180.)
+  return F.linear(input, self.weight, self.bias)
+Saving eval videos to runs/PushT-v1__hyperppo__1__1747282624/videos
+Running training
+####
+args.num_iterations=9765 args.num_envs=2048 args.num_eval_envs=8
+args.minibatch_size=3200 args.batch_size=102400 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Sampling new architecture
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 45.40093815326691
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/numpy/core/fromnumeric.py:3464: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/numpy/core/_methods.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)

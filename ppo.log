@@ -1,0 +1,1472 @@
+nohup: ignoring input
+Saving eval videos to runs/PushT-v1__ppo__1__1747254616/videos
+Running training
+####
+args.num_iterations=976 args.num_envs=2048 args.num_eval_envs=8
+args.minibatch_size=3200 args.batch_size=102400 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 45.29743546247482
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_1.pt
+SPS: 10133
+Epoch: 2, global_step=102400
+SPS: 14052
+Epoch: 3, global_step=204800
+SPS: 16191
+Epoch: 4, global_step=307200
+SPS: 17430
+Epoch: 5, global_step=409600
+SPS: 18248
+Epoch: 6, global_step=512000
+SPS: 18856
+Epoch: 7, global_step=614400
+SPS: 19383
+Epoch: 8, global_step=716800
+SPS: 19708
+Epoch: 9, global_step=819200
+SPS: 20011
+Epoch: 10, global_step=921600
+SPS: 20237
+Epoch: 11, global_step=1024000
+SPS: 20463
+Epoch: 12, global_step=1126400
+SPS: 20544
+Epoch: 13, global_step=1228800
+SPS: 20592
+Epoch: 14, global_step=1331200
+SPS: 20719
+Epoch: 15, global_step=1433600
+SPS: 20819
+Epoch: 16, global_step=1536000
+SPS: 20908
+Epoch: 17, global_step=1638400
+SPS: 20984
+Epoch: 18, global_step=1740800
+SPS: 21054
+Epoch: 19, global_step=1843200
+SPS: 21128
+Epoch: 20, global_step=1945600
+SPS: 21169
+Epoch: 21, global_step=2048000
+SPS: 21243
+Epoch: 22, global_step=2150400
+SPS: 21276
+Epoch: 23, global_step=2252800
+SPS: 21279
+Epoch: 24, global_step=2355200
+SPS: 21299
+Epoch: 25, global_step=2457600
+SPS: 21348
+Epoch: 26, global_step=2560000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 44.307846426963806
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_26.pt
+SPS: 20847
+Epoch: 27, global_step=2662400
+SPS: 20893
+Epoch: 28, global_step=2764800
+SPS: 20915
+Epoch: 29, global_step=2867200
+SPS: 20947
+Epoch: 30, global_step=2969600
+SPS: 20970
+Epoch: 31, global_step=3072000
+SPS: 21008
+Epoch: 32, global_step=3174400
+SPS: 21007
+Epoch: 33, global_step=3276800
+SPS: 21028
+Epoch: 34, global_step=3379200
+SPS: 21027
+Epoch: 35, global_step=3481600
+SPS: 21050
+Epoch: 36, global_step=3584000
+SPS: 21048
+Epoch: 37, global_step=3686400
+SPS: 21068
+Epoch: 38, global_step=3788800
+SPS: 21048
+Epoch: 39, global_step=3891200
+SPS: 21066
+Epoch: 40, global_step=3993600
+SPS: 21029
+Epoch: 41, global_step=4096000
+SPS: 21024
+Epoch: 42, global_step=4198400
+SPS: 20982
+Epoch: 43, global_step=4300800
+SPS: 20990
+Epoch: 44, global_step=4403200
+SPS: 20944
+Epoch: 45, global_step=4505600
+SPS: 20934
+Epoch: 46, global_step=4608000
+SPS: 20882
+Epoch: 47, global_step=4710400
+SPS: 20879
+Epoch: 48, global_step=4812800
+SPS: 20803
+Epoch: 49, global_step=4915200
+SPS: 20759
+Epoch: 50, global_step=5017600
+SPS: 20682
+Epoch: 51, global_step=5120000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 74.07868111133575
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_51.pt
+SPS: 20397
+Epoch: 52, global_step=5222400
+SPS: 20341
+Epoch: 53, global_step=5324800
+SPS: 20319
+Epoch: 54, global_step=5427200
+SPS: 20244
+Epoch: 55, global_step=5529600
+SPS: 20220
+Epoch: 56, global_step=5632000
+SPS: 20170
+Epoch: 57, global_step=5734400
+SPS: 20132
+Epoch: 58, global_step=5836800
+SPS: 20075
+Epoch: 59, global_step=5939200
+SPS: 20051
+Epoch: 60, global_step=6041600
+SPS: 19988
+Epoch: 61, global_step=6144000
+SPS: 19967
+Epoch: 62, global_step=6246400
+SPS: 19903
+Epoch: 63, global_step=6348800
+SPS: 19881
+Epoch: 64, global_step=6451200
+SPS: 19816
+Epoch: 65, global_step=6553600
+SPS: 19790
+Epoch: 66, global_step=6656000
+SPS: 19731
+Epoch: 67, global_step=6758400
+SPS: 19713
+Epoch: 68, global_step=6860800
+SPS: 19656
+Epoch: 69, global_step=6963200
+SPS: 19629
+Epoch: 70, global_step=7065600
+SPS: 19554
+Epoch: 71, global_step=7168000
+SPS: 19539
+Epoch: 72, global_step=7270400
+SPS: 19479
+Epoch: 73, global_step=7372800
+SPS: 19459
+Epoch: 74, global_step=7475200
+SPS: 19401
+Epoch: 75, global_step=7577600
+SPS: 19385
+Epoch: 76, global_step=7680000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 51.934227645397186
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_76.pt
+SPS: 19160
+Epoch: 77, global_step=7782400
+SPS: 19149
+Epoch: 78, global_step=7884800
+SPS: 19100
+Epoch: 79, global_step=7987200
+SPS: 19089
+Epoch: 80, global_step=8089600
+SPS: 19046
+Epoch: 81, global_step=8192000
+SPS: 19030
+Epoch: 82, global_step=8294400
+SPS: 18988
+Epoch: 83, global_step=8396800
+SPS: 18965
+Epoch: 84, global_step=8499200
+SPS: 18912
+Epoch: 85, global_step=8601600
+SPS: 18901
+Epoch: 86, global_step=8704000
+SPS: 18850
+Epoch: 87, global_step=8806400
+SPS: 18837
+Epoch: 88, global_step=8908800
+SPS: 18780
+Epoch: 89, global_step=9011200
+SPS: 18766
+Epoch: 90, global_step=9113600
+SPS: 18727
+Epoch: 91, global_step=9216000
+SPS: 18709
+Epoch: 92, global_step=9318400
+SPS: 18669
+Epoch: 93, global_step=9420800
+SPS: 18658
+Epoch: 94, global_step=9523200
+SPS: 18614
+Epoch: 95, global_step=9625600
+SPS: 18601
+Epoch: 96, global_step=9728000
+SPS: 18566
+Epoch: 97, global_step=9830400
+SPS: 18552
+Epoch: 98, global_step=9932800
+SPS: 18517
+Epoch: 99, global_step=10035200
+SPS: 18496
+Epoch: 100, global_step=10137600
+SPS: 18455
+Epoch: 101, global_step=10240000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 78.47505462169647
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_101.pt
+SPS: 18330
+Epoch: 102, global_step=10342400
+SPS: 18298
+Epoch: 103, global_step=10444800
+SPS: 18286
+Epoch: 104, global_step=10547200
+SPS: 18256
+Epoch: 105, global_step=10649600
+SPS: 18241
+Epoch: 106, global_step=10752000
+SPS: 18209
+Epoch: 107, global_step=10854400
+SPS: 18192
+Epoch: 108, global_step=10956800
+SPS: 18159
+Epoch: 109, global_step=11059200
+SPS: 18146
+Epoch: 110, global_step=11161600
+SPS: 18120
+Epoch: 111, global_step=11264000
+SPS: 18105
+Epoch: 112, global_step=11366400
+SPS: 18079
+Epoch: 113, global_step=11468800
+SPS: 18066
+Epoch: 114, global_step=11571200
+SPS: 18038
+Epoch: 115, global_step=11673600
+SPS: 18023
+Epoch: 116, global_step=11776000
+SPS: 17999
+Epoch: 117, global_step=11878400
+SPS: 17978
+Epoch: 118, global_step=11980800
+SPS: 17956
+Epoch: 119, global_step=12083200
+SPS: 17936
+Epoch: 120, global_step=12185600
+SPS: 17914
+Epoch: 121, global_step=12288000
+SPS: 17890
+Epoch: 122, global_step=12390400
+SPS: 17861
+Epoch: 123, global_step=12492800
+SPS: 17844
+Epoch: 124, global_step=12595200
+SPS: 17825
+Epoch: 125, global_step=12697600
+SPS: 17806
+Epoch: 126, global_step=12800000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 87.84889566898346
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_126.pt
+SPS: 17703
+Epoch: 127, global_step=12902400
+SPS: 17687
+Epoch: 128, global_step=13004800
+SPS: 17665
+Epoch: 129, global_step=13107200
+SPS: 17645
+Epoch: 130, global_step=13209600
+SPS: 17624
+Epoch: 131, global_step=13312000
+SPS: 17606
+Epoch: 132, global_step=13414400
+SPS: 17587
+Epoch: 133, global_step=13516800
+SPS: 17569
+Epoch: 134, global_step=13619200
+SPS: 17553
+Epoch: 135, global_step=13721600
+SPS: 17536
+Epoch: 136, global_step=13824000
+SPS: 17511
+Epoch: 137, global_step=13926400
+SPS: 17495
+Epoch: 138, global_step=14028800
+SPS: 17480
+Epoch: 139, global_step=14131200
+SPS: 17466
+Epoch: 140, global_step=14233600
+SPS: 17450
+Epoch: 141, global_step=14336000
+SPS: 17428
+Epoch: 142, global_step=14438400
+SPS: 17410
+Epoch: 143, global_step=14540800
+SPS: 17392
+Epoch: 144, global_step=14643200
+SPS: 17380
+Epoch: 145, global_step=14745600
+SPS: 17366
+Epoch: 146, global_step=14848000
+SPS: 17349
+Epoch: 147, global_step=14950400
+SPS: 17335
+Epoch: 148, global_step=15052800
+SPS: 17323
+Epoch: 149, global_step=15155200
+SPS: 17313
+Epoch: 150, global_step=15257600
+SPS: 17299
+Epoch: 151, global_step=15360000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 83.4224688410759
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_151.pt
+SPS: 17222
+Epoch: 152, global_step=15462400
+SPS: 17214
+Epoch: 153, global_step=15564800
+SPS: 17197
+Epoch: 154, global_step=15667200
+SPS: 17181
+Epoch: 155, global_step=15769600
+SPS: 17172
+Epoch: 156, global_step=15872000
+SPS: 17163
+Epoch: 157, global_step=15974400
+SPS: 17154
+Epoch: 158, global_step=16076800
+SPS: 17144
+Epoch: 159, global_step=16179200
+SPS: 17132
+Epoch: 160, global_step=16281600
+SPS: 17118
+Epoch: 161, global_step=16384000
+SPS: 17110
+Epoch: 162, global_step=16486400
+SPS: 17103
+Epoch: 163, global_step=16588800
+SPS: 17094
+Epoch: 164, global_step=16691200
+SPS: 17087
+Epoch: 165, global_step=16793600
+SPS: 17080
+Epoch: 166, global_step=16896000
+SPS: 17073
+Epoch: 167, global_step=16998400
+SPS: 17064
+Epoch: 168, global_step=17100800
+SPS: 17051
+Epoch: 169, global_step=17203200
+SPS: 17044
+Epoch: 170, global_step=17305600
+SPS: 17037
+Epoch: 171, global_step=17408000
+SPS: 17031
+Epoch: 172, global_step=17510400
+SPS: 17023
+Epoch: 173, global_step=17612800
+SPS: 17015
+Epoch: 174, global_step=17715200
+SPS: 17005
+Epoch: 175, global_step=17817600
+SPS: 16998
+Epoch: 176, global_step=17920000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 104.76389968395233
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_176.pt
+SPS: 16939
+Epoch: 177, global_step=18022400
+SPS: 16930
+Epoch: 178, global_step=18124800
+SPS: 16919
+Epoch: 179, global_step=18227200
+SPS: 16913
+Epoch: 180, global_step=18329600
+SPS: 16908
+Epoch: 181, global_step=18432000
+SPS: 16902
+Epoch: 182, global_step=18534400
+SPS: 16895
+Epoch: 183, global_step=18636800
+SPS: 16890
+Epoch: 184, global_step=18739200
+SPS: 16884
+Epoch: 185, global_step=18841600
+SPS: 16878
+Epoch: 186, global_step=18944000
+SPS: 16870
+Epoch: 187, global_step=19046400
+SPS: 16864
+Epoch: 188, global_step=19148800
+SPS: 16859
+Epoch: 189, global_step=19251200
+SPS: 16854
+Epoch: 190, global_step=19353600
+SPS: 16850
+Epoch: 191, global_step=19456000
+SPS: 16844
+Epoch: 192, global_step=19558400
+SPS: 16839
+Epoch: 193, global_step=19660800
+SPS: 16834
+Epoch: 194, global_step=19763200
+SPS: 16830
+Epoch: 195, global_step=19865600
+SPS: 16825
+Epoch: 196, global_step=19968000
+SPS: 16818
+Epoch: 197, global_step=20070400
+SPS: 16812
+Epoch: 198, global_step=20172800
+SPS: 16805
+Epoch: 199, global_step=20275200
+SPS: 16800
+Epoch: 200, global_step=20377600
+SPS: 16786
+Epoch: 201, global_step=20480000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 122.17966938018799
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_201.pt
+SPS: 16731
+Epoch: 202, global_step=20582400
+SPS: 16727
+Epoch: 203, global_step=20684800
+SPS: 16721
+Epoch: 204, global_step=20787200
+SPS: 16716
+Epoch: 205, global_step=20889600
+SPS: 16702
+Epoch: 206, global_step=20992000
+SPS: 16689
+Epoch: 207, global_step=21094400
+SPS: 16677
+Epoch: 208, global_step=21196800
+SPS: 16673
+Epoch: 209, global_step=21299200
+SPS: 16668
+Epoch: 210, global_step=21401600
+SPS: 16656
+Epoch: 211, global_step=21504000
+SPS: 16651
+Epoch: 212, global_step=21606400
+SPS: 16647
+Epoch: 213, global_step=21708800
+SPS: 16641
+Epoch: 214, global_step=21811200
+SPS: 16637
+Epoch: 215, global_step=21913600
+SPS: 16634
+Epoch: 216, global_step=22016000
+SPS: 16629
+Epoch: 217, global_step=22118400
+SPS: 16624
+Epoch: 218, global_step=22220800
+SPS: 16620
+Epoch: 219, global_step=22323200
+SPS: 16616
+Epoch: 220, global_step=22425600
+SPS: 16611
+Epoch: 221, global_step=22528000
+SPS: 16607
+Epoch: 222, global_step=22630400
+SPS: 16604
+Epoch: 223, global_step=22732800
+SPS: 16599
+Epoch: 224, global_step=22835200
+SPS: 16595
+Epoch: 225, global_step=22937600
+SPS: 16592
+Epoch: 226, global_step=23040000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 155.94694685935974
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_226.pt
+SPS: 16548
+Epoch: 227, global_step=23142400
+SPS: 16540
+Epoch: 228, global_step=23244800
+SPS: 16537
+Epoch: 229, global_step=23347200
+SPS: 16535
+Epoch: 230, global_step=23449600
+SPS: 16528
+Epoch: 231, global_step=23552000
+SPS: 16521
+Epoch: 232, global_step=23654400
+SPS: 16518
+Epoch: 233, global_step=23756800
+SPS: 16512
+Epoch: 234, global_step=23859200
+SPS: 16509
+Epoch: 235, global_step=23961600
+SPS: 16506
+Epoch: 236, global_step=24064000
+SPS: 16502
+Epoch: 237, global_step=24166400
+SPS: 16500
+Epoch: 238, global_step=24268800
+SPS: 16496
+Epoch: 239, global_step=24371200
+SPS: 16493
+Epoch: 240, global_step=24473600
+SPS: 16491
+Epoch: 241, global_step=24576000
+SPS: 16489
+Epoch: 242, global_step=24678400
+SPS: 16487
+Epoch: 243, global_step=24780800
+SPS: 16485
+Epoch: 244, global_step=24883200
+SPS: 16481
+Epoch: 245, global_step=24985600
+SPS: 16479
+Epoch: 246, global_step=25088000
+SPS: 16476
+Epoch: 247, global_step=25190400
+SPS: 16474
+Epoch: 248, global_step=25292800
+SPS: 16471
+Epoch: 249, global_step=25395200
+SPS: 16467
+Epoch: 250, global_step=25497600
+SPS: 16458
+Epoch: 251, global_step=25600000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 174.41987323760986
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_251.pt
+SPS: 16414
+Epoch: 252, global_step=25702400
+SPS: 16412
+Epoch: 253, global_step=25804800
+SPS: 16405
+Epoch: 254, global_step=25907200
+SPS: 16400
+Epoch: 255, global_step=26009600
+SPS: 16398
+Epoch: 256, global_step=26112000
+SPS: 16396
+Epoch: 257, global_step=26214400
+SPS: 16393
+Epoch: 258, global_step=26316800
+SPS: 16392
+Epoch: 259, global_step=26419200
+SPS: 16391
+Epoch: 260, global_step=26521600
+SPS: 16388
+Epoch: 261, global_step=26624000
+SPS: 16384
+Epoch: 262, global_step=26726400
+SPS: 16381
+Epoch: 263, global_step=26828800
+SPS: 16377
+Epoch: 264, global_step=26931200
+SPS: 16375
+Epoch: 265, global_step=27033600
+SPS: 16368
+Epoch: 266, global_step=27136000
+SPS: 16362
+Epoch: 267, global_step=27238400
+SPS: 16359
+Epoch: 268, global_step=27340800
+SPS: 16356
+Epoch: 269, global_step=27443200
+SPS: 16353
+Epoch: 270, global_step=27545600
+SPS: 16351
+Epoch: 271, global_step=27648000
+SPS: 16342
+Epoch: 272, global_step=27750400
+SPS: 16339
+Epoch: 273, global_step=27852800
+SPS: 16337
+Epoch: 274, global_step=27955200
+SPS: 16336
+Epoch: 275, global_step=28057600
+SPS: 16332
+Epoch: 276, global_step=28160000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 159.879864692688
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_276.pt
+SPS: 16294
+Epoch: 277, global_step=28262400
+SPS: 16293
+Epoch: 278, global_step=28364800
+SPS: 16286
+Epoch: 279, global_step=28467200
+SPS: 16283
+Epoch: 280, global_step=28569600
+SPS: 16292
+Epoch: 281, global_step=28672000
+SPS: 16291
+Epoch: 282, global_step=28774400
+SPS: 16290
+Epoch: 283, global_step=28876800
+SPS: 16289
+Epoch: 284, global_step=28979200
+SPS: 16285
+Epoch: 285, global_step=29081600
+SPS: 16283
+Epoch: 286, global_step=29184000
+SPS: 16279
+Epoch: 287, global_step=29286400
+SPS: 16276
+Epoch: 288, global_step=29388800
+SPS: 16274
+Epoch: 289, global_step=29491200
+SPS: 16271
+Epoch: 290, global_step=29593600
+SPS: 16269
+Epoch: 291, global_step=29696000
+SPS: 16269
+Epoch: 292, global_step=29798400
+SPS: 16267
+Epoch: 293, global_step=29900800
+SPS: 16277
+Epoch: 294, global_step=30003200
+SPS: 16272
+Epoch: 295, global_step=30105600
+SPS: 16270
+Epoch: 296, global_step=30208000
+SPS: 16266
+Epoch: 297, global_step=30310400
+SPS: 16262
+Epoch: 298, global_step=30412800
+SPS: 16258
+Epoch: 299, global_step=30515200
+SPS: 16252
+Epoch: 300, global_step=30617600
+SPS: 16251
+Epoch: 301, global_step=30720000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 166.5624235868454
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_301.pt
+SPS: 16218
+Epoch: 302, global_step=30822400
+SPS: 16214
+Epoch: 303, global_step=30924800
+SPS: 16213
+Epoch: 304, global_step=31027200
+SPS: 16212
+Epoch: 305, global_step=31129600
+SPS: 16211
+Epoch: 306, global_step=31232000
+SPS: 16223
+Epoch: 307, global_step=31334400
+SPS: 16230
+Epoch: 308, global_step=31436800
+SPS: 16228
+Epoch: 309, global_step=31539200
+SPS: 16226
+Epoch: 310, global_step=31641600
+SPS: 16223
+Epoch: 311, global_step=31744000
+SPS: 16222
+Epoch: 312, global_step=31846400
+SPS: 16221
+Epoch: 313, global_step=31948800
+SPS: 16222
+Epoch: 314, global_step=32051200
+SPS: 16233
+Epoch: 315, global_step=32153600
+SPS: 16232
+Epoch: 316, global_step=32256000
+SPS: 16229
+Epoch: 317, global_step=32358400
+SPS: 16228
+Epoch: 318, global_step=32460800
+SPS: 16227
+Epoch: 319, global_step=32563200
+SPS: 16226
+Epoch: 320, global_step=32665600
+SPS: 16223
+Epoch: 321, global_step=32768000
+SPS: 16222
+Epoch: 322, global_step=32870400
+SPS: 16231
+Epoch: 323, global_step=32972800
+SPS: 16239
+Epoch: 324, global_step=33075200
+SPS: 16238
+Epoch: 325, global_step=33177600
+SPS: 16236
+Epoch: 326, global_step=33280000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 174.23842823505402
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_326.pt
+SPS: 16212
+Epoch: 327, global_step=33382400
+SPS: 16221
+Epoch: 328, global_step=33484800
+SPS: 16228
+Epoch: 329, global_step=33587200
+SPS: 16239
+Epoch: 330, global_step=33689600
+SPS: 16248
+Epoch: 331, global_step=33792000
+SPS: 16254
+Epoch: 332, global_step=33894400
+SPS: 16259
+Epoch: 333, global_step=33996800
+SPS: 16270
+Epoch: 334, global_step=34099200
+SPS: 16275
+Epoch: 335, global_step=34201600
+SPS: 16273
+Epoch: 336, global_step=34304000
+SPS: 16281
+Epoch: 337, global_step=34406400
+SPS: 16280
+Epoch: 338, global_step=34508800
+SPS: 16282
+Epoch: 339, global_step=34611200
+SPS: 16281
+Epoch: 340, global_step=34713600
+SPS: 16291
+Epoch: 341, global_step=34816000
+SPS: 16287
+Epoch: 342, global_step=34918400
+SPS: 16296
+Epoch: 343, global_step=35020800
+SPS: 16296
+Epoch: 344, global_step=35123200
+SPS: 16295
+Epoch: 345, global_step=35225600
+SPS: 16304
+Epoch: 346, global_step=35328000
+SPS: 16302
+Epoch: 347, global_step=35430400
+SPS: 16306
+Epoch: 348, global_step=35532800
+SPS: 16313
+Epoch: 349, global_step=35635200
+SPS: 16323
+Epoch: 350, global_step=35737600
+SPS: 16331
+Epoch: 351, global_step=35840000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 141.02623283863068
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_351.pt
+SPS: 16314
+Epoch: 352, global_step=35942400
+SPS: 16314
+Epoch: 353, global_step=36044800
+SPS: 16317
+Epoch: 354, global_step=36147200
+SPS: 16323
+Epoch: 355, global_step=36249600
+SPS: 16320
+Epoch: 356, global_step=36352000
+SPS: 16325
+Epoch: 357, global_step=36454400
+SPS: 16334
+Epoch: 358, global_step=36556800
+SPS: 16341
+Epoch: 359, global_step=36659200
+SPS: 16341
+Epoch: 360, global_step=36761600
+SPS: 16350
+Epoch: 361, global_step=36864000
+SPS: 16358
+Epoch: 362, global_step=36966400
+SPS: 16367
+Epoch: 363, global_step=37068800
+SPS: 16370
+Epoch: 364, global_step=37171200
+SPS: 16379
+Epoch: 365, global_step=37273600
+SPS: 16387
+Epoch: 366, global_step=37376000
+SPS: 16386
+Epoch: 367, global_step=37478400
+SPS: 16384
+Epoch: 368, global_step=37580800
+SPS: 16383
+Epoch: 369, global_step=37683200
+SPS: 16381
+Epoch: 370, global_step=37785600
+SPS: 16379
+Epoch: 371, global_step=37888000
+SPS: 16378
+Epoch: 372, global_step=37990400
+SPS: 16377
+Epoch: 373, global_step=38092800
+SPS: 16385
+Epoch: 374, global_step=38195200
+SPS: 16389
+Epoch: 375, global_step=38297600
+SPS: 16391
+Epoch: 376, global_step=38400000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 183.3732185959816
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_376.pt
+SPS: 16375
+Epoch: 377, global_step=38502400
+SPS: 16383
+Epoch: 378, global_step=38604800
+SPS: 16391
+Epoch: 379, global_step=38707200
+SPS: 16399
+Epoch: 380, global_step=38809600
+SPS: 16407
+Epoch: 381, global_step=38912000
+SPS: 16415
+Epoch: 382, global_step=39014400
+SPS: 16419
+Epoch: 383, global_step=39116800
+SPS: 16426
+Epoch: 384, global_step=39219200
+SPS: 16432
+Epoch: 385, global_step=39321600
+SPS: 16432
+Epoch: 386, global_step=39424000
+SPS: 16430
+Epoch: 387, global_step=39526400
+SPS: 16438
+Epoch: 388, global_step=39628800
+SPS: 16445
+Epoch: 389, global_step=39731200
+SPS: 16444
+Epoch: 390, global_step=39833600
+SPS: 16443
+Epoch: 391, global_step=39936000
+SPS: 16449
+Epoch: 392, global_step=40038400
+SPS: 16447
+Epoch: 393, global_step=40140800
+SPS: 16456
+Epoch: 394, global_step=40243200
+SPS: 16455
+Epoch: 395, global_step=40345600
+SPS: 16459
+Epoch: 396, global_step=40448000
+SPS: 16467
+Epoch: 397, global_step=40550400
+SPS: 16474
+Epoch: 398, global_step=40652800
+SPS: 16475
+Epoch: 399, global_step=40755200
+SPS: 16473
+Epoch: 400, global_step=40857600
+SPS: 16478
+Epoch: 401, global_step=40960000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 159.81764847040176
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_401.pt
+SPS: 16453
+Epoch: 402, global_step=41062400
+SPS: 16452
+Epoch: 403, global_step=41164800
+SPS: 16455
+Epoch: 404, global_step=41267200
+SPS: 16452
+Epoch: 405, global_step=41369600
+SPS: 16450
+Epoch: 406, global_step=41472000
+SPS: 16457
+Epoch: 407, global_step=41574400
+SPS: 16463
+Epoch: 408, global_step=41676800
+SPS: 16471
+Epoch: 409, global_step=41779200
+SPS: 16477
+Epoch: 410, global_step=41881600
+SPS: 16486
+Epoch: 411, global_step=41984000
+SPS: 16494
+Epoch: 412, global_step=42086400
+SPS: 16501
+Epoch: 413, global_step=42188800
+SPS: 16508
+Epoch: 414, global_step=42291200
+SPS: 16516
+Epoch: 415, global_step=42393600
+SPS: 16524
+Epoch: 416, global_step=42496000
+SPS: 16531
+Epoch: 417, global_step=42598400
+SPS: 16538
+Epoch: 418, global_step=42700800
+SPS: 16544
+Epoch: 419, global_step=42803200
+SPS: 16552
+Epoch: 420, global_step=42905600
+SPS: 16550
+Epoch: 421, global_step=43008000
+SPS: 16558
+Epoch: 422, global_step=43110400
+SPS: 16565
+Epoch: 423, global_step=43212800
+SPS: 16572
+Epoch: 424, global_step=43315200
+SPS: 16568
+Epoch: 425, global_step=43417600
+SPS: 16573
+Epoch: 426, global_step=43520000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 167.95474350452423
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_426.pt
+SPS: 16552
+Epoch: 427, global_step=43622400
+SPS: 16558
+Epoch: 428, global_step=43724800
+SPS: 16565
+Epoch: 429, global_step=43827200
+SPS: 16571
+Epoch: 430, global_step=43929600
+SPS: 16578
+Epoch: 431, global_step=44032000
+SPS: 16585
+Epoch: 432, global_step=44134400
+SPS: 16592
+Epoch: 433, global_step=44236800
+SPS: 16599
+Epoch: 434, global_step=44339200
+SPS: 16606
+Epoch: 435, global_step=44441600
+SPS: 16613
+Epoch: 436, global_step=44544000
+SPS: 16620
+Epoch: 437, global_step=44646400
+SPS: 16628
+Epoch: 438, global_step=44748800
+SPS: 16626
+Epoch: 439, global_step=44851200
+SPS: 16633
+Epoch: 440, global_step=44953600
+SPS: 16640
+Epoch: 441, global_step=45056000
+SPS: 16646
+Epoch: 442, global_step=45158400
+SPS: 16651
+Epoch: 443, global_step=45260800
+SPS: 16648
+Epoch: 444, global_step=45363200
+SPS: 16655
+Epoch: 445, global_step=45465600
+SPS: 16662
+Epoch: 446, global_step=45568000
+SPS: 16667
+Epoch: 447, global_step=45670400
+SPS: 16667
+Epoch: 448, global_step=45772800
+SPS: 16665
+Epoch: 449, global_step=45875200
+SPS: 16671
+Epoch: 450, global_step=45977600
+SPS: 16677
+Epoch: 451, global_step=46080000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 198.74484848976135
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_451.pt
+SPS: 16662
+Epoch: 452, global_step=46182400
+SPS: 16668
+Epoch: 453, global_step=46284800
+SPS: 16671
+Epoch: 454, global_step=46387200
+SPS: 16670
+Epoch: 455, global_step=46489600
+SPS: 16677
+Epoch: 456, global_step=46592000
+SPS: 16684
+Epoch: 457, global_step=46694400
+SPS: 16688
+Epoch: 458, global_step=46796800
+SPS: 16694
+Epoch: 459, global_step=46899200
+SPS: 16699
+Epoch: 460, global_step=47001600
+SPS: 16704
+Epoch: 461, global_step=47104000
+SPS: 16710
+Epoch: 462, global_step=47206400
+SPS: 16713
+Epoch: 463, global_step=47308800
+SPS: 16719
+Epoch: 464, global_step=47411200
+SPS: 16723
+Epoch: 465, global_step=47513600
+SPS: 16729
+Epoch: 466, global_step=47616000
+SPS: 16727
+Epoch: 467, global_step=47718400
+SPS: 16734
+Epoch: 468, global_step=47820800
+SPS: 16739
+Epoch: 469, global_step=47923200
+SPS: 16746
+Epoch: 470, global_step=48025600
+SPS: 16753
+Epoch: 471, global_step=48128000
+SPS: 16759
+Epoch: 472, global_step=48230400
+SPS: 16766
+Epoch: 473, global_step=48332800
+SPS: 16772
+Epoch: 474, global_step=48435200
+SPS: 16778
+Epoch: 475, global_step=48537600
+SPS: 16782
+Epoch: 476, global_step=48640000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 164.40934121608734
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_476.pt
+SPS: 16760
+Epoch: 477, global_step=48742400
+SPS: 16758
+Epoch: 478, global_step=48844800
+SPS: 16764
+Epoch: 479, global_step=48947200
+SPS: 16763
+Epoch: 480, global_step=49049600
+SPS: 16769
+Epoch: 481, global_step=49152000
+SPS: 16775
+Epoch: 482, global_step=49254400
+SPS: 16781
+Epoch: 483, global_step=49356800
+SPS: 16785
+Epoch: 484, global_step=49459200
+SPS: 16792
+Epoch: 485, global_step=49561600
+SPS: 16798
+Epoch: 486, global_step=49664000
+SPS: 16804
+Epoch: 487, global_step=49766400
+SPS: 16808
+Epoch: 488, global_step=49868800
+SPS: 16815
+Epoch: 489, global_step=49971200
+SPS: 16821
+Epoch: 490, global_step=50073600
+SPS: 16826
+Epoch: 491, global_step=50176000
+SPS: 16831
+Epoch: 492, global_step=50278400
+SPS: 16835
+Epoch: 493, global_step=50380800
+SPS: 16842
+Epoch: 494, global_step=50483200
+SPS: 16848
+Epoch: 495, global_step=50585600
+SPS: 16850
+Epoch: 496, global_step=50688000
+SPS: 16847
+Epoch: 497, global_step=50790400
+SPS: 16853
+Epoch: 498, global_step=50892800
+SPS: 16859
+Epoch: 499, global_step=50995200
+SPS: 16865
+Epoch: 500, global_step=51097600
+SPS: 16872
+Epoch: 501, global_step=51200000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 175.05914002656937
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_501.pt
+SPS: 16856
+Epoch: 502, global_step=51302400
+SPS: 16860
+Epoch: 503, global_step=51404800
+SPS: 16860
+Epoch: 504, global_step=51507200
+SPS: 16865
+Epoch: 505, global_step=51609600
+SPS: 16872
+Epoch: 506, global_step=51712000
+SPS: 16877
+Epoch: 507, global_step=51814400
+SPS: 16882
+Epoch: 508, global_step=51916800
+SPS: 16886
+Epoch: 509, global_step=52019200
+SPS: 16892
+Epoch: 510, global_step=52121600
+SPS: 16898
+Epoch: 511, global_step=52224000
+SPS: 16901
+Epoch: 512, global_step=52326400
+SPS: 16907
+Epoch: 513, global_step=52428800
+SPS: 16907
+Epoch: 514, global_step=52531200
+SPS: 16912
+Epoch: 515, global_step=52633600
+SPS: 16909
+Epoch: 516, global_step=52736000
+SPS: 16913
+Epoch: 517, global_step=52838400
+SPS: 16918
+Epoch: 518, global_step=52940800
+SPS: 16918
+Epoch: 519, global_step=53043200
+SPS: 16923
+Epoch: 520, global_step=53145600
+SPS: 16927
+Epoch: 521, global_step=53248000
+SPS: 16931
+Epoch: 522, global_step=53350400
+SPS: 16937
+Epoch: 523, global_step=53452800
+SPS: 16943
+Epoch: 524, global_step=53555200
+SPS: 16948
+Epoch: 525, global_step=53657600
+SPS: 16954
+Epoch: 526, global_step=53760000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 150.76939916610718
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_526.pt
+SPS: 16942
+Epoch: 527, global_step=53862400
+SPS: 16947
+Epoch: 528, global_step=53964800
+SPS: 16953
+Epoch: 529, global_step=54067200
+SPS: 16957
+Epoch: 530, global_step=54169600
+SPS: 16962
+Epoch: 531, global_step=54272000
+SPS: 16966
+Epoch: 532, global_step=54374400
+SPS: 16972
+Epoch: 533, global_step=54476800
+SPS: 16977
+Epoch: 534, global_step=54579200
+SPS: 16978
+Epoch: 535, global_step=54681600
+SPS: 16981
+Epoch: 536, global_step=54784000
+SPS: 16984
+Epoch: 537, global_step=54886400
+SPS: 16988
+Epoch: 538, global_step=54988800
+SPS: 16994
+Epoch: 539, global_step=55091200
+SPS: 16999
+Epoch: 540, global_step=55193600
+SPS: 17005
+Epoch: 541, global_step=55296000
+SPS: 17010
+Epoch: 542, global_step=55398400
+SPS: 17015
+Epoch: 543, global_step=55500800
+SPS: 17021
+Epoch: 544, global_step=55603200
+SPS: 17024
+Epoch: 545, global_step=55705600
+SPS: 17030
+Epoch: 546, global_step=55808000
+SPS: 17034
+Epoch: 547, global_step=55910400
+SPS: 17039
+Epoch: 548, global_step=56012800
+SPS: 17044
+Epoch: 549, global_step=56115200
+SPS: 17049
+Epoch: 550, global_step=56217600
+SPS: 17054
+Epoch: 551, global_step=56320000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 190.3671349287033
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_551.pt
+SPS: 17041
+Epoch: 552, global_step=56422400
+SPS: 17047
+Epoch: 553, global_step=56524800
+SPS: 17050
+Epoch: 554, global_step=56627200
+SPS: 17054
+Epoch: 555, global_step=56729600
+SPS: 17059
+Epoch: 556, global_step=56832000
+SPS: 17062
+Epoch: 557, global_step=56934400
+SPS: 17066
+Epoch: 558, global_step=57036800
+SPS: 17070
+Epoch: 559, global_step=57139200
+SPS: 17070
+Epoch: 560, global_step=57241600
+SPS: 17074
+Epoch: 561, global_step=57344000
+SPS: 17079
+Epoch: 562, global_step=57446400
+SPS: 17084
+Epoch: 563, global_step=57548800
+SPS: 17088
+Epoch: 564, global_step=57651200
+SPS: 17093
+Epoch: 565, global_step=57753600
+SPS: 17096
+Epoch: 566, global_step=57856000
+SPS: 17101
+Epoch: 567, global_step=57958400
+SPS: 17106
+Epoch: 568, global_step=58060800
+SPS: 17110
+Epoch: 569, global_step=58163200
+SPS: 17116
+Epoch: 570, global_step=58265600
+SPS: 17121
+Epoch: 571, global_step=58368000
+SPS: 17126
+Epoch: 572, global_step=58470400
+SPS: 17130
+Epoch: 573, global_step=58572800
+SPS: 17135
+Epoch: 574, global_step=58675200
+SPS: 17139
+Epoch: 575, global_step=58777600
+SPS: 17144
+Epoch: 576, global_step=58880000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 167.4953235387802
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_576.pt
+SPS: 17131
+Epoch: 577, global_step=58982400
+SPS: 17136
+Epoch: 578, global_step=59084800
+SPS: 17141
+Epoch: 579, global_step=59187200
+SPS: 17145
+Epoch: 580, global_step=59289600
+SPS: 17146
+Epoch: 581, global_step=59392000
+SPS: 17150
+Epoch: 582, global_step=59494400
+SPS: 17156
+Epoch: 583, global_step=59596800
+SPS: 17161
+Epoch: 584, global_step=59699200
+SPS: 17165
+Epoch: 585, global_step=59801600
+SPS: 17169
+Epoch: 586, global_step=59904000
+SPS: 17174
+Epoch: 587, global_step=60006400
+SPS: 17178
+Epoch: 588, global_step=60108800
+SPS: 17183
+Epoch: 589, global_step=60211200
+SPS: 17186
+Epoch: 590, global_step=60313600
+SPS: 17190
+Epoch: 591, global_step=60416000
+SPS: 17195
+Epoch: 592, global_step=60518400
+SPS: 17199
+Epoch: 593, global_step=60620800
+SPS: 17202
+Epoch: 594, global_step=60723200
+SPS: 17205
+Epoch: 595, global_step=60825600
+SPS: 17209
+Epoch: 596, global_step=60928000
+SPS: 17214
+Epoch: 597, global_step=61030400
+SPS: 17218
+Epoch: 598, global_step=61132800
+SPS: 17223
+Epoch: 599, global_step=61235200
+SPS: 17227
+Epoch: 600, global_step=61337600
+SPS: 17230
+Epoch: 601, global_step=61440000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 157.585045337677
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_601.pt
+SPS: 17216
+Epoch: 602, global_step=61542400
+SPS: 17221
+Epoch: 603, global_step=61644800
+SPS: 17225
+Epoch: 604, global_step=61747200
+SPS: 17229
+Epoch: 605, global_step=61849600
+SPS: 17233
+Epoch: 606, global_step=61952000
+SPS: 17238
+Epoch: 607, global_step=62054400
+SPS: 17235
+Epoch: 608, global_step=62156800
+SPS: 17239
+Epoch: 609, global_step=62259200
+SPS: 17244
+Epoch: 610, global_step=62361600
+SPS: 17249
+Epoch: 611, global_step=62464000
+SPS: 17253
+Epoch: 612, global_step=62566400
+SPS: 17258
+Epoch: 613, global_step=62668800
+SPS: 17263
+Epoch: 614, global_step=62771200
+SPS: 17267
+Epoch: 615, global_step=62873600
+SPS: 17272
+Epoch: 616, global_step=62976000
+SPS: 17275
+Epoch: 617, global_step=63078400
+SPS: 17279
+Epoch: 618, global_step=63180800
+SPS: 17283
+Epoch: 619, global_step=63283200
+SPS: 17285
+Epoch: 620, global_step=63385600
+SPS: 17287
+Epoch: 621, global_step=63488000
+SPS: 17291
+Epoch: 622, global_step=63590400
+SPS: 17294
+Epoch: 623, global_step=63692800
+SPS: 17297
+Epoch: 624, global_step=63795200
+SPS: 17300
+Epoch: 625, global_step=63897600
+SPS: 17303
+Epoch: 626, global_step=64000000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 163.18657064437866
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_626.pt
+SPS: 17291
+Epoch: 627, global_step=64102400
+SPS: 17295
+Epoch: 628, global_step=64204800
+SPS: 17298
+Epoch: 629, global_step=64307200
+SPS: 17302
+Epoch: 630, global_step=64409600
+SPS: 17303
+Epoch: 631, global_step=64512000
+SPS: 17308
+Epoch: 632, global_step=64614400
+SPS: 17311
+Epoch: 633, global_step=64716800
+SPS: 17315
+Epoch: 634, global_step=64819200
+SPS: 17315
+Epoch: 635, global_step=64921600
+SPS: 17319
+Epoch: 636, global_step=65024000
+SPS: 17323
+Epoch: 637, global_step=65126400
+SPS: 17328
+Epoch: 638, global_step=65228800
+SPS: 17331
+Epoch: 639, global_step=65331200
+SPS: 17335
+Epoch: 640, global_step=65433600
+SPS: 17339
+Epoch: 641, global_step=65536000
+SPS: 17341
+Epoch: 642, global_step=65638400
+SPS: 17346
+Epoch: 643, global_step=65740800
+SPS: 17350
+Epoch: 644, global_step=65843200
+SPS: 17353
+Epoch: 645, global_step=65945600
+SPS: 17356
+Epoch: 646, global_step=66048000
+SPS: 17360
+Epoch: 647, global_step=66150400
+SPS: 17363
+Epoch: 648, global_step=66252800
+SPS: 17367
+Epoch: 649, global_step=66355200
+SPS: 17371
+Epoch: 650, global_step=66457600
+SPS: 17374
+Epoch: 651, global_step=66560000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 151.6854246854782
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_651.pt
+SPS: 17363
+Epoch: 652, global_step=66662400
+SPS: 17367
+Epoch: 653, global_step=66764800
+SPS: 17372
+Epoch: 654, global_step=66867200
+SPS: 17376
+Epoch: 655, global_step=66969600
+SPS: 17380
+Epoch: 656, global_step=67072000
+SPS: 17383
+Epoch: 657, global_step=67174400
+SPS: 17387
+Epoch: 658, global_step=67276800
+SPS: 17391
+Epoch: 659, global_step=67379200
+SPS: 17395
+Epoch: 660, global_step=67481600
+SPS: 17400
+Epoch: 661, global_step=67584000
+SPS: 17397
+Epoch: 662, global_step=67686400
+SPS: 17395
+Epoch: 663, global_step=67788800
+SPS: 17398
+Epoch: 664, global_step=67891200
+SPS: 17402
+Epoch: 665, global_step=67993600
+SPS: 17406
+Epoch: 666, global_step=68096000
+SPS: 17410
+Epoch: 667, global_step=68198400
+SPS: 17413
+Epoch: 668, global_step=68300800
+SPS: 17417
+Epoch: 669, global_step=68403200
+SPS: 17421
+Epoch: 670, global_step=68505600
+SPS: 17425
+Epoch: 671, global_step=68608000
+SPS: 17429
+Epoch: 672, global_step=68710400
+SPS: 17432
+Epoch: 673, global_step=68812800
+SPS: 17435
+Epoch: 674, global_step=68915200
+SPS: 17439
+Epoch: 675, global_step=69017600
+SPS: 17443
+Epoch: 676, global_step=69120000
+Evaluating
+Evaluated 400 steps resulting in 0 episodes
+Total reward during evaluation: 175.07977384328842
+model saved to runs/PushT-v1__ppo__1__1747254616/ckpt_676.pt
+SPS: 17432
+Epoch: 677, global_step=69222400

@@ -172,7 +172,7 @@ class ContextualPandaStick(BaseAgent):
         control_mode: str,
         agent_idx: Optional[int] = None,
         initial_pose: Optional[sapien.Pose] = None,
-        build_separate: bool = False,
+    #     build_separate: bool = False,
         link5_z_scale: float = 1.0,
     ):
         self.link5_z_scale = link5_z_scale
@@ -182,7 +182,7 @@ class ContextualPandaStick(BaseAgent):
             control_mode=control_mode,
             agent_idx=agent_idx,
             initial_pose=initial_pose,
-            build_separate=build_separate,
+        #     build_separate=build_separate,
         )
         print("Initializing ContextualPandaStick...")
 
@@ -225,18 +225,18 @@ class ContextualPandaStick(BaseAgent):
 
             return robot
 
-        if self.build_separate:
-            arts = []
-            for scene_idx in range(self.scene.num_envs):
-                robot = build_articulation([scene_idx])
-                self.scene.remove_from_state_dict_registry(robot)
-                arts.append(robot)
-            self.robot = Articulation.merge(
-                arts, name=f"{self.uid}-agent-{self._agent_idx}", merge_links=True
-            )
-            self.scene.add_to_state_dict_registry(self.robot)
-        else:
-            self.robot = build_articulation()
+        # if self.build_separate:
+        #     arts = []
+        #     for scene_idx in range(self.scene.num_envs):
+        #         robot = build_articulation([scene_idx])
+        #         self.scene.remove_from_state_dict_registry(robot)
+        #         arts.append(robot)
+        #     self.robot = Articulation.merge(
+        #         arts, name=f"{self.uid}-agent-{self._agent_idx}", merge_links=True
+        #     )
+        #     self.scene.add_to_state_dict_registry(self.robot)
+        # else:
+        #     self.robot = build_articulation()
 
         self.robot_link_names = [link.name for link in self.robot.get_links()]
 

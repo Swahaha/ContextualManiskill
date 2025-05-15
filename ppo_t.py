@@ -51,13 +51,13 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "ContextualPickCube-v1"
+    env_id: str = "ContextualPushT-v1"
     """the id of the environment"""
     total_timesteps: int = 100000000
     """total timesteps of the experiments"""
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
-    num_envs: int = 512
+    num_envs: int = 2048
     """the number of parallel environments"""
     num_eval_envs: int = 8
     """the number of parallel evaluation environments"""
@@ -77,13 +77,13 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.8
+    gamma: float = 0.99
     """the discount factor gamma"""
-    gae_lambda: float = 0.9
+    gae_lambda: float = 0.95
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
-    update_epochs: int = 4
+    update_epochs: int = 8
     """the K epochs to update the policy"""
     norm_adv: bool = True
     """Toggles advantages normalization"""
@@ -93,7 +93,7 @@ class Args:
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
     ent_coef: float = 0.0
     """coefficient of the entropy"""
-    vf_coef: float = 0.5
+    vf_coef: float = 0.8
     """coefficient of the value function"""
     max_grad_norm: float = 0.5
     """the maximum norm for the gradient clipping"""
@@ -101,7 +101,7 @@ class Args:
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 50
+    eval_freq: int = 25
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
@@ -117,7 +117,7 @@ class Args:
     """the number of iterations (computed in runtime)"""
 
     
-    panda_link5_z_scale: float = 1.3
+    panda_link5_z_scale: float = 1
     """Scale factor for panda_link5 in z direction (length)"""
 
 
@@ -180,147 +180,6 @@ class Logger:
     def close(self):
         self.writer.close()
 
-def extract_policy_parameters(agent):
-    """
-    Extract policy parameters from the agent and format them for Make-An-Agent
-    Returns: tensor of shape [2, 1024]
-    """
-    # Extract actor parameters
-    actor_params = []
-    for layer in agent.actor_mean:
-        if isinstance(layer, nn.Linear):
-            actor_params.extend(layer.weight.flatten().detach().cpu().numpy())
-            actor_params.extend(layer.bias.detach().cpu().numpy())
-    
-    # Extract critic parameters
-    critic_params = []
-    for layer in agent.critic:
-        if isinstance(layer, nn.Linear):
-            critic_params.extend(layer.weight.flatten().detach().cpu().numpy())
-            critic_params.extend(layer.bias.detach().cpu().numpy())
-    
-    # Pad or truncate to 1024 dimensions
-    def pad_or_truncate(params, target_size=1024):
-        if len(params) > target_size:
-            return params[:target_size]
-        else:
-            return np.pad(params, (0, target_size - len(params)))
-    
-    actor_params = pad_or_truncate(actor_params)
-    critic_params = pad_or_truncate(critic_params)
-    
-    return torch.tensor(np.stack([actor_params, critic_params]), dtype=torch.float32)
-
-def create_make_an_agent_dataset(agent, env, num_trajectories=1000):
-    """
-    Create a dataset for Make-An-Agent from trained policies
-    """
-    all_params = []
-    all_trajectories = []
-    all_tasks = []
-    
-    print("Collecting data for Make-An-Agent dataset...")
-    for i in range(num_trajectories):
-        if i % 100 == 0:
-            print(f"Collecting trajectory {i}/{num_trajectories}")
-        
-        # 1. Extract policy parameters
-        params = extract_policy_parameters(agent)
-        all_params.append(params)
-        
-        # 2. Collect trajectory
-        obs, _ = env.reset()
-        trajectory = []
-        
-        for step in range(128):  # 128 steps per trajectory
-            with torch.no_grad():
-                action = agent.get_action(torch.FloatTensor(obs).to(device), deterministic=True)
-            
-            next_obs, reward, terminated, truncated, info = env.step(action.cpu().numpy())
-            
-            # Create feature vector (1020 dimensions)
-            # Adjust these dimensions based on your observation and action spaces
-            obs_features = obs.flatten()  # Flatten observation
-            action_features = action.cpu().numpy().flatten()  # Flatten action
-            reward_feature = np.array([reward])
-            done_feature = np.array([terminated])
-            
-            # Combine features and pad/truncate to 1020 dimensions
-            features = np.concatenate([
-                obs_features,
-                action_features,
-                reward_feature,
-                done_feature
-            ])
-            
-            # Pad or truncate to 1020 dimensions
-            if len(features) > 1020:
-                features = features[:1020]
-            else:
-                features = np.pad(features, (0, 1020 - len(features)))
-            
-            trajectory.append(features)
-            
-            if terminated or truncated:
-                break
-                
-            obs = next_obs
-        
-        # Pad trajectory to 128 steps if needed
-        if len(trajectory) < 128:
-            trajectory.extend([np.zeros_like(trajectory[0])] * (128 - len(trajectory)))
-        
-        all_trajectories.append(np.array(trajectory))
-        
-        # 3. Create task encoding (117 dimensions)
-        task_encoding = np.zeros(117)
-        # Add task-specific information
-        # For example, for PickCube-v1:
-        task_encoding[0] = 1  # Task type (pick and place)
-        task_encoding[1] = 1  # Object type (cube)
-        # Add more task-specific features based on your environment
-        all_tasks.append(task_encoding)
-    
-    # Convert to tensors
-    dataset = {
-        'param': torch.tensor(np.stack(all_params), dtype=torch.float32),
-        'traj': torch.tensor(np.stack(all_trajectories), dtype=torch.float32),
-        'task': torch.tensor(np.stack(all_tasks), dtype=torch.float32)
-    }
-    
-    return dataset
-
-def combine_successful_episodes(run_name):
-    """
-    Combine all successful episodes into a single dataset
-    """
-    episodes_dir = f"runs/{run_name}/successful_episodes"
-    if not os.path.exists(episodes_dir):
-        return
-    
-    all_params = []
-    all_trajectories = []
-    all_tasks = []
-    
-    for episode_file in os.listdir(episodes_dir):
-        if episode_file.endswith('.pt'):
-            episode_data = torch.load(os.path.join(episodes_dir, episode_file))
-            all_params.append(episode_data['param'])
-            all_trajectories.append(episode_data['traj'])
-            all_tasks.append(episode_data['task'])
-    
-    if all_params:
-        dataset = {
-            'param': torch.stack(all_params),
-            'traj': torch.stack(all_trajectories),
-            'task': torch.stack(all_tasks)
-        }
-        
-        # Save combined dataset
-        dataset_path = f"runs/{run_name}/successful_episodes_dataset.pt"
-        torch.save(dataset, dataset_path)
-        print(f"Combined dataset saved to {dataset_path}")
-
 if __name__ == "__main__":
     args = tyro.cli(Args)
     args.batch_size = int(args.num_envs * args.num_steps)
@@ -346,7 +205,8 @@ if __name__ == "__main__":
             obs_mode="state", 
             render_mode="rgb_array", 
             sim_backend="physx_cuda",
-            robot_uids="contextual_panda",  # "contextual_panda_stick"
+     #       robot_uids="panda_stick"
+            robot_uids="contextual_panda_stick",
             panda_link5_z_scale=args.panda_link5_z_scale
         )
     
@@ -480,37 +340,10 @@ if __name__ == "__main__":
             if "final_info" in infos:
                 final_info = infos["final_info"]
                 done_mask = infos["_final_info"]
-                successful_episodes = final_info["episode"]["success_once"][done_mask] > 0
-                                
-                if successful_episodes.any():
-                    num_successful = successful_episodes.sum().item()
-                    print(f"Found {num_successful} successful episodes in this batch")
-
-                    # Save successful trajectories and policy parameters
-                    successful_indices = torch.where(successful_episodes)[0]
-                    for idx in successful_indices:
-                        # Get the trajectory for this episode
-                        episode_trajectory = obs[:, idx].cpu().numpy()
-                        
-                        # Get the policy parameters
-                        params = extract_policy_parameters(agent)
-                        
-                        # Create task encoding
-                        task_encoding = np.zeros(117)
-                        task_encoding[0] = 1  # Task type
-                        task_encoding[1] = 1  # Object type
-                        
-                        # Save to file
-                        episode_data = {
-                            'param': params,
-                            'traj': torch.tensor(episode_trajectory, dtype=torch.float32),
-                            'task': torch.tensor(task_encoding, dtype=torch.float32)
-                        }
-                        
-                        # Save each successful episode
-                        episode_path = f"runs/{run_name}/successful_episodes/episode_{global_step}_{idx}.pt"
-                        os.makedirs(os.path.dirname(episode_path), exist_ok=True)
-                        torch.save(episode_data, episode_path)
+                for k, v in final_info["episode"].items():
+                    logger.add_scalar(f"train/{k}", v[done_mask].float().mean(), global_step)
+                with torch.no_grad():
+                    final_values[step, torch.arange(args.num_envs, device=device)[done_mask]] = agent.get_value(infos["final_observation"][done_mask]).view(-1)
         rollout_time = time.time() - rollout_time
         # bootstrap value according to termination and truncation
         with torch.no_grad():
@@ -647,25 +480,6 @@ if __name__ == "__main__":
             model_path = f"runs/{run_name}/final_ckpt.pt"
             torch.save(agent.state_dict(), model_path)
             print(f"model saved to {model_path}")
-            
-            # Create Make-An-Agent dataset
-            print("Creating Make-An-Agent dataset...")
-            # Create a single environment for data collection
-            data_env = gym.make(args.env_id, num_envs=1, **env_kwargs)
-            if isinstance(data_env.action_space, gym.spaces.Dict):
-                data_env = FlattenActionSpaceWrapper(data_env)
-            
-            # Create dataset
-            dataset = create_make_an_agent_dataset(agent, data_env, num_trajectories=1000)
-            
-            # Save dataset
-            dataset_path = f"runs/{run_name}/make_an_agent_dataset.pt"
-            torch.save(dataset, dataset_path)
-            print(f"Dataset saved to {dataset_path}")
-            
-            data_env.close()
-        
-        combine_successful_episodes(run_name)
         logger.close()
     envs.close()
     eval_envs.close()

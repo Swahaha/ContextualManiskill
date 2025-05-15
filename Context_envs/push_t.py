@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Dict
 
 import numpy as np
 import sapien
@@ -16,18 +16,14 @@ from mani_skill.utils.scene_builder.table import TableSceneBuilder
 from mani_skill.utils.structs import Pose
 from mani_skill.utils.structs.types import Array, GPUMemoryConfig, SimConfig
 
-# from contextual_maniskill.agents.base_agent import ContextualBaseAgent
-from contextual_maniskill.utils.scene_builder.table.contexutual_scene_builder import ContextualTableSceneBuilder
-from contextual_maniskill.agents.contextual_panda_stick import ContextualPandaStick
-
 
 # extending TableSceneBuilder and only making 2 changes:
 # 1.Making table smooth and white, 2. adding support for keyframes of new robots - panda stick
-class WhiteTableSceneBuilder(ContextualTableSceneBuilder):
+class WhiteTableSceneBuilder(TableSceneBuilder):
     def initialize(self, env_idx: torch.Tensor):
         super().initialize(env_idx)
         b = len(env_idx)
-        if self.env.robot_uids == "contextual_panda_stick":
+        if self.env.robot_uids == "panda_stick":
             qpos = np.array(
                 [
                     0.662,
@@ -66,8 +62,8 @@ class WhiteTableSceneBuilder(ContextualTableSceneBuilder):
                 triangle.material.set_roughness_texture(None)
 
 
-@register_env("ContextualPushT-v1", max_episode_steps=50)
-class ContextualPushTEnv(BaseEnv):
+@register_env("PushT-v1", max_episode_steps=100)
+class PushTEnv(BaseEnv):
     """
     **Task Description:**
     A simulated version of the real-world push-T task from Diffusion Policy: https://diffusion-policy.cs.columbia.edu/
@@ -85,8 +81,8 @@ class ContextualPushTEnv(BaseEnv):
     """
 
     _sample_video_link = "https://github.com/haosulab/ManiSkill/raw/main/figures/environment_demos/PushT-v1_rt.mp4"
-    SUPPORTED_ROBOTS = ["contextual_panda_stick"]
-    agent: ContextualPandaStick
+    SUPPORTED_ROBOTS = ["panda_stick"]
+    agent: PandaStick
 
     # # # # # # # # All Unspecified real-life Parameters Here # # # # # # # #
     # Randomizations
@@ -120,15 +116,9 @@ class ContextualPushTEnv(BaseEnv):
     T_static_friction = 3
 
     def __init__(
-        self,
-        *args,
-        robot_uids="contextual_panda_stick",
-        robot_init_qpos_noise=0.02,
-        max_episode_steps = 50,
-        **kwargs,
+        self, *args, robot_uids="panda_stick", robot_init_qpos_noise=0.02, **kwargs
     ):
         self.robot_init_qpos_noise = robot_init_qpos_noise
-        self.link5_z_scale = kwargs.pop("panda_link5_z_scale", 1.0)
         super().__init__(*args, robot_uids=robot_uids, **kwargs)
 
     @property
@@ -162,20 +152,7 @@ class ContextualPushTEnv(BaseEnv):
         )
 
     def _load_agent(self, options: dict):
-        initial_pose = sapien.Pose(p=[-0.615, 0, 0])
-        if self.robot_uids == "contextual_panda_stick":
-            self.agent = ContextualPandaStick(
-                self.scene,
-                self._control_freq,
-                self._control_mode,
-                agent_idx=None,
-                initial_pose=initial_pose,
-            #    build_separate=False,
-                link5_z_scale=self.link5_z_scale,
-            )
-        else:
-            raise ValueError(f"Unsupported robot_uids: {self.robot_uids}")
-
+        super()._load_agent(options, sapien.Pose(p=[-0.615, 0, 0]))
 
     def _load_scene(self, options: dict):
         # have to put these parmaeters to device - defined before we had access to device

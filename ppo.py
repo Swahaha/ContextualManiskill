@@ -51,13 +51,13 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "ContextualPushT-v1"
+    env_id: str = "PushT-v1"
     """the id of the environment"""
     total_timesteps: int = 100000000
     """total timesteps of the experiments"""
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
-    num_envs: int = 512
+    num_envs: int = 2048
     """the number of parallel environments"""
     num_eval_envs: int = 8
     """the number of parallel evaluation environments"""
@@ -77,13 +77,13 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.8
+    gamma: float = 0.99
     """the discount factor gamma"""
-    gae_lambda: float = 0.9
+    gae_lambda: float = 0.95
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
-    update_epochs: int = 4
+    update_epochs: int = 8
     """the K epochs to update the policy"""
     norm_adv: bool = True
     """Toggles advantages normalization"""
@@ -93,7 +93,7 @@ class Args:
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
     ent_coef: float = 0.0
     """coefficient of the entropy"""
-    vf_coef: float = 0.5
+    vf_coef: float = 0.8
     """coefficient of the value function"""
     max_grad_norm: float = 0.5
     """the maximum norm for the gradient clipping"""
@@ -205,8 +205,9 @@ if __name__ == "__main__":
             obs_mode="state", 
             render_mode="rgb_array", 
             sim_backend="physx_cuda",
-            robot_uids="contextual_panda_stick",
-            panda_link5_z_scale=args.panda_link5_z_scale
+            robot_uids="panda_stick"
+    #        robot_uids="contextual_panda_stick",
+    #        panda_link5_z_scale=args.panda_link5_z_scale
         )
     
     envs = gym.make(args.env_id, num_envs=args.num_envs if not args.evaluate else 1, reconfiguration_freq=args.reconfiguration_freq, **env_kwargs)
@@ -284,7 +285,7 @@ if __name__ == "__main__":
         agent.load_state_dict(torch.load(args.checkpoint))
 
     for iteration in range(1, args.num_iterations + 1):
-        print(f"Epoch: {iteration}, global_step={global_step}")
+        print(f"Epoch: {iteration}, global_step={global_step}", flush=True)
         final_values = torch.zeros((args.num_steps, args.num_envs), device=device)
         agent.eval()
         if iteration % args.eval_freq == 1:
@@ -292,15 +293,19 @@ if __name__ == "__main__":
             eval_obs, _ = eval_envs.reset()
             eval_metrics = defaultdict(list)
             num_episodes = 0
+            total_reward = 0
             for _ in range(args.num_eval_steps):
                 with torch.no_grad():
                     eval_obs, eval_rew, eval_terminations, eval_truncations, eval_infos = eval_envs.step(agent.get_action(eval_obs, deterministic=True))
+                    total_reward += eval_rew.sum().item()  # Sum rewards across all environments
                     if "final_info" in eval_infos:
                         mask = eval_infos["_final_info"]
                         num_episodes += mask.sum()
                         for k, v in eval_infos["final_info"]["episode"].items():
                             eval_metrics[k].append(v)
             print(f"Evaluated {args.num_eval_steps * args.num_eval_envs} steps resulting in {num_episodes} episodes")
+            # I added this line to print the total reward during evaluation since we aren't getting any full episode rewards
+            print(f"Total reward during evaluation: {total_reward}")
             for k, v in eval_metrics.items():
                 mean = torch.stack(v).float().mean()
                 if logger is not None:

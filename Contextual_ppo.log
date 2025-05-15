@@ -1,0 +1,27 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/swarajh/ContextualManiskill/ppo_t.py", line 213, in <module>
+    envs = gym.make(args.env_id, num_envs=args.num_envs if not args.evaluate else 1, reconfiguration_freq=args.reconfiguration_freq, **env_kwargs)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/gymnasium/envs/registration.py", line 802, in make
+    env = env_creator(**env_spec_kwargs)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/utils/registration.py", line 182, in make
+    env = env_spec.make(**kwargs)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/utils/registration.py", line 79, in make
+    return self.cls(**_kwargs)
+  File "/home/swarajh/ContextualManiskill/contextual_maniskill/envs/contextual_push_t.py", line 132, in __init__
+    super().__init__(*args, robot_uids=robot_uids, **kwargs)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/envs/sapien_env.py", line 309, in __init__
+    obs, _ = self.reset(seed=[2022 + i for i in range(self.num_envs)], options=dict(reconfigure=True))
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/envs/sapien_env.py", line 811, in reset
+    self._reconfigure(options)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/envs/sapien_env.py", line 649, in _reconfigure
+    self._load_agent(options)
+  File "/home/swarajh/ContextualManiskill/contextual_maniskill/envs/contextual_push_t.py", line 167, in _load_agent
+    self.agent = ContextualPandaStick(
+  File "/home/swarajh/ContextualManiskill/contextual_maniskill/agents/contextual_panda_stick.py", line 179, in __init__
+    super().__init__(
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/agents/base_agent.py", line 101, in __init__
+    self._load_articulation(initial_pose)
+  File "/home/swarajh/ContextualManiskill/contextual_maniskill/agents/contextual_panda_stick.py", line 241, in _load_articulation
+    self.robot_link_names = [link.name for link in self.robot.get_links()]
+AttributeError: 'NoneType' object has no attribute 'get_links'
