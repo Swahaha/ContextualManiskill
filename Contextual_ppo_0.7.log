@@ -1,0 +1,350 @@
+nohup: ignoring input
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Saving eval videos to runs/ContextualPushT-v1__ppo_t__1__1747332194/videos
+Running training
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+####
+args.num_iterations=976 args.num_envs=2048 args.num_eval_envs=8
+args.minibatch_size=3200 args.batch_size=102400 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Evaluating
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=5.657984256744385
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1131596714258194
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__ppo_t__1__1747332194/ckpt_1.pt
+SPS: 9052
+Epoch: 2, global_step=102400
+SPS: 12644
+Epoch: 3, global_step=204800
+SPS: 14642
+Epoch: 4, global_step=307200
+SPS: 15880
+Epoch: 5, global_step=409600
+SPS: 16752
+Epoch: 6, global_step=512000
+SPS: 17402
+Epoch: 7, global_step=614400
+SPS: 17830
+Epoch: 8, global_step=716800
+SPS: 18208
+Epoch: 9, global_step=819200
+SPS: 18505
+Epoch: 10, global_step=921600
+SPS: 18625
+Epoch: 11, global_step=1024000
+SPS: 18858
+Epoch: 12, global_step=1126400
+SPS: 19048
+Epoch: 13, global_step=1228800
+SPS: 19226
+Epoch: 14, global_step=1331200
+SPS: 19365
+Epoch: 15, global_step=1433600
+SPS: 19438
+Epoch: 16, global_step=1536000
+SPS: 19524
+Epoch: 17, global_step=1638400
+SPS: 19649
+Epoch: 18, global_step=1740800
+SPS: 19690
+Epoch: 19, global_step=1843200
+SPS: 19715
+Epoch: 20, global_step=1945600
+SPS: 19722
+Epoch: 21, global_step=2048000
+SPS: 19778
+Epoch: 22, global_step=2150400
+SPS: 19854
+Epoch: 23, global_step=2252800
+SPS: 19886
+Epoch: 24, global_step=2355200
+SPS: 19908
+Epoch: 25, global_step=2457600
+SPS: 19930
+Epoch: 26, global_step=2560000
+Evaluating
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=5.342315673828125
+eval_episode_len_mean=50.0
+eval_reward_mean=0.10684630274772644
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__ppo_t__1__1747332194/ckpt_26.pt
+SPS: 19386
+Epoch: 27, global_step=2662400
+SPS: 19426
+Epoch: 28, global_step=2764800
+SPS: 19462
+Epoch: 29, global_step=2867200
+SPS: 19514
+Epoch: 30, global_step=2969600
+SPS: 19532
+Epoch: 31, global_step=3072000
+SPS: 19542
+Epoch: 32, global_step=3174400
+SPS: 19564
+Epoch: 33, global_step=3276800
+SPS: 19610
+Epoch: 34, global_step=3379200
+SPS: 19612
+Epoch: 35, global_step=3481600
+SPS: 19638
+Epoch: 36, global_step=3584000
+SPS: 19650
+Epoch: 37, global_step=3686400
+SPS: 19666
+Epoch: 38, global_step=3788800
+SPS: 19690
+Epoch: 39, global_step=3891200
+SPS: 19707
+Epoch: 40, global_step=3993600
+SPS: 19742
+Epoch: 41, global_step=4096000
+SPS: 19740
+Epoch: 42, global_step=4198400
+SPS: 19748
+Epoch: 43, global_step=4300800
+SPS: 19778
+Epoch: 44, global_step=4403200
+SPS: 19786
+Epoch: 45, global_step=4505600
+SPS: 19793
+Epoch: 46, global_step=4608000
+SPS: 19787
+Epoch: 47, global_step=4710400
+SPS: 19784
+Epoch: 48, global_step=4812800
+SPS: 19792
+Epoch: 49, global_step=4915200
+SPS: 19794
+Epoch: 50, global_step=5017600
+SPS: 19811
+Epoch: 51, global_step=5120000
+Evaluating
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=4.648556232452393
+eval_episode_len_mean=50.0
+eval_reward_mean=0.09297112375497818
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__ppo_t__1__1747332194/ckpt_51.pt
+SPS: 19511
+Epoch: 52, global_step=5222400
+SPS: 19511
+Epoch: 53, global_step=5324800
+SPS: 19502
+Epoch: 54, global_step=5427200
+SPS: 19512
+Epoch: 55, global_step=5529600
+SPS: 19523
+Epoch: 56, global_step=5632000
+SPS: 19534
+Epoch: 57, global_step=5734400
+SPS: 19535
+Epoch: 58, global_step=5836800
+SPS: 19543
+Epoch: 59, global_step=5939200
+SPS: 19548
+Epoch: 60, global_step=6041600
+SPS: 19561
+Epoch: 61, global_step=6144000
+SPS: 19566
+Epoch: 62, global_step=6246400
+SPS: 19579
+Epoch: 63, global_step=6348800
+SPS: 19588
+Epoch: 64, global_step=6451200
+SPS: 19585
+Epoch: 65, global_step=6553600
+SPS: 19596
+Epoch: 66, global_step=6656000
+SPS: 19582
+Epoch: 67, global_step=6758400
+SPS: 19588
+Epoch: 68, global_step=6860800
+SPS: 19584
+Epoch: 69, global_step=6963200
+SPS: 19582
+Epoch: 70, global_step=7065600
+SPS: 19587
+Epoch: 71, global_step=7168000
+SPS: 19585
+Epoch: 72, global_step=7270400
+SPS: 19586
+Epoch: 73, global_step=7372800
+SPS: 19581
+Epoch: 74, global_step=7475200
+SPS: 19581
+Epoch: 75, global_step=7577600
+SPS: 19580
+Epoch: 76, global_step=7680000
+Evaluating
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=10.920934677124023
+eval_episode_len_mean=50.0
+eval_reward_mean=0.218418687582016
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__ppo_t__1__1747332194/ckpt_76.pt
+SPS: 19376
+Epoch: 77, global_step=7782400
+SPS: 19377
+Epoch: 78, global_step=7884800
+SPS: 19383
+Epoch: 79, global_step=7987200
+SPS: 19381
+Epoch: 80, global_step=8089600
+SPS: 19380
+Epoch: 81, global_step=8192000
+SPS: 19376
+Epoch: 82, global_step=8294400
+SPS: 19370
+Epoch: 83, global_step=8396800
+SPS: 19357
+Epoch: 84, global_step=8499200
+SPS: 19351
+Epoch: 85, global_step=8601600
+SPS: 19343
+Epoch: 86, global_step=8704000
+SPS: 19321
+Epoch: 87, global_step=8806400
+SPS: 19306
+Epoch: 88, global_step=8908800
+SPS: 19295
+Epoch: 89, global_step=9011200
+SPS: 19275
+Epoch: 90, global_step=9113600
+SPS: 19254
+Epoch: 91, global_step=9216000
+SPS: 19234
+Epoch: 92, global_step=9318400
+SPS: 19225
+Epoch: 93, global_step=9420800
+SPS: 19214
+Epoch: 94, global_step=9523200
+SPS: 19203
+Epoch: 95, global_step=9625600
+SPS: 19180
+Epoch: 96, global_step=9728000
+SPS: 19163
+Epoch: 97, global_step=9830400
+SPS: 19145
+Epoch: 98, global_step=9932800
+SPS: 19130
+Epoch: 99, global_step=10035200
+SPS: 19107
+Epoch: 100, global_step=10137600
+SPS: 19074
+Epoch: 101, global_step=10240000
+Evaluating
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Generating modified URDF for /home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_stick.urdf with z-scale of 0.7...
+Successfully modified link5 with z-scale of 0.7
+Adjusted joint5 origin: added -0.06000000000000001 to y coordinate
+Adjusted joint6 origin: added 0.0030000000000000005 to y coordinate
+Modified URDF saved to /tmp/panda_stick_scaled_0.7.urdf
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+eval_success_once_mean=0.0
+eval_return_mean=5.091785430908203
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1018357127904892
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__ppo_t__1__1747332194/ckpt_101.pt
+SPS: 18882
+Epoch: 102, global_step=10342400
+SPS: 18854
+Epoch: 103, global_step=10444800
+SPS: 18832
+Epoch: 104, global_step=10547200
+SPS: 18818
+Epoch: 105, global_step=10649600
+SPS: 18801
+Epoch: 106, global_step=10752000
+SPS: 18783
+Epoch: 107, global_step=10854400
+SPS: 18762
+Epoch: 108, global_step=10956800
+SPS: 18735
+Epoch: 109, global_step=11059200
+SPS: 18708
+Epoch: 110, global_step=11161600
+SPS: 18682
+Epoch: 111, global_step=11264000
+SPS: 18661
+Epoch: 112, global_step=11366400
+SPS: 18638
+Epoch: 113, global_step=11468800

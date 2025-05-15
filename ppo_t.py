@@ -117,7 +117,7 @@ class Args:
     """the number of iterations (computed in runtime)"""
 
     
-    panda_link5_z_scale: float = 1
+    panda_link5_z_scale: float = 0.7
     """Scale factor for panda_link5 in z direction (length)"""
 
 

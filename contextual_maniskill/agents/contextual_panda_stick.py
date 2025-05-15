@@ -225,19 +225,7 @@ class ContextualPandaStick(BaseAgent):
 
             return robot
 
-        # if self.build_separate:
-        #     arts = []
-        #     for scene_idx in range(self.scene.num_envs):
-        #         robot = build_articulation([scene_idx])
-        #         self.scene.remove_from_state_dict_registry(robot)
-        #         arts.append(robot)
-        #     self.robot = Articulation.merge(
-        #         arts, name=f"{self.uid}-agent-{self._agent_idx}", merge_links=True
-        #     )
-        #     self.scene.add_to_state_dict_registry(self.robot)
-        # else:
-        #     self.robot = build_articulation()
-
+        self.robot = build_articulation()
         self.robot_link_names = [link.name for link in self.robot.get_links()]
 
     @property

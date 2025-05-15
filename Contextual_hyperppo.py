@@ -22,6 +22,7 @@ from mani_skill.utils.wrappers.record import RecordEpisode
 from mani_skill.vector.wrappers.gymnasium import ManiSkillVectorEnv
 
 import contextual_maniskill.envs.contextual_pickcube
+import contextual_maniskill.envs.contextual_push_t
 
 # HyperPPO-specific import: Graph HyperNetwork-based actor
 from hyperppo_model.core import hyperActor 
@@ -52,7 +53,7 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "PushT-v1"
+    env_id: str = "ContextualPushT-v1"
     """the id of the environment"""
     total_timesteps: int = 1_000_000_000
     """total timesteps of the experiments"""
@@ -60,7 +61,7 @@ class Args:
     # Turned this down from 1e-4 to 1e-5
     learning_rate: float = 3e-4
     """the learning rate of the optimizer"""
-    num_envs: int = 2048
+    num_envs: int = 512
     """the number of parallel environments"""
     num_eval_envs: int = 8
     """the number of parallel evaluation environments"""
@@ -246,6 +247,15 @@ if __name__ == "__main__":
             render_mode="rgb_array", 
             sim_backend="physx_cuda",
             robot_uids="contextual_panda",
+            panda_link5_z_scale=args.panda_link5_z_scale
+        )
+    if args.env_id == "ContextualPushT-v1":
+         env_kwargs = dict(
+            obs_mode="state", 
+            render_mode="rgb_array", 
+            sim_backend="physx_cuda",
+     #       robot_uids="panda_stick"
+            robot_uids="contextual_panda_stick",
             panda_link5_z_scale=args.panda_link5_z_scale
         )
     elif args.env_id == "PushT-v1":
@@ -581,10 +591,6 @@ if __name__ == "__main__":
                 total_loss.backward()
                 nn.utils.clip_grad_norm_(agent.parameters(), args.max_grad_norm)
                 optimizer.step()
-
-
-            if args.target_kl is not None and approx_kl > args.target_kl:
-                break
 
         update_time = time.time() - update_time
 
