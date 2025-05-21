@@ -55,11 +55,11 @@ class Args:
     # Algorithm specific arguments
     env_id: str = "ContextualPushT-v1"
     """the id of the environment"""
-    total_timesteps: int = 1_000_000_000
+    total_timesteps: int = 1_000_000_000_000
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
-    learning_rate: float = 3e-4
+    learning_rate: float = 3e-5
     """the learning rate of the optimizer"""
     num_envs: int = 512
     """the number of parallel environments"""
@@ -93,20 +93,20 @@ class Args:
     """Toggles advantages normalization"""
     clip_coef: float = 0.2
     """the surrogate clipping coefficient"""
-    clip_vloss: bool = False
+    clip_vloss: bool = True
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
-    ent_coef: float = 0.2
+    ent_coef: float = 0.00
     """coefficient of the entropy"""
     vf_coef: float = 0.8
     """coefficient of the value function"""
-    max_grad_norm: float = 0.5
+    max_grad_norm: float = 0.3
     """the maximum norm for the gradient clipping"""
 
     target_kl: float = 0.1
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 50
+    eval_freq: int = 25
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""

@@ -141,6 +141,7 @@ class ContextualPushTEnv(BaseEnv):
 
     @property
     def _default_sensor_configs(self):
+        # Original camera position
         pose = sapien_utils.look_at(eye=[0.3, 0, 0.6], target=[-0.1, 0, 0.1])
         return [
             CameraConfig(
@@ -150,15 +151,15 @@ class ContextualPushTEnv(BaseEnv):
                 height=128,
                 fov=np.pi / 2,
                 near=0.01,
-                far=100,
+                far=150,
             )
         ]
 
     @property
     def _default_human_render_camera_configs(self):
-        pose = sapien_utils.look_at(eye=[0.3, 0, 0.6], target=[-0.1, 0, 0.1])
+        pose = sapien_utils.look_at(eye=[0.8, 0.9, 0.8], target=[-0.1, 0, 0.1])
         return CameraConfig(
-            "render_camera", pose=pose, width=512, height=512, fov=1, near=0.01, far=100
+            "render_camera", pose=pose, width=512, height=512, fov=1, near=0.01, far=75
         )
 
     def _load_agent(self, options: dict):

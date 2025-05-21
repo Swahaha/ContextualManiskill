@@ -21,11 +21,12 @@ from mani_skill.utils.structs.actor import Actor
 import os
 import tempfile
 from xml.etree import ElementTree as ET
+from pathlib import Path
 
 def generate_modified_urdf(template_urdf_path: str, output_path: str, z_scale: float) -> tuple:
     """
     Load the original URDF, modify the scale of link5, and save to a temporary file.
-    Also adjusts joint5 and joint6 to maintain proper connections when link5 is scaled.
+    Scales link5's z-dimension and adjusts joint positions to maintain proper connections.
     
     Args:
         template_urdf_path: Path to the original URDF file
@@ -57,12 +58,8 @@ def generate_modified_urdf(template_urdf_path: str, output_path: str, z_scale: f
                         # Find mesh element
                         mesh = geometry.find("mesh")
                         if mesh is not None:
-                            # Add or modify scale attribute to scale in Z direction only
-                            if "scale" in mesh.attrib:
-                                x, y, z = map(float, mesh.attrib["scale"].split())
-                                mesh.attrib["scale"] = f"{x} {y} {z * z_scale}"
-                            else:
-                                mesh.attrib["scale"] = f"1.0 1.0 {z_scale}"
+                            # Add scale attribute to scale in Z direction only
+                            mesh.attrib["scale"] = f"1.0 1.0 {z_scale}"
                             
                             # Make mesh path absolute
                             if "filename" in mesh.attrib:
@@ -70,6 +67,10 @@ def generate_modified_urdf(template_urdf_path: str, output_path: str, z_scale: f
                                 if not os.path.isabs(filename):
                                     abs_path = os.path.normpath(os.path.join(base_dir, filename))
                                     mesh.attrib["filename"] = abs_path
+                                    
+                                # Handle both STL and GLB files
+                                if filename.endswith(('.stl', '.glb')):
+                                    print(f"Scaling {filename} with z-scale of {z_scale}")
         
         if not found:
             print("Warning: panda_link5 not found in URDF file.")
@@ -95,26 +96,6 @@ def generate_modified_urdf(template_urdf_path: str, output_path: str, z_scale: f
                     # Set the new xyz values
                     origin.attrib["xyz"] = f"{x} {y} {z}"
                     print(f"Adjusted joint5 origin: added {joint5_offset} to y coordinate")
-        
-        # Calculate joint6 offset (between link5 and link6)
-        # This needs to be adjusted based on the new length of link5
-        joint6_offset = -0.01 * (z_scale - 1.0)
-        
-        # Find and adjust joint6
-        for joint in root.findall(".//joint"):
-            if joint.attrib.get("name") == "panda_joint6":
-                origin = joint.find("origin")
-                if origin is not None and "xyz" in origin.attrib:
-                    # Parse the current xyz values
-                    xyz = origin.attrib["xyz"].split()
-                    x, y, z = map(float, xyz)
-                    
-                    # Apply offset to y-coordinate
-                    y += joint6_offset
-                    
-                    # Set the new xyz values
-                    origin.attrib["xyz"] = f"{x} {y} {z}"
-                    print(f"Adjusted joint6 origin: added {joint6_offset} to y coordinate")
     
     # Fix all mesh paths - make them absolute
     for link in root.findall(".//link"):
@@ -134,6 +115,7 @@ def generate_modified_urdf(template_urdf_path: str, output_path: str, z_scale: f
     print(f"Modified URDF saved to {output_path}")
     
     return output_path, tree
+    
 
 @register_agent()
 class ContextualPandaStick(BaseAgent):
@@ -196,6 +178,7 @@ class ContextualPandaStick(BaseAgent):
                 temp_dir = tempfile.gettempdir()
                 temp_urdf_path = os.path.join(temp_dir, f"panda_stick_scaled_{self.link5_z_scale}.urdf")
                 asset_path, _ = generate_modified_urdf(asset_path, temp_urdf_path, self.link5_z_scale)
+                _, _ = generate_modified_urdf(asset_path, "/home/swarajh/ContextualManiskill/contextual_maniskill/temp.urdf", self.link5_z_scale)
 
             loader.name = self.uid
             if self._agent_idx is not None:

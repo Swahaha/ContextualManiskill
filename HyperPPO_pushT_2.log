@@ -1,0 +1,1824 @@
+nohup: ignoring input
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/torch/nn/modules/linear.py:125: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:180.)
+  return F.linear(input, self.weight, self.bias)
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Saving eval videos to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/videos
+Running training
+Initializing ContextualPandaStick...
+####
+args.num_iterations=39062500 args.num_envs=512 args.num_eval_envs=8
+args.minibatch_size=800 args.batch_size=25600 args.update_epochs=8
+####
+Epoch: 1, global_step=0
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 45.37182641029358
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/numpy/core/fromnumeric.py:3464: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/numpy/core/_methods.py:192: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+eval_success_once_mean=0.0
+eval_return_mean=5.671478271484375
+eval_episode_len_mean=50.0
+eval_reward_mean=0.11342956125736237
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_1.pt
+SPS: 595, pg_loss=0.0274, v_loss=0.2010
+Epoch: 2, global_step=25600
+Sampling new architecture
+SPS: 644, pg_loss=0.0155, v_loss=0.1729
+Epoch: 3, global_step=51200
+Sampling new architecture
+SPS: 671, pg_loss=0.0203, v_loss=0.1243
+Epoch: 4, global_step=76800
+Sampling new architecture
+SPS: 692, pg_loss=0.0113, v_loss=0.1218
+Epoch: 5, global_step=102400
+Sampling new architecture
+SPS: 718, pg_loss=0.0072, v_loss=0.1171
+Epoch: 6, global_step=128000
+Sampling new architecture
+SPS: 742, pg_loss=0.0219, v_loss=0.0891
+Epoch: 7, global_step=153600
+Sampling new architecture
+SPS: 764, pg_loss=0.0180, v_loss=0.0772
+Epoch: 8, global_step=179200
+Sampling new architecture
+SPS: 782, pg_loss=0.0273, v_loss=0.0968
+Epoch: 9, global_step=204800
+Sampling new architecture
+SPS: 797, pg_loss=0.0223, v_loss=0.0678
+Epoch: 10, global_step=230400
+Sampling new architecture
+SPS: 809, pg_loss=0.0132, v_loss=0.0605
+Epoch: 11, global_step=256000
+Sampling new architecture
+SPS: 818, pg_loss=0.0222, v_loss=0.0692
+Epoch: 12, global_step=281600
+Sampling new architecture
+SPS: 828, pg_loss=0.0152, v_loss=0.0471
+Epoch: 13, global_step=307200
+Sampling new architecture
+SPS: 837, pg_loss=0.0005, v_loss=0.0477
+Epoch: 14, global_step=332800
+Sampling new architecture
+SPS: 842, pg_loss=0.0240, v_loss=0.0677
+Epoch: 15, global_step=358400
+Sampling new architecture
+SPS: 844, pg_loss=0.0254, v_loss=0.0422
+Epoch: 16, global_step=384000
+Sampling new architecture
+SPS: 845, pg_loss=0.0083, v_loss=0.0582
+Epoch: 17, global_step=409600
+Sampling new architecture
+SPS: 851, pg_loss=0.0236, v_loss=0.0842
+Epoch: 18, global_step=435200
+Sampling new architecture
+SPS: 854, pg_loss=0.0239, v_loss=0.0406
+Epoch: 19, global_step=460800
+Sampling new architecture
+SPS: 860, pg_loss=0.0244, v_loss=0.0502
+Epoch: 20, global_step=486400
+Sampling new architecture
+SPS: 866, pg_loss=0.0237, v_loss=0.0350
+Epoch: 21, global_step=512000
+Sampling new architecture
+SPS: 868, pg_loss=0.0292, v_loss=0.0436
+Epoch: 22, global_step=537600
+Sampling new architecture
+SPS: 875, pg_loss=0.0095, v_loss=0.0791
+Epoch: 23, global_step=563200
+Sampling new architecture
+SPS: 880, pg_loss=0.0341, v_loss=0.0511
+Epoch: 24, global_step=588800
+Sampling new architecture
+SPS: 880, pg_loss=0.0173, v_loss=0.0511
+Epoch: 25, global_step=614400
+Sampling new architecture
+SPS: 881, pg_loss=0.0186, v_loss=0.0434
+Epoch: 26, global_step=640000
+Sampling new architecture
+SPS: 884, pg_loss=0.0195, v_loss=0.0620
+Epoch: 27, global_step=665600
+Sampling new architecture
+SPS: 887, pg_loss=0.0023, v_loss=0.0522
+Epoch: 28, global_step=691200
+Sampling new architecture
+SPS: 889, pg_loss=0.0179, v_loss=0.0764
+Epoch: 29, global_step=716800
+Sampling new architecture
+SPS: 891, pg_loss=0.0082, v_loss=0.0631
+Epoch: 30, global_step=742400
+Sampling new architecture
+SPS: 893, pg_loss=0.0116, v_loss=0.0908
+Epoch: 31, global_step=768000
+Sampling new architecture
+SPS: 895, pg_loss=0.0081, v_loss=0.0909
+Epoch: 32, global_step=793600
+Sampling new architecture
+SPS: 896, pg_loss=0.0339, v_loss=0.0776
+Epoch: 33, global_step=819200
+Sampling new architecture
+SPS: 893, pg_loss=0.0141, v_loss=0.1259
+Epoch: 34, global_step=844800
+Sampling new architecture
+SPS: 892, pg_loss=0.0172, v_loss=0.0684
+Epoch: 35, global_step=870400
+Sampling new architecture
+SPS: 892, pg_loss=0.0114, v_loss=0.1687
+Epoch: 36, global_step=896000
+Sampling new architecture
+SPS: 893, pg_loss=0.0210, v_loss=0.1567
+Epoch: 37, global_step=921600
+Sampling new architecture
+SPS: 894, pg_loss=0.0277, v_loss=0.0828
+Epoch: 38, global_step=947200
+Sampling new architecture
+SPS: 893, pg_loss=0.0184, v_loss=0.1194
+Epoch: 39, global_step=972800
+Sampling new architecture
+SPS: 893, pg_loss=0.0118, v_loss=0.1233
+Epoch: 40, global_step=998400
+Sampling new architecture
+SPS: 894, pg_loss=0.0200, v_loss=0.1299
+Epoch: 41, global_step=1024000
+Sampling new architecture
+SPS: 894, pg_loss=0.0095, v_loss=0.1321
+Epoch: 42, global_step=1049600
+Sampling new architecture
+SPS: 891, pg_loss=0.0356, v_loss=0.1481
+Epoch: 43, global_step=1075200
+Sampling new architecture
+SPS: 893, pg_loss=0.0216, v_loss=0.1613
+Epoch: 44, global_step=1100800
+Sampling new architecture
+SPS: 895, pg_loss=0.0210, v_loss=0.1009
+Epoch: 45, global_step=1126400
+Sampling new architecture
+SPS: 896, pg_loss=0.0170, v_loss=0.1070
+Epoch: 46, global_step=1152000
+Sampling new architecture
+SPS: 897, pg_loss=0.0154, v_loss=0.1203
+Epoch: 47, global_step=1177600
+Sampling new architecture
+SPS: 897, pg_loss=0.0267, v_loss=0.1233
+Epoch: 48, global_step=1203200
+Sampling new architecture
+SPS: 898, pg_loss=0.0096, v_loss=0.0721
+Epoch: 49, global_step=1228800
+Sampling new architecture
+SPS: 902, pg_loss=0.0168, v_loss=0.0776
+Epoch: 50, global_step=1254400
+Sampling new architecture
+SPS: 902, pg_loss=0.0196, v_loss=0.0723
+Epoch: 51, global_step=1280000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 57.86594069004059
+eval_success_once_mean=0.0
+eval_return_mean=7.233242988586426
+eval_episode_len_mean=50.0
+eval_reward_mean=0.14466485381126404
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_51.pt
+SPS: 897, pg_loss=0.0142, v_loss=0.0926
+Epoch: 52, global_step=1305600
+Sampling new architecture
+SPS: 897, pg_loss=0.0297, v_loss=0.0581
+Epoch: 53, global_step=1331200
+Sampling new architecture
+SPS: 893, pg_loss=0.0149, v_loss=0.0562
+Epoch: 54, global_step=1356800
+Sampling new architecture
+SPS: 890, pg_loss=0.0204, v_loss=0.0646
+Epoch: 55, global_step=1382400
+Sampling new architecture
+SPS: 886, pg_loss=0.0166, v_loss=0.0479
+Epoch: 56, global_step=1408000
+Sampling new architecture
+SPS: 883, pg_loss=0.0069, v_loss=0.0745
+Epoch: 57, global_step=1433600
+Sampling new architecture
+SPS: 879, pg_loss=0.0104, v_loss=0.0535
+Epoch: 58, global_step=1459200
+Sampling new architecture
+SPS: 876, pg_loss=0.0285, v_loss=0.0814
+Epoch: 59, global_step=1484800
+Sampling new architecture
+SPS: 873, pg_loss=0.0097, v_loss=0.0791
+Epoch: 60, global_step=1510400
+Sampling new architecture
+SPS: 872, pg_loss=0.0126, v_loss=0.0596
+Epoch: 61, global_step=1536000
+Sampling new architecture
+SPS: 870, pg_loss=0.0270, v_loss=0.0918
+Epoch: 62, global_step=1561600
+Sampling new architecture
+SPS: 867, pg_loss=0.0104, v_loss=0.0867
+Epoch: 63, global_step=1587200
+Sampling new architecture
+SPS: 865, pg_loss=0.0149, v_loss=0.0540
+Epoch: 64, global_step=1612800
+Sampling new architecture
+SPS: 862, pg_loss=0.0220, v_loss=0.0404
+Epoch: 65, global_step=1638400
+Sampling new architecture
+SPS: 859, pg_loss=0.0491, v_loss=0.0510
+Epoch: 66, global_step=1664000
+Sampling new architecture
+SPS: 857, pg_loss=0.0080, v_loss=0.0872
+Epoch: 67, global_step=1689600
+Sampling new architecture
+SPS: 855, pg_loss=0.0060, v_loss=0.0919
+Epoch: 68, global_step=1715200
+Sampling new architecture
+SPS: 854, pg_loss=0.0055, v_loss=0.1145
+Epoch: 69, global_step=1740800
+Sampling new architecture
+SPS: 852, pg_loss=0.0161, v_loss=0.0693
+Epoch: 70, global_step=1766400
+Sampling new architecture
+SPS: 850, pg_loss=0.0281, v_loss=0.0511
+Epoch: 71, global_step=1792000
+Sampling new architecture
+SPS: 847, pg_loss=0.0018, v_loss=0.0977
+Epoch: 72, global_step=1817600
+Sampling new architecture
+SPS: 845, pg_loss=0.0132, v_loss=0.0960
+Epoch: 73, global_step=1843200
+Sampling new architecture
+SPS: 844, pg_loss=0.0319, v_loss=0.0617
+Epoch: 74, global_step=1868800
+Sampling new architecture
+SPS: 842, pg_loss=0.0114, v_loss=0.0783
+Epoch: 75, global_step=1894400
+Sampling new architecture
+SPS: 841, pg_loss=0.0241, v_loss=0.0781
+Epoch: 76, global_step=1920000
+Sampling new architecture
+SPS: 840, pg_loss=0.0095, v_loss=0.0691
+Epoch: 77, global_step=1945600
+Sampling new architecture
+SPS: 839, pg_loss=0.0168, v_loss=0.1114
+Epoch: 78, global_step=1971200
+Sampling new architecture
+SPS: 838, pg_loss=0.0194, v_loss=0.0659
+Epoch: 79, global_step=1996800
+Sampling new architecture
+SPS: 837, pg_loss=0.0184, v_loss=0.0617
+Epoch: 80, global_step=2022400
+Sampling new architecture
+SPS: 836, pg_loss=0.0347, v_loss=0.1205
+Epoch: 81, global_step=2048000
+Sampling new architecture
+SPS: 835, pg_loss=0.0162, v_loss=0.0719
+Epoch: 82, global_step=2073600
+Sampling new architecture
+SPS: 836, pg_loss=0.0107, v_loss=0.0951
+Epoch: 83, global_step=2099200
+Sampling new architecture
+SPS: 834, pg_loss=0.0171, v_loss=0.1005
+Epoch: 84, global_step=2124800
+Sampling new architecture
+SPS: 833, pg_loss=0.0263, v_loss=0.0849
+Epoch: 85, global_step=2150400
+Sampling new architecture
+SPS: 832, pg_loss=0.0321, v_loss=0.0780
+Epoch: 86, global_step=2176000
+Sampling new architecture
+SPS: 831, pg_loss=0.0281, v_loss=0.0567
+Epoch: 87, global_step=2201600
+Sampling new architecture
+SPS: 829, pg_loss=0.0183, v_loss=0.0660
+Epoch: 88, global_step=2227200
+Sampling new architecture
+SPS: 827, pg_loss=0.0058, v_loss=0.0465
+Epoch: 89, global_step=2252800
+Sampling new architecture
+SPS: 826, pg_loss=0.0182, v_loss=0.0838
+Epoch: 90, global_step=2278400
+Sampling new architecture
+SPS: 825, pg_loss=0.0157, v_loss=0.1645
+Epoch: 91, global_step=2304000
+Sampling new architecture
+SPS: 825, pg_loss=0.0172, v_loss=0.0480
+Epoch: 92, global_step=2329600
+Sampling new architecture
+SPS: 824, pg_loss=0.0195, v_loss=0.0924
+Epoch: 93, global_step=2355200
+Sampling new architecture
+SPS: 823, pg_loss=0.0118, v_loss=0.0588
+Epoch: 94, global_step=2380800
+Sampling new architecture
+SPS: 823, pg_loss=0.0132, v_loss=0.0683
+Epoch: 95, global_step=2406400
+Sampling new architecture
+SPS: 822, pg_loss=0.0484, v_loss=0.0849
+Epoch: 96, global_step=2432000
+Sampling new architecture
+SPS: 821, pg_loss=0.0397, v_loss=0.0602
+Epoch: 97, global_step=2457600
+Sampling new architecture
+SPS: 820, pg_loss=0.0202, v_loss=0.0578
+Epoch: 98, global_step=2483200
+Sampling new architecture
+SPS: 819, pg_loss=0.0214, v_loss=0.0786
+Epoch: 99, global_step=2508800
+Sampling new architecture
+SPS: 819, pg_loss=0.0275, v_loss=0.0508
+Epoch: 100, global_step=2534400
+Sampling new architecture
+SPS: 818, pg_loss=0.0183, v_loss=0.0593
+Epoch: 101, global_step=2560000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 47.49020975828171
+eval_success_once_mean=0.0
+eval_return_mean=5.936276435852051
+eval_episode_len_mean=50.0
+eval_reward_mean=0.11872552335262299
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_101.pt
+SPS: 815, pg_loss=0.0161, v_loss=0.0764
+Epoch: 102, global_step=2585600
+Sampling new architecture
+SPS: 814, pg_loss=0.0174, v_loss=0.0883
+Epoch: 103, global_step=2611200
+Sampling new architecture
+SPS: 814, pg_loss=0.0229, v_loss=0.0769
+Epoch: 104, global_step=2636800
+Sampling new architecture
+SPS: 813, pg_loss=0.0554, v_loss=0.0712
+Epoch: 105, global_step=2662400
+Sampling new architecture
+SPS: 812, pg_loss=0.0212, v_loss=0.0608
+Epoch: 106, global_step=2688000
+Sampling new architecture
+SPS: 812, pg_loss=0.0189, v_loss=0.0760
+Epoch: 107, global_step=2713600
+Sampling new architecture
+SPS: 810, pg_loss=0.0164, v_loss=0.0717
+Epoch: 108, global_step=2739200
+Sampling new architecture
+SPS: 809, pg_loss=0.0129, v_loss=0.0810
+Epoch: 109, global_step=2764800
+Sampling new architecture
+SPS: 808, pg_loss=0.0222, v_loss=0.0995
+Epoch: 110, global_step=2790400
+Sampling new architecture
+SPS: 807, pg_loss=0.0295, v_loss=0.0658
+Epoch: 111, global_step=2816000
+Sampling new architecture
+SPS: 806, pg_loss=0.0204, v_loss=0.0522
+Epoch: 112, global_step=2841600
+Sampling new architecture
+SPS: 806, pg_loss=0.0199, v_loss=0.0748
+Epoch: 113, global_step=2867200
+Sampling new architecture
+SPS: 805, pg_loss=0.0183, v_loss=0.0808
+Epoch: 114, global_step=2892800
+Sampling new architecture
+SPS: 804, pg_loss=0.0186, v_loss=0.0618
+Epoch: 115, global_step=2918400
+Sampling new architecture
+SPS: 804, pg_loss=0.0203, v_loss=0.0474
+Epoch: 116, global_step=2944000
+Sampling new architecture
+SPS: 803, pg_loss=0.0118, v_loss=0.0432
+Epoch: 117, global_step=2969600
+Sampling new architecture
+SPS: 802, pg_loss=0.0076, v_loss=0.0642
+Epoch: 118, global_step=2995200
+Sampling new architecture
+SPS: 802, pg_loss=0.0318, v_loss=0.0734
+Epoch: 119, global_step=3020800
+Sampling new architecture
+SPS: 801, pg_loss=0.0348, v_loss=0.0565
+Epoch: 120, global_step=3046400
+Sampling new architecture
+SPS: 800, pg_loss=0.0204, v_loss=0.0535
+Epoch: 121, global_step=3072000
+Sampling new architecture
+SPS: 800, pg_loss=0.0097, v_loss=0.0507
+Epoch: 122, global_step=3097600
+Sampling new architecture
+SPS: 799, pg_loss=0.0249, v_loss=0.0965
+Epoch: 123, global_step=3123200
+Sampling new architecture
+SPS: 798, pg_loss=0.0166, v_loss=0.0468
+Epoch: 124, global_step=3148800
+Sampling new architecture
+SPS: 798, pg_loss=0.0268, v_loss=0.0669
+Epoch: 125, global_step=3174400
+Sampling new architecture
+SPS: 798, pg_loss=0.0213, v_loss=0.0378
+Epoch: 126, global_step=3200000
+Sampling new architecture
+SPS: 797, pg_loss=0.0094, v_loss=0.0774
+Epoch: 127, global_step=3225600
+Sampling new architecture
+SPS: 797, pg_loss=0.0353, v_loss=0.0516
+Epoch: 128, global_step=3251200
+Sampling new architecture
+SPS: 796, pg_loss=0.0251, v_loss=0.0476
+Epoch: 129, global_step=3276800
+Sampling new architecture
+SPS: 795, pg_loss=0.0285, v_loss=0.0413
+Epoch: 130, global_step=3302400
+Sampling new architecture
+SPS: 795, pg_loss=0.0075, v_loss=0.0352
+Epoch: 131, global_step=3328000
+Sampling new architecture
+SPS: 794, pg_loss=0.0126, v_loss=0.0430
+Epoch: 132, global_step=3353600
+Sampling new architecture
+SPS: 794, pg_loss=0.0348, v_loss=0.0392
+Epoch: 133, global_step=3379200
+Sampling new architecture
+SPS: 794, pg_loss=0.0082, v_loss=0.0470
+Epoch: 134, global_step=3404800
+Sampling new architecture
+SPS: 793, pg_loss=0.0180, v_loss=0.0452
+Epoch: 135, global_step=3430400
+Sampling new architecture
+SPS: 793, pg_loss=-0.0002, v_loss=0.0542
+Epoch: 136, global_step=3456000
+Sampling new architecture
+SPS: 793, pg_loss=0.0110, v_loss=0.0658
+Epoch: 137, global_step=3481600
+Sampling new architecture
+SPS: 793, pg_loss=0.0291, v_loss=0.0443
+Epoch: 138, global_step=3507200
+Sampling new architecture
+SPS: 793, pg_loss=0.0095, v_loss=0.0561
+Epoch: 139, global_step=3532800
+Sampling new architecture
+SPS: 792, pg_loss=0.0225, v_loss=0.0496
+Epoch: 140, global_step=3558400
+Sampling new architecture
+SPS: 792, pg_loss=0.0272, v_loss=0.0472
+Epoch: 141, global_step=3584000
+Sampling new architecture
+SPS: 792, pg_loss=0.0201, v_loss=0.0572
+Epoch: 142, global_step=3609600
+Sampling new architecture
+SPS: 792, pg_loss=0.0198, v_loss=0.0489
+Epoch: 143, global_step=3635200
+Sampling new architecture
+SPS: 791, pg_loss=0.0143, v_loss=0.0788
+Epoch: 144, global_step=3660800
+Sampling new architecture
+SPS: 791, pg_loss=0.0187, v_loss=0.0831
+Epoch: 145, global_step=3686400
+Sampling new architecture
+SPS: 791, pg_loss=0.0079, v_loss=0.0586
+Epoch: 146, global_step=3712000
+Sampling new architecture
+SPS: 790, pg_loss=0.0253, v_loss=0.0506
+Epoch: 147, global_step=3737600
+Sampling new architecture
+SPS: 790, pg_loss=0.0274, v_loss=0.0382
+Epoch: 148, global_step=3763200
+Sampling new architecture
+SPS: 789, pg_loss=0.0117, v_loss=0.0685
+Epoch: 149, global_step=3788800
+Sampling new architecture
+SPS: 789, pg_loss=0.0057, v_loss=0.0468
+Epoch: 150, global_step=3814400
+Sampling new architecture
+SPS: 788, pg_loss=0.0221, v_loss=0.0367
+Epoch: 151, global_step=3840000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 59.51040756702423
+eval_success_once_mean=0.0
+eval_return_mean=7.438800811767578
+eval_episode_len_mean=50.0
+eval_reward_mean=0.14877600967884064
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_151.pt
+SPS: 787, pg_loss=0.0319, v_loss=0.0402
+Epoch: 152, global_step=3865600
+Sampling new architecture
+SPS: 787, pg_loss=0.0307, v_loss=0.0438
+Epoch: 153, global_step=3891200
+Sampling new architecture
+SPS: 786, pg_loss=0.0297, v_loss=0.0382
+Epoch: 154, global_step=3916800
+Sampling new architecture
+SPS: 786, pg_loss=0.0236, v_loss=0.0359
+Epoch: 155, global_step=3942400
+Sampling new architecture
+SPS: 786, pg_loss=0.0303, v_loss=0.0513
+Epoch: 156, global_step=3968000
+Sampling new architecture
+SPS: 786, pg_loss=0.0173, v_loss=0.0535
+Epoch: 157, global_step=3993600
+Sampling new architecture
+SPS: 785, pg_loss=0.0160, v_loss=0.0335
+Epoch: 158, global_step=4019200
+Sampling new architecture
+SPS: 785, pg_loss=0.0264, v_loss=0.0363
+Epoch: 159, global_step=4044800
+Sampling new architecture
+SPS: 785, pg_loss=0.0181, v_loss=0.0518
+Epoch: 160, global_step=4070400
+Sampling new architecture
+SPS: 785, pg_loss=0.0221, v_loss=0.0517
+Epoch: 161, global_step=4096000
+Sampling new architecture
+SPS: 784, pg_loss=0.0204, v_loss=0.0429
+Epoch: 162, global_step=4121600
+Sampling new architecture
+SPS: 784, pg_loss=0.0156, v_loss=0.0644
+Epoch: 163, global_step=4147200
+Sampling new architecture
+SPS: 783, pg_loss=0.0207, v_loss=0.0433
+Epoch: 164, global_step=4172800
+Sampling new architecture
+SPS: 783, pg_loss=0.0153, v_loss=0.0788
+Epoch: 165, global_step=4198400
+Sampling new architecture
+SPS: 783, pg_loss=0.0145, v_loss=0.0519
+Epoch: 166, global_step=4224000
+Sampling new architecture
+SPS: 783, pg_loss=0.0139, v_loss=0.0374
+Epoch: 167, global_step=4249600
+Sampling new architecture
+SPS: 783, pg_loss=0.0117, v_loss=0.0570
+Epoch: 168, global_step=4275200
+Sampling new architecture
+SPS: 783, pg_loss=0.0334, v_loss=0.0376
+Epoch: 169, global_step=4300800
+Sampling new architecture
+SPS: 783, pg_loss=0.0164, v_loss=0.0378
+Epoch: 170, global_step=4326400
+Sampling new architecture
+SPS: 783, pg_loss=0.0272, v_loss=0.0282
+Epoch: 171, global_step=4352000
+Sampling new architecture
+SPS: 783, pg_loss=0.0215, v_loss=0.0332
+Epoch: 172, global_step=4377600
+Sampling new architecture
+SPS: 783, pg_loss=0.0223, v_loss=0.0550
+Epoch: 173, global_step=4403200
+Sampling new architecture
+SPS: 783, pg_loss=0.0202, v_loss=0.0438
+Epoch: 174, global_step=4428800
+Sampling new architecture
+SPS: 783, pg_loss=0.0354, v_loss=0.0455
+Epoch: 175, global_step=4454400
+Sampling new architecture
+SPS: 782, pg_loss=0.0218, v_loss=0.0455
+Epoch: 176, global_step=4480000
+Sampling new architecture
+SPS: 782, pg_loss=0.0247, v_loss=0.0569
+Epoch: 177, global_step=4505600
+Sampling new architecture
+SPS: 782, pg_loss=0.0018, v_loss=0.0521
+Epoch: 178, global_step=4531200
+Sampling new architecture
+SPS: 781, pg_loss=0.0204, v_loss=0.0598
+Epoch: 179, global_step=4556800
+Sampling new architecture
+SPS: 781, pg_loss=0.0237, v_loss=0.0474
+Epoch: 180, global_step=4582400
+Sampling new architecture
+SPS: 780, pg_loss=0.0085, v_loss=0.0633
+Epoch: 181, global_step=4608000
+Sampling new architecture
+SPS: 780, pg_loss=0.0214, v_loss=0.0498
+Epoch: 182, global_step=4633600
+Sampling new architecture
+SPS: 780, pg_loss=0.0210, v_loss=0.0448
+Epoch: 183, global_step=4659200
+Sampling new architecture
+SPS: 779, pg_loss=0.0182, v_loss=0.0445
+Epoch: 184, global_step=4684800
+Sampling new architecture
+SPS: 779, pg_loss=0.0263, v_loss=0.0789
+Epoch: 185, global_step=4710400
+Sampling new architecture
+SPS: 779, pg_loss=0.0442, v_loss=0.0352
+Epoch: 186, global_step=4736000
+Sampling new architecture
+SPS: 778, pg_loss=0.0183, v_loss=0.0380
+Epoch: 187, global_step=4761600
+Sampling new architecture
+SPS: 778, pg_loss=0.0164, v_loss=0.0450
+Epoch: 188, global_step=4787200
+Sampling new architecture
+SPS: 777, pg_loss=0.0158, v_loss=0.0574
+Epoch: 189, global_step=4812800
+Sampling new architecture
+SPS: 777, pg_loss=0.0115, v_loss=0.0500
+Epoch: 190, global_step=4838400
+Sampling new architecture
+SPS: 777, pg_loss=0.0300, v_loss=0.0826
+Epoch: 191, global_step=4864000
+Sampling new architecture
+SPS: 776, pg_loss=0.0248, v_loss=0.0479
+Epoch: 192, global_step=4889600
+Sampling new architecture
+SPS: 776, pg_loss=0.0142, v_loss=0.0623
+Epoch: 193, global_step=4915200
+Sampling new architecture
+SPS: 776, pg_loss=0.0177, v_loss=0.0391
+Epoch: 194, global_step=4940800
+Sampling new architecture
+SPS: 775, pg_loss=0.0163, v_loss=0.0714
+Epoch: 195, global_step=4966400
+Sampling new architecture
+SPS: 775, pg_loss=0.0269, v_loss=0.0455
+Epoch: 196, global_step=4992000
+Sampling new architecture
+SPS: 775, pg_loss=0.0152, v_loss=0.0496
+Epoch: 197, global_step=5017600
+Sampling new architecture
+SPS: 774, pg_loss=0.0137, v_loss=0.0575
+Epoch: 198, global_step=5043200
+Sampling new architecture
+SPS: 774, pg_loss=0.0239, v_loss=0.0529
+Epoch: 199, global_step=5068800
+Sampling new architecture
+SPS: 774, pg_loss=0.0305, v_loss=0.0338
+Epoch: 200, global_step=5094400
+Sampling new architecture
+SPS: 774, pg_loss=0.0259, v_loss=0.0476
+Epoch: 201, global_step=5120000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 43.55219501256943
+eval_success_once_mean=0.0
+eval_return_mean=5.444024085998535
+eval_episode_len_mean=50.0
+eval_reward_mean=0.10888049006462097
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_201.pt
+SPS: 773, pg_loss=0.0259, v_loss=0.0433
+Epoch: 202, global_step=5145600
+Sampling new architecture
+SPS: 773, pg_loss=0.0216, v_loss=0.0400
+Epoch: 203, global_step=5171200
+Sampling new architecture
+SPS: 772, pg_loss=0.0337, v_loss=0.0400
+Epoch: 204, global_step=5196800
+Sampling new architecture
+SPS: 772, pg_loss=0.0094, v_loss=0.0423
+Epoch: 205, global_step=5222400
+Sampling new architecture
+SPS: 772, pg_loss=0.0505, v_loss=0.0272
+Epoch: 206, global_step=5248000
+Sampling new architecture
+SPS: 771, pg_loss=0.0309, v_loss=0.0432
+Epoch: 207, global_step=5273600
+Sampling new architecture
+SPS: 771, pg_loss=0.0397, v_loss=0.0489
+Epoch: 208, global_step=5299200
+Sampling new architecture
+SPS: 771, pg_loss=0.0201, v_loss=0.0418
+Epoch: 209, global_step=5324800
+Sampling new architecture
+SPS: 771, pg_loss=0.0314, v_loss=0.0527
+Epoch: 210, global_step=5350400
+Sampling new architecture
+SPS: 771, pg_loss=0.0415, v_loss=0.0349
+Epoch: 211, global_step=5376000
+Sampling new architecture
+SPS: 771, pg_loss=0.0434, v_loss=0.0339
+Epoch: 212, global_step=5401600
+Sampling new architecture
+SPS: 770, pg_loss=0.0166, v_loss=0.0352
+Epoch: 213, global_step=5427200
+Sampling new architecture
+SPS: 770, pg_loss=0.0143, v_loss=0.0412
+Epoch: 214, global_step=5452800
+Sampling new architecture
+SPS: 770, pg_loss=0.0115, v_loss=0.0305
+Epoch: 215, global_step=5478400
+Sampling new architecture
+SPS: 770, pg_loss=0.0160, v_loss=0.0296
+Epoch: 216, global_step=5504000
+Sampling new architecture
+SPS: 770, pg_loss=0.0005, v_loss=0.0380
+Epoch: 217, global_step=5529600
+Sampling new architecture
+SPS: 769, pg_loss=0.0459, v_loss=0.0389
+Epoch: 218, global_step=5555200
+Sampling new architecture
+SPS: 769, pg_loss=0.0132, v_loss=0.0296
+Epoch: 219, global_step=5580800
+Sampling new architecture
+SPS: 769, pg_loss=0.0162, v_loss=0.0301
+Epoch: 220, global_step=5606400
+Sampling new architecture
+SPS: 769, pg_loss=0.0083, v_loss=0.0297
+Epoch: 221, global_step=5632000
+Sampling new architecture
+SPS: 769, pg_loss=0.0218, v_loss=0.0284
+Epoch: 222, global_step=5657600
+Sampling new architecture
+SPS: 769, pg_loss=0.0169, v_loss=0.0559
+Epoch: 223, global_step=5683200
+Sampling new architecture
+SPS: 769, pg_loss=0.0165, v_loss=0.0369
+Epoch: 224, global_step=5708800
+Sampling new architecture
+SPS: 768, pg_loss=0.0228, v_loss=0.0359
+Epoch: 225, global_step=5734400
+Sampling new architecture
+SPS: 769, pg_loss=0.0198, v_loss=0.0528
+Epoch: 226, global_step=5760000
+Sampling new architecture
+SPS: 768, pg_loss=0.0093, v_loss=0.0509
+Epoch: 227, global_step=5785600
+Sampling new architecture
+SPS: 768, pg_loss=0.0150, v_loss=0.0366
+Epoch: 228, global_step=5811200
+Sampling new architecture
+SPS: 768, pg_loss=0.0148, v_loss=0.0335
+Epoch: 229, global_step=5836800
+Sampling new architecture
+SPS: 768, pg_loss=0.0334, v_loss=0.0287
+Epoch: 230, global_step=5862400
+Sampling new architecture
+SPS: 768, pg_loss=0.0048, v_loss=0.0305
+Epoch: 231, global_step=5888000
+Sampling new architecture
+SPS: 768, pg_loss=0.0127, v_loss=0.0395
+Epoch: 232, global_step=5913600
+Sampling new architecture
+SPS: 768, pg_loss=0.0226, v_loss=0.0309
+Epoch: 233, global_step=5939200
+Sampling new architecture
+SPS: 768, pg_loss=0.0303, v_loss=0.0303
+Epoch: 234, global_step=5964800
+Sampling new architecture
+SPS: 768, pg_loss=0.0161, v_loss=0.0507
+Epoch: 235, global_step=5990400
+Sampling new architecture
+SPS: 768, pg_loss=0.0415, v_loss=0.0411
+Epoch: 236, global_step=6016000
+Sampling new architecture
+SPS: 768, pg_loss=0.0059, v_loss=0.0420
+Epoch: 237, global_step=6041600
+Sampling new architecture
+SPS: 768, pg_loss=0.0150, v_loss=0.0428
+Epoch: 238, global_step=6067200
+Sampling new architecture
+SPS: 768, pg_loss=0.0251, v_loss=0.0502
+Epoch: 239, global_step=6092800
+Sampling new architecture
+SPS: 768, pg_loss=0.0268, v_loss=0.0410
+Epoch: 240, global_step=6118400
+Sampling new architecture
+SPS: 768, pg_loss=0.0307, v_loss=0.0468
+Epoch: 241, global_step=6144000
+Sampling new architecture
+SPS: 768, pg_loss=0.0073, v_loss=0.0765
+Epoch: 242, global_step=6169600
+Sampling new architecture
+SPS: 768, pg_loss=0.0237, v_loss=0.0405
+Epoch: 243, global_step=6195200
+Sampling new architecture
+SPS: 768, pg_loss=0.0107, v_loss=0.0489
+Epoch: 244, global_step=6220800
+Sampling new architecture
+SPS: 768, pg_loss=0.0413, v_loss=0.0429
+Epoch: 245, global_step=6246400
+Sampling new architecture
+SPS: 768, pg_loss=0.0542, v_loss=0.0249
+Epoch: 246, global_step=6272000
+Sampling new architecture
+SPS: 768, pg_loss=0.0035, v_loss=0.0322
+Epoch: 247, global_step=6297600
+Sampling new architecture
+SPS: 768, pg_loss=0.0335, v_loss=0.0267
+Epoch: 248, global_step=6323200
+Sampling new architecture
+SPS: 768, pg_loss=0.0261, v_loss=0.0332
+Epoch: 249, global_step=6348800
+Sampling new architecture
+SPS: 768, pg_loss=0.0310, v_loss=0.0526
+Epoch: 250, global_step=6374400
+Sampling new architecture
+SPS: 768, pg_loss=0.0615, v_loss=0.0394
+Epoch: 251, global_step=6400000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 51.23989099264145
+eval_success_once_mean=0.0
+eval_return_mean=6.404986381530762
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1280997395515442
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_251.pt
+SPS: 767, pg_loss=0.0511, v_loss=0.0197
+Epoch: 252, global_step=6425600
+Sampling new architecture
+SPS: 767, pg_loss=0.0327, v_loss=0.0259
+Epoch: 253, global_step=6451200
+Sampling new architecture
+SPS: 767, pg_loss=0.0269, v_loss=0.0503
+Epoch: 254, global_step=6476800
+Sampling new architecture
+SPS: 767, pg_loss=0.0513, v_loss=0.0263
+Epoch: 255, global_step=6502400
+Sampling new architecture
+SPS: 766, pg_loss=0.0223, v_loss=0.0176
+Epoch: 256, global_step=6528000
+Sampling new architecture
+SPS: 766, pg_loss=0.1177, v_loss=0.1216
+Epoch: 257, global_step=6553600
+Sampling new architecture
+SPS: 766, pg_loss=0.0412, v_loss=0.0379
+Epoch: 258, global_step=6579200
+Sampling new architecture
+SPS: 766, pg_loss=0.0305, v_loss=0.0472
+Epoch: 259, global_step=6604800
+Sampling new architecture
+SPS: 766, pg_loss=0.0303, v_loss=0.0265
+Epoch: 260, global_step=6630400
+Sampling new architecture
+SPS: 765, pg_loss=0.0218, v_loss=0.0347
+Epoch: 261, global_step=6656000
+Sampling new architecture
+SPS: 765, pg_loss=0.0179, v_loss=0.0368
+Epoch: 262, global_step=6681600
+Sampling new architecture
+SPS: 765, pg_loss=0.0249, v_loss=0.0376
+Epoch: 263, global_step=6707200
+Sampling new architecture
+SPS: 765, pg_loss=0.0371, v_loss=0.0556
+Epoch: 264, global_step=6732800
+Sampling new architecture
+SPS: 765, pg_loss=0.0168, v_loss=0.0436
+Epoch: 265, global_step=6758400
+Sampling new architecture
+SPS: 765, pg_loss=0.0193, v_loss=0.0433
+Epoch: 266, global_step=6784000
+Sampling new architecture
+SPS: 765, pg_loss=0.0248, v_loss=0.0296
+Epoch: 267, global_step=6809600
+Sampling new architecture
+SPS: 765, pg_loss=0.0295, v_loss=0.0273
+Epoch: 268, global_step=6835200
+Sampling new architecture
+SPS: 765, pg_loss=0.0334, v_loss=0.0408
+Epoch: 269, global_step=6860800
+Sampling new architecture
+SPS: 765, pg_loss=0.0331, v_loss=0.0355
+Epoch: 270, global_step=6886400
+Sampling new architecture
+SPS: 765, pg_loss=0.0426, v_loss=0.0336
+Epoch: 271, global_step=6912000
+Sampling new architecture
+SPS: 765, pg_loss=0.0275, v_loss=0.0302
+Epoch: 272, global_step=6937600
+Sampling new architecture
+SPS: 765, pg_loss=0.0377, v_loss=0.0498
+Epoch: 273, global_step=6963200
+Sampling new architecture
+SPS: 765, pg_loss=0.0028, v_loss=0.0449
+Epoch: 274, global_step=6988800
+Sampling new architecture
+SPS: 765, pg_loss=0.0133, v_loss=0.0515
+Epoch: 275, global_step=7014400
+Sampling new architecture
+SPS: 765, pg_loss=0.0227, v_loss=0.0370
+Epoch: 276, global_step=7040000
+Sampling new architecture
+SPS: 765, pg_loss=0.0256, v_loss=0.0559
+Epoch: 277, global_step=7065600
+Sampling new architecture
+SPS: 765, pg_loss=0.0895, v_loss=0.0610
+Epoch: 278, global_step=7091200
+Sampling new architecture
+SPS: 765, pg_loss=0.0278, v_loss=0.0478
+Epoch: 279, global_step=7116800
+Sampling new architecture
+SPS: 765, pg_loss=0.0174, v_loss=0.0473
+Epoch: 280, global_step=7142400
+Sampling new architecture
+SPS: 765, pg_loss=0.0253, v_loss=0.0427
+Epoch: 281, global_step=7168000
+Sampling new architecture
+SPS: 765, pg_loss=0.0198, v_loss=0.0385
+Epoch: 282, global_step=7193600
+Sampling new architecture
+SPS: 765, pg_loss=0.0199, v_loss=0.0405
+Epoch: 283, global_step=7219200
+Sampling new architecture
+SPS: 765, pg_loss=0.0154, v_loss=0.0385
+Epoch: 284, global_step=7244800
+Sampling new architecture
+SPS: 764, pg_loss=0.0124, v_loss=0.0480
+Epoch: 285, global_step=7270400
+Sampling new architecture
+SPS: 764, pg_loss=0.0500, v_loss=0.0448
+Epoch: 286, global_step=7296000
+Sampling new architecture
+SPS: 764, pg_loss=0.0345, v_loss=0.0369
+Epoch: 287, global_step=7321600
+Sampling new architecture
+SPS: 764, pg_loss=0.0364, v_loss=0.0447
+Epoch: 288, global_step=7347200
+Sampling new architecture
+SPS: 764, pg_loss=0.0210, v_loss=0.0265
+Epoch: 289, global_step=7372800
+Sampling new architecture
+SPS: 764, pg_loss=0.0126, v_loss=0.0445
+Epoch: 290, global_step=7398400
+Sampling new architecture
+SPS: 764, pg_loss=0.0131, v_loss=0.0563
+Epoch: 291, global_step=7424000
+Sampling new architecture
+SPS: 764, pg_loss=0.0204, v_loss=0.0372
+Epoch: 292, global_step=7449600
+Sampling new architecture
+SPS: 764, pg_loss=0.0120, v_loss=0.0484
+Epoch: 293, global_step=7475200
+Sampling new architecture
+SPS: 764, pg_loss=0.0143, v_loss=0.0466
+Epoch: 294, global_step=7500800
+Sampling new architecture
+SPS: 764, pg_loss=0.0195, v_loss=0.0467
+Epoch: 295, global_step=7526400
+Sampling new architecture
+SPS: 764, pg_loss=0.0143, v_loss=0.0499
+Epoch: 296, global_step=7552000
+Sampling new architecture
+SPS: 764, pg_loss=0.0616, v_loss=0.0467
+Epoch: 297, global_step=7577600
+Sampling new architecture
+SPS: 764, pg_loss=0.0324, v_loss=0.0316
+Epoch: 298, global_step=7603200
+Sampling new architecture
+SPS: 764, pg_loss=0.0230, v_loss=0.0389
+Epoch: 299, global_step=7628800
+Sampling new architecture
+SPS: 764, pg_loss=0.0089, v_loss=0.0603
+Epoch: 300, global_step=7654400
+Sampling new architecture
+SPS: 764, pg_loss=0.0210, v_loss=0.0361
+Epoch: 301, global_step=7680000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 54.55266559123993
+eval_success_once_mean=0.0
+eval_return_mean=6.819082736968994
+eval_episode_len_mean=50.0
+eval_reward_mean=0.13638165593147278
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_301.pt
+SPS: 763, pg_loss=0.0393, v_loss=0.0294
+Epoch: 302, global_step=7705600
+Sampling new architecture
+SPS: 763, pg_loss=0.0124, v_loss=0.0355
+Epoch: 303, global_step=7731200
+Sampling new architecture
+SPS: 763, pg_loss=0.0228, v_loss=0.0448
+Epoch: 304, global_step=7756800
+Sampling new architecture
+SPS: 763, pg_loss=0.0216, v_loss=0.0301
+Epoch: 305, global_step=7782400
+Sampling new architecture
+SPS: 763, pg_loss=0.0197, v_loss=0.0232
+Epoch: 306, global_step=7808000
+Sampling new architecture
+SPS: 762, pg_loss=0.0112, v_loss=0.0499
+Epoch: 307, global_step=7833600
+Sampling new architecture
+SPS: 762, pg_loss=0.0232, v_loss=0.0242
+Epoch: 308, global_step=7859200
+Sampling new architecture
+SPS: 762, pg_loss=0.0104, v_loss=0.0374
+Epoch: 309, global_step=7884800
+Sampling new architecture
+SPS: 762, pg_loss=0.0127, v_loss=0.0584
+Epoch: 310, global_step=7910400
+Sampling new architecture
+SPS: 762, pg_loss=0.0178, v_loss=0.0263
+Epoch: 311, global_step=7936000
+Sampling new architecture
+SPS: 762, pg_loss=0.0301, v_loss=0.0362
+Epoch: 312, global_step=7961600
+Sampling new architecture
+SPS: 762, pg_loss=0.0161, v_loss=0.0363
+Epoch: 313, global_step=7987200
+Sampling new architecture
+SPS: 762, pg_loss=0.0275, v_loss=0.0386
+Epoch: 314, global_step=8012800
+Sampling new architecture
+SPS: 762, pg_loss=0.0124, v_loss=0.0493
+Epoch: 315, global_step=8038400
+Sampling new architecture
+SPS: 762, pg_loss=0.0226, v_loss=0.0374
+Epoch: 316, global_step=8064000
+Sampling new architecture
+SPS: 762, pg_loss=0.0083, v_loss=0.0426
+Epoch: 317, global_step=8089600
+Sampling new architecture
+SPS: 762, pg_loss=0.0256, v_loss=0.0419
+Epoch: 318, global_step=8115200
+Sampling new architecture
+SPS: 761, pg_loss=0.0234, v_loss=0.0384
+Epoch: 319, global_step=8140800
+Sampling new architecture
+SPS: 761, pg_loss=0.0249, v_loss=0.0389
+Epoch: 320, global_step=8166400
+Sampling new architecture
+SPS: 761, pg_loss=0.0243, v_loss=0.0206
+Epoch: 321, global_step=8192000
+Sampling new architecture
+SPS: 761, pg_loss=0.0330, v_loss=0.0242
+Epoch: 322, global_step=8217600
+Sampling new architecture
+SPS: 761, pg_loss=0.0088, v_loss=0.0291
+Epoch: 323, global_step=8243200
+Sampling new architecture
+SPS: 761, pg_loss=0.0232, v_loss=0.0238
+Epoch: 324, global_step=8268800
+Sampling new architecture
+SPS: 761, pg_loss=0.0027, v_loss=0.0312
+Epoch: 325, global_step=8294400
+Sampling new architecture
+SPS: 761, pg_loss=0.0149, v_loss=0.0309
+Epoch: 326, global_step=8320000
+Sampling new architecture
+SPS: 761, pg_loss=0.0173, v_loss=0.0369
+Epoch: 327, global_step=8345600
+Sampling new architecture
+SPS: 761, pg_loss=0.0193, v_loss=0.0311
+Epoch: 328, global_step=8371200
+Sampling new architecture
+SPS: 760, pg_loss=0.0224, v_loss=0.0361
+Epoch: 329, global_step=8396800
+Sampling new architecture
+SPS: 760, pg_loss=0.0204, v_loss=0.0368
+Epoch: 330, global_step=8422400
+Sampling new architecture
+SPS: 760, pg_loss=0.0206, v_loss=0.0296
+Epoch: 331, global_step=8448000
+Sampling new architecture
+SPS: 760, pg_loss=0.0356, v_loss=0.0286
+Epoch: 332, global_step=8473600
+Sampling new architecture
+SPS: 760, pg_loss=0.0162, v_loss=0.0667
+Epoch: 333, global_step=8499200
+Sampling new architecture
+SPS: 760, pg_loss=0.0156, v_loss=0.0239
+Epoch: 334, global_step=8524800
+Sampling new architecture
+SPS: 760, pg_loss=0.0179, v_loss=0.0274
+Epoch: 335, global_step=8550400
+Sampling new architecture
+SPS: 760, pg_loss=0.0340, v_loss=0.0252
+Epoch: 336, global_step=8576000
+Sampling new architecture
+SPS: 760, pg_loss=0.0173, v_loss=0.0258
+Epoch: 337, global_step=8601600
+Sampling new architecture
+SPS: 760, pg_loss=0.0260, v_loss=0.0183
+Epoch: 338, global_step=8627200
+Sampling new architecture
+SPS: 760, pg_loss=0.0379, v_loss=0.0249
+Epoch: 339, global_step=8652800
+Sampling new architecture
+SPS: 759, pg_loss=0.0326, v_loss=0.0167
+Epoch: 340, global_step=8678400
+Sampling new architecture
+SPS: 759, pg_loss=0.0390, v_loss=0.0214
+Epoch: 341, global_step=8704000
+Sampling new architecture
+SPS: 759, pg_loss=0.0188, v_loss=0.0249
+Epoch: 342, global_step=8729600
+Sampling new architecture
+SPS: 759, pg_loss=0.0191, v_loss=0.0282
+Epoch: 343, global_step=8755200
+Sampling new architecture
+SPS: 759, pg_loss=0.0209, v_loss=0.0216
+Epoch: 344, global_step=8780800
+Sampling new architecture
+SPS: 759, pg_loss=0.0167, v_loss=0.0285
+Epoch: 345, global_step=8806400
+Sampling new architecture
+SPS: 759, pg_loss=0.0293, v_loss=0.0171
+Epoch: 346, global_step=8832000
+Sampling new architecture
+SPS: 759, pg_loss=0.0204, v_loss=0.0205
+Epoch: 347, global_step=8857600
+Sampling new architecture
+SPS: 759, pg_loss=0.0462, v_loss=0.0286
+Epoch: 348, global_step=8883200
+Sampling new architecture
+SPS: 759, pg_loss=0.0400, v_loss=0.0225
+Epoch: 349, global_step=8908800
+Sampling new architecture
+SPS: 759, pg_loss=0.0237, v_loss=0.0257
+Epoch: 350, global_step=8934400
+Sampling new architecture
+SPS: 759, pg_loss=0.0102, v_loss=0.0201
+Epoch: 351, global_step=8960000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 51.82832753658295
+eval_success_once_mean=0.0
+eval_return_mean=6.478541374206543
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1295708268880844
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_351.pt
+SPS: 758, pg_loss=0.0260, v_loss=0.0214
+Epoch: 352, global_step=8985600
+Sampling new architecture
+SPS: 758, pg_loss=0.0222, v_loss=0.0355
+Epoch: 353, global_step=9011200
+Sampling new architecture
+SPS: 758, pg_loss=-0.0005, v_loss=0.0374
+Epoch: 354, global_step=9036800
+Sampling new architecture
+SPS: 758, pg_loss=0.0147, v_loss=0.0481
+Epoch: 355, global_step=9062400
+Sampling new architecture
+SPS: 758, pg_loss=0.0296, v_loss=0.0308
+Epoch: 356, global_step=9088000
+Sampling new architecture
+SPS: 758, pg_loss=0.0149, v_loss=0.0309
+Epoch: 357, global_step=9113600
+Sampling new architecture
+SPS: 758, pg_loss=0.0253, v_loss=0.0219
+Epoch: 358, global_step=9139200
+Sampling new architecture
+SPS: 758, pg_loss=0.0331, v_loss=0.0213
+Epoch: 359, global_step=9164800
+Sampling new architecture
+SPS: 757, pg_loss=0.0242, v_loss=0.0231
+Epoch: 360, global_step=9190400
+Sampling new architecture
+SPS: 757, pg_loss=0.0318, v_loss=0.0232
+Epoch: 361, global_step=9216000
+Sampling new architecture
+SPS: 757, pg_loss=0.0473, v_loss=0.0277
+Epoch: 362, global_step=9241600
+Sampling new architecture
+SPS: 757, pg_loss=0.0267, v_loss=0.0306
+Epoch: 363, global_step=9267200
+Sampling new architecture
+SPS: 757, pg_loss=0.0167, v_loss=0.0328
+Epoch: 364, global_step=9292800
+Sampling new architecture
+SPS: 757, pg_loss=0.0229, v_loss=0.0535
+Epoch: 365, global_step=9318400
+Sampling new architecture
+SPS: 757, pg_loss=0.0295, v_loss=0.0392
+Epoch: 366, global_step=9344000
+Sampling new architecture
+SPS: 757, pg_loss=0.0305, v_loss=0.0319
+Epoch: 367, global_step=9369600
+Sampling new architecture
+SPS: 757, pg_loss=0.0271, v_loss=0.0293
+Epoch: 368, global_step=9395200
+Sampling new architecture
+SPS: 757, pg_loss=0.0408, v_loss=0.0286
+Epoch: 369, global_step=9420800
+Sampling new architecture
+SPS: 757, pg_loss=0.0379, v_loss=0.0446
+Epoch: 370, global_step=9446400
+Sampling new architecture
+SPS: 757, pg_loss=0.0274, v_loss=0.0300
+Epoch: 371, global_step=9472000
+Sampling new architecture
+SPS: 757, pg_loss=0.0210, v_loss=0.0213
+Epoch: 372, global_step=9497600
+Sampling new architecture
+SPS: 757, pg_loss=0.0132, v_loss=0.0344
+Epoch: 373, global_step=9523200
+Sampling new architecture
+SPS: 757, pg_loss=0.0439, v_loss=0.0322
+Epoch: 374, global_step=9548800
+Sampling new architecture
+SPS: 757, pg_loss=0.0461, v_loss=0.0325
+Epoch: 375, global_step=9574400
+Sampling new architecture
+SPS: 757, pg_loss=0.0304, v_loss=0.0236
+Epoch: 376, global_step=9600000
+Sampling new architecture
+SPS: 756, pg_loss=0.0281, v_loss=0.0196
+Epoch: 377, global_step=9625600
+Sampling new architecture
+SPS: 756, pg_loss=0.0279, v_loss=0.0199
+Epoch: 378, global_step=9651200
+Sampling new architecture
+SPS: 756, pg_loss=0.0390, v_loss=0.0313
+Epoch: 379, global_step=9676800
+Sampling new architecture
+SPS: 756, pg_loss=0.0479, v_loss=0.0231
+Epoch: 380, global_step=9702400
+Sampling new architecture
+SPS: 756, pg_loss=0.0250, v_loss=0.0260
+Epoch: 381, global_step=9728000
+Sampling new architecture
+SPS: 756, pg_loss=0.0356, v_loss=0.0296
+Epoch: 382, global_step=9753600
+Sampling new architecture
+SPS: 756, pg_loss=0.1409, v_loss=0.1035
+Epoch: 383, global_step=9779200
+Sampling new architecture
+SPS: 756, pg_loss=0.0509, v_loss=0.0774
+Epoch: 384, global_step=9804800
+Sampling new architecture
+SPS: 756, pg_loss=0.0320, v_loss=0.0258
+Epoch: 385, global_step=9830400
+Sampling new architecture
+SPS: 756, pg_loss=0.0404, v_loss=0.0344
+Epoch: 386, global_step=9856000
+Sampling new architecture
+SPS: 756, pg_loss=0.0177, v_loss=0.0265
+Epoch: 387, global_step=9881600
+Sampling new architecture
+SPS: 756, pg_loss=0.0714, v_loss=0.0230
+Epoch: 388, global_step=9907200
+Sampling new architecture
+SPS: 756, pg_loss=0.0396, v_loss=0.0197
+Epoch: 389, global_step=9932800
+Sampling new architecture
+SPS: 756, pg_loss=0.0395, v_loss=0.0187
+Epoch: 390, global_step=9958400
+Sampling new architecture
+SPS: 756, pg_loss=0.0514, v_loss=0.0281
+Epoch: 391, global_step=9984000
+Sampling new architecture
+SPS: 756, pg_loss=0.0354, v_loss=0.0219
+Epoch: 392, global_step=10009600
+Sampling new architecture
+SPS: 756, pg_loss=0.0672, v_loss=0.0194
+Epoch: 393, global_step=10035200
+Sampling new architecture
+SPS: 756, pg_loss=0.0383, v_loss=0.0153
+Epoch: 394, global_step=10060800
+Sampling new architecture
+SPS: 756, pg_loss=0.0168, v_loss=0.0163
+Epoch: 395, global_step=10086400
+Sampling new architecture
+SPS: 755, pg_loss=0.0630, v_loss=0.0136
+Epoch: 396, global_step=10112000
+Sampling new architecture
+SPS: 755, pg_loss=0.0383, v_loss=0.0185
+Epoch: 397, global_step=10137600
+Sampling new architecture
+SPS: 755, pg_loss=0.0387, v_loss=0.0192
+Epoch: 398, global_step=10163200
+Sampling new architecture
+SPS: 755, pg_loss=0.0510, v_loss=0.0235
+Epoch: 399, global_step=10188800
+Sampling new architecture
+SPS: 755, pg_loss=0.0414, v_loss=0.0202
+Epoch: 400, global_step=10214400
+Sampling new architecture
+SPS: 755, pg_loss=0.0358, v_loss=0.0201
+Epoch: 401, global_step=10240000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 40.69550275802612
+eval_success_once_mean=0.0
+eval_return_mean=5.086937427520752
+eval_episode_len_mean=50.0
+eval_reward_mean=0.10173875093460083
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_401.pt
+SPS: 755, pg_loss=0.0218, v_loss=0.0173
+Epoch: 402, global_step=10265600
+Sampling new architecture
+SPS: 755, pg_loss=0.0247, v_loss=0.0204
+Epoch: 403, global_step=10291200
+Sampling new architecture
+SPS: 755, pg_loss=0.0293, v_loss=0.0181
+Epoch: 404, global_step=10316800
+Sampling new architecture
+SPS: 755, pg_loss=0.0429, v_loss=0.0237
+Epoch: 405, global_step=10342400
+Sampling new architecture
+SPS: 755, pg_loss=0.0400, v_loss=0.0273
+Epoch: 406, global_step=10368000
+Sampling new architecture
+SPS: 755, pg_loss=0.0351, v_loss=0.0239
+Epoch: 407, global_step=10393600
+Sampling new architecture
+SPS: 755, pg_loss=0.0454, v_loss=0.0199
+Epoch: 408, global_step=10419200
+Sampling new architecture
+SPS: 755, pg_loss=0.0314, v_loss=0.0177
+Epoch: 409, global_step=10444800
+Sampling new architecture
+SPS: 755, pg_loss=0.0305, v_loss=0.0145
+Epoch: 410, global_step=10470400
+Sampling new architecture
+SPS: 755, pg_loss=0.0616, v_loss=0.0242
+Epoch: 411, global_step=10496000
+Sampling new architecture
+SPS: 755, pg_loss=0.0350, v_loss=0.0232
+Epoch: 412, global_step=10521600
+Sampling new architecture
+SPS: 755, pg_loss=0.0369, v_loss=0.0202
+Epoch: 413, global_step=10547200
+Sampling new architecture
+SPS: 755, pg_loss=0.0195, v_loss=0.0147
+Epoch: 414, global_step=10572800
+Sampling new architecture
+SPS: 755, pg_loss=0.0587, v_loss=0.0155
+Epoch: 415, global_step=10598400
+Sampling new architecture
+SPS: 755, pg_loss=0.0129, v_loss=0.0247
+Epoch: 416, global_step=10624000
+Sampling new architecture
+SPS: 755, pg_loss=0.0669, v_loss=0.0145
+Epoch: 417, global_step=10649600
+Sampling new architecture
+SPS: 755, pg_loss=0.0281, v_loss=0.0159
+Epoch: 418, global_step=10675200
+Sampling new architecture
+SPS: 755, pg_loss=0.0449, v_loss=0.0159
+Epoch: 419, global_step=10700800
+Sampling new architecture
+SPS: 754, pg_loss=0.0426, v_loss=0.0168
+Epoch: 420, global_step=10726400
+Sampling new architecture
+SPS: 754, pg_loss=0.0268, v_loss=0.0151
+Epoch: 421, global_step=10752000
+Sampling new architecture
+SPS: 754, pg_loss=0.0288, v_loss=0.0193
+Epoch: 422, global_step=10777600
+Sampling new architecture
+SPS: 754, pg_loss=0.0157, v_loss=0.0204
+Epoch: 423, global_step=10803200
+Sampling new architecture
+SPS: 754, pg_loss=0.0624, v_loss=0.0153
+Epoch: 424, global_step=10828800
+Sampling new architecture
+SPS: 754, pg_loss=0.0294, v_loss=0.0171
+Epoch: 425, global_step=10854400
+Sampling new architecture
+SPS: 754, pg_loss=0.0334, v_loss=0.0147
+Epoch: 426, global_step=10880000
+Sampling new architecture
+SPS: 754, pg_loss=0.0402, v_loss=0.0128
+Epoch: 427, global_step=10905600
+Sampling new architecture
+SPS: 754, pg_loss=0.0751, v_loss=0.0137
+Epoch: 428, global_step=10931200
+Sampling new architecture
+SPS: 754, pg_loss=0.0321, v_loss=0.0250
+Epoch: 429, global_step=10956800
+Sampling new architecture
+SPS: 754, pg_loss=0.0405, v_loss=0.0203
+Epoch: 430, global_step=10982400
+Sampling new architecture
+SPS: 754, pg_loss=0.0406, v_loss=0.0175
+Epoch: 431, global_step=11008000
+Sampling new architecture
+SPS: 754, pg_loss=0.0547, v_loss=0.0229
+Epoch: 432, global_step=11033600
+Sampling new architecture
+SPS: 754, pg_loss=0.0239, v_loss=0.0189
+Epoch: 433, global_step=11059200
+Sampling new architecture
+SPS: 753, pg_loss=0.0283, v_loss=0.0253
+Epoch: 434, global_step=11084800
+Sampling new architecture
+SPS: 753, pg_loss=0.0651, v_loss=0.0319
+Epoch: 435, global_step=11110400
+Sampling new architecture
+SPS: 753, pg_loss=0.0270, v_loss=0.0364
+Epoch: 436, global_step=11136000
+Sampling new architecture
+SPS: 753, pg_loss=0.0394, v_loss=0.0240
+Epoch: 437, global_step=11161600
+Sampling new architecture
+SPS: 753, pg_loss=0.0243, v_loss=0.0285
+Epoch: 438, global_step=11187200
+Sampling new architecture
+SPS: 753, pg_loss=0.0406, v_loss=0.0187
+Epoch: 439, global_step=11212800
+Sampling new architecture
+SPS: 753, pg_loss=0.0283, v_loss=0.0153
+Epoch: 440, global_step=11238400
+Sampling new architecture
+SPS: 753, pg_loss=0.0207, v_loss=0.0184
+Epoch: 441, global_step=11264000
+Sampling new architecture
+SPS: 753, pg_loss=0.0300, v_loss=0.0150
+Epoch: 442, global_step=11289600
+Sampling new architecture
+SPS: 753, pg_loss=0.0211, v_loss=0.0157
+Epoch: 443, global_step=11315200
+Sampling new architecture
+SPS: 753, pg_loss=0.0574, v_loss=0.0285
+Epoch: 444, global_step=11340800
+Sampling new architecture
+SPS: 753, pg_loss=0.0337, v_loss=0.0250
+Epoch: 445, global_step=11366400
+Sampling new architecture
+SPS: 753, pg_loss=0.0529, v_loss=0.0195
+Epoch: 446, global_step=11392000
+Sampling new architecture
+SPS: 753, pg_loss=0.0715, v_loss=0.0386
+Epoch: 447, global_step=11417600
+Sampling new architecture
+SPS: 753, pg_loss=0.0462, v_loss=0.0307
+Epoch: 448, global_step=11443200
+Sampling new architecture
+SPS: 753, pg_loss=0.0663, v_loss=0.0204
+Epoch: 449, global_step=11468800
+Sampling new architecture
+SPS: 753, pg_loss=0.0548, v_loss=0.0214
+Epoch: 450, global_step=11494400
+Sampling new architecture
+SPS: 753, pg_loss=0.0320, v_loss=0.0228
+Epoch: 451, global_step=11520000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 50.422298312187195
+eval_success_once_mean=0.0
+eval_return_mean=6.302786827087402
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1260557472705841
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_451.pt
+SPS: 753, pg_loss=0.0393, v_loss=0.0246
+Epoch: 452, global_step=11545600
+Sampling new architecture
+SPS: 753, pg_loss=0.0332, v_loss=0.0404
+Epoch: 453, global_step=11571200
+Sampling new architecture
+SPS: 753, pg_loss=0.1093, v_loss=0.0235
+Epoch: 454, global_step=11596800
+Sampling new architecture
+SPS: 753, pg_loss=0.0528, v_loss=0.0377
+Epoch: 455, global_step=11622400
+Sampling new architecture
+SPS: 753, pg_loss=0.0320, v_loss=0.0395
+Epoch: 456, global_step=11648000
+Sampling new architecture
+SPS: 753, pg_loss=0.0385, v_loss=0.0238
+Epoch: 457, global_step=11673600
+Sampling new architecture
+SPS: 753, pg_loss=0.0468, v_loss=0.0175
+Epoch: 458, global_step=11699200
+Sampling new architecture
+SPS: 753, pg_loss=0.0218, v_loss=0.0199
+Epoch: 459, global_step=11724800
+Sampling new architecture
+SPS: 753, pg_loss=0.0326, v_loss=0.0198
+Epoch: 460, global_step=11750400
+Sampling new architecture
+SPS: 753, pg_loss=0.0545, v_loss=0.0152
+Epoch: 461, global_step=11776000
+Sampling new architecture
+SPS: 753, pg_loss=0.0229, v_loss=0.0146
+Epoch: 462, global_step=11801600
+Sampling new architecture
+SPS: 753, pg_loss=0.0304, v_loss=0.0193
+Epoch: 463, global_step=11827200
+Sampling new architecture
+SPS: 753, pg_loss=0.0276, v_loss=0.0149
+Epoch: 464, global_step=11852800
+Sampling new architecture
+SPS: 753, pg_loss=0.0272, v_loss=0.0178
+Epoch: 465, global_step=11878400
+Sampling new architecture
+SPS: 753, pg_loss=0.0302, v_loss=0.0142
+Epoch: 466, global_step=11904000
+Sampling new architecture
+SPS: 753, pg_loss=0.0662, v_loss=0.0146
+Epoch: 467, global_step=11929600
+Sampling new architecture
+SPS: 753, pg_loss=0.0113, v_loss=0.0754
+Epoch: 468, global_step=11955200
+Sampling new architecture
+SPS: 753, pg_loss=0.0338, v_loss=0.0119
+Epoch: 469, global_step=11980800
+Sampling new architecture
+SPS: 753, pg_loss=0.0455, v_loss=0.0130
+Epoch: 470, global_step=12006400
+Sampling new architecture
+SPS: 753, pg_loss=0.0536, v_loss=0.0103
+Epoch: 471, global_step=12032000
+Sampling new architecture
+SPS: 753, pg_loss=0.0428, v_loss=0.0130
+Epoch: 472, global_step=12057600
+Sampling new architecture
+SPS: 753, pg_loss=0.0431, v_loss=0.0122
+Epoch: 473, global_step=12083200
+Sampling new architecture
+SPS: 753, pg_loss=0.0201, v_loss=0.0231
+Epoch: 474, global_step=12108800
+Sampling new architecture
+SPS: 753, pg_loss=0.0686, v_loss=0.0384
+Epoch: 475, global_step=12134400
+Sampling new architecture
+SPS: 753, pg_loss=0.0350, v_loss=0.0224
+Epoch: 476, global_step=12160000
+Sampling new architecture
+SPS: 753, pg_loss=0.0282, v_loss=0.0220
+Epoch: 477, global_step=12185600
+Sampling new architecture
+SPS: 753, pg_loss=0.0258, v_loss=0.0218
+Epoch: 478, global_step=12211200
+Sampling new architecture
+SPS: 753, pg_loss=0.0285, v_loss=0.0305
+Epoch: 479, global_step=12236800
+Sampling new architecture
+SPS: 754, pg_loss=0.0513, v_loss=0.0241
+Epoch: 480, global_step=12262400
+Sampling new architecture
+SPS: 754, pg_loss=0.0745, v_loss=0.0249
+Epoch: 481, global_step=12288000
+Sampling new architecture
+SPS: 754, pg_loss=0.0454, v_loss=0.0320
+Epoch: 482, global_step=12313600
+Sampling new architecture
+SPS: 754, pg_loss=0.0395, v_loss=0.0207
+Epoch: 483, global_step=12339200
+Sampling new architecture
+SPS: 754, pg_loss=0.0419, v_loss=0.0156
+Epoch: 484, global_step=12364800
+Sampling new architecture
+SPS: 754, pg_loss=0.0694, v_loss=0.0177
+Epoch: 485, global_step=12390400
+Sampling new architecture
+SPS: 754, pg_loss=0.0382, v_loss=0.0288
+Epoch: 486, global_step=12416000
+Sampling new architecture
+SPS: 754, pg_loss=0.0517, v_loss=0.0146
+Epoch: 487, global_step=12441600
+Sampling new architecture
+SPS: 754, pg_loss=0.0614, v_loss=0.0163
+Epoch: 488, global_step=12467200
+Sampling new architecture
+SPS: 753, pg_loss=0.0499, v_loss=0.0199
+Epoch: 489, global_step=12492800
+Sampling new architecture
+SPS: 753, pg_loss=0.0229, v_loss=0.0249
+Epoch: 490, global_step=12518400
+Sampling new architecture
+SPS: 753, pg_loss=0.0394, v_loss=0.0277
+Epoch: 491, global_step=12544000
+Sampling new architecture
+SPS: 753, pg_loss=0.0410, v_loss=0.0215
+Epoch: 492, global_step=12569600
+Sampling new architecture
+SPS: 753, pg_loss=0.0404, v_loss=0.0200
+Epoch: 493, global_step=12595200
+Sampling new architecture
+SPS: 753, pg_loss=0.0457, v_loss=0.0196
+Epoch: 494, global_step=12620800
+Sampling new architecture
+SPS: 753, pg_loss=0.0384, v_loss=0.0172
+Epoch: 495, global_step=12646400
+Sampling new architecture
+SPS: 753, pg_loss=0.0230, v_loss=0.0187
+Epoch: 496, global_step=12672000
+Sampling new architecture
+SPS: 753, pg_loss=0.0385, v_loss=0.0153
+Epoch: 497, global_step=12697600
+Sampling new architecture
+SPS: 753, pg_loss=0.0396, v_loss=0.0168
+Epoch: 498, global_step=12723200
+Sampling new architecture
+SPS: 753, pg_loss=0.0146, v_loss=0.0109
+Epoch: 499, global_step=12748800
+Sampling new architecture
+SPS: 752, pg_loss=0.0318, v_loss=0.0137
+Epoch: 500, global_step=12774400
+Sampling new architecture
+SPS: 752, pg_loss=0.0457, v_loss=0.0159
+Epoch: 501, global_step=12800000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 60.50866639614105
+eval_success_once_mean=0.0
+eval_return_mean=7.563582897186279
+eval_episode_len_mean=50.0
+eval_reward_mean=0.15127167105674744
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_501.pt
+SPS: 752, pg_loss=0.0135, v_loss=0.0147
+Epoch: 502, global_step=12825600
+Sampling new architecture
+SPS: 752, pg_loss=0.0252, v_loss=0.0245
+Epoch: 503, global_step=12851200
+Sampling new architecture
+SPS: 752, pg_loss=0.0259, v_loss=0.0172
+Epoch: 504, global_step=12876800
+Sampling new architecture
+SPS: 752, pg_loss=0.0336, v_loss=0.0170
+Epoch: 505, global_step=12902400
+Sampling new architecture
+SPS: 752, pg_loss=0.0599, v_loss=0.0154
+Epoch: 506, global_step=12928000
+Sampling new architecture
+SPS: 752, pg_loss=0.0673, v_loss=0.0133
+Epoch: 507, global_step=12953600
+Sampling new architecture
+SPS: 752, pg_loss=0.0496, v_loss=0.0157
+Epoch: 508, global_step=12979200
+Sampling new architecture
+SPS: 752, pg_loss=0.0361, v_loss=0.0136
+Epoch: 509, global_step=13004800
+Sampling new architecture
+SPS: 752, pg_loss=0.0340, v_loss=0.0170
+Epoch: 510, global_step=13030400
+Sampling new architecture
+SPS: 752, pg_loss=0.0266, v_loss=0.0176
+Epoch: 511, global_step=13056000
+Sampling new architecture
+SPS: 752, pg_loss=0.0180, v_loss=0.0196
+Epoch: 512, global_step=13081600
+Sampling new architecture
+SPS: 752, pg_loss=0.0421, v_loss=0.0128
+Epoch: 513, global_step=13107200
+Sampling new architecture
+SPS: 752, pg_loss=0.0393, v_loss=0.0222
+Epoch: 514, global_step=13132800
+Sampling new architecture
+SPS: 752, pg_loss=0.0419, v_loss=0.0266
+Epoch: 515, global_step=13158400
+Sampling new architecture
+SPS: 752, pg_loss=0.0732, v_loss=0.0225
+Epoch: 516, global_step=13184000
+Sampling new architecture
+SPS: 752, pg_loss=0.0424, v_loss=0.0195
+Epoch: 517, global_step=13209600
+Sampling new architecture
+SPS: 752, pg_loss=0.0194, v_loss=0.0202
+Epoch: 518, global_step=13235200
+Sampling new architecture
+SPS: 752, pg_loss=0.0251, v_loss=0.0238
+Epoch: 519, global_step=13260800
+Sampling new architecture
+SPS: 752, pg_loss=0.0259, v_loss=0.0339
+Epoch: 520, global_step=13286400
+Sampling new architecture
+SPS: 752, pg_loss=0.0277, v_loss=0.0321
+Epoch: 521, global_step=13312000
+Sampling new architecture
+SPS: 752, pg_loss=0.0067, v_loss=0.0213
+Epoch: 522, global_step=13337600
+Sampling new architecture
+SPS: 752, pg_loss=0.0462, v_loss=0.0300
+Epoch: 523, global_step=13363200
+Sampling new architecture
+SPS: 752, pg_loss=0.0208, v_loss=0.0234
+Epoch: 524, global_step=13388800
+Sampling new architecture
+SPS: 752, pg_loss=0.0309, v_loss=0.0321
+Epoch: 525, global_step=13414400
+Sampling new architecture
+SPS: 752, pg_loss=0.0300, v_loss=0.0252
+Epoch: 526, global_step=13440000
+Sampling new architecture
+SPS: 752, pg_loss=0.0419, v_loss=0.0213
+Epoch: 527, global_step=13465600
+Sampling new architecture
+SPS: 751, pg_loss=0.0100, v_loss=0.0301
+Epoch: 528, global_step=13491200
+Sampling new architecture
+SPS: 752, pg_loss=0.0461, v_loss=0.0265
+Epoch: 529, global_step=13516800
+Sampling new architecture
+SPS: 752, pg_loss=0.0349, v_loss=0.0199
+Epoch: 530, global_step=13542400
+Sampling new architecture
+SPS: 751, pg_loss=0.0428, v_loss=0.0203
+Epoch: 531, global_step=13568000
+Sampling new architecture
+SPS: 751, pg_loss=0.0535, v_loss=0.0162
+Epoch: 532, global_step=13593600
+Sampling new architecture
+SPS: 751, pg_loss=0.1143, v_loss=0.0217
+Epoch: 533, global_step=13619200
+Sampling new architecture
+SPS: 751, pg_loss=0.1472, v_loss=0.0265
+Epoch: 534, global_step=13644800
+Sampling new architecture
+SPS: 751, pg_loss=0.1022, v_loss=0.0270
+Epoch: 535, global_step=13670400
+Sampling new architecture
+SPS: 751, pg_loss=0.0293, v_loss=0.0201
+Epoch: 536, global_step=13696000
+Sampling new architecture
+SPS: 751, pg_loss=0.0458, v_loss=0.0223
+Epoch: 537, global_step=13721600
+Sampling new architecture
+SPS: 752, pg_loss=0.0425, v_loss=0.0191
+Epoch: 538, global_step=13747200
+Sampling new architecture
+SPS: 752, pg_loss=0.0403, v_loss=0.0152
+Epoch: 539, global_step=13772800
+Sampling new architecture
+SPS: 751, pg_loss=0.0405, v_loss=0.0172
+Epoch: 540, global_step=13798400
+Sampling new architecture
+SPS: 751, pg_loss=0.0158, v_loss=0.0198
+Epoch: 541, global_step=13824000
+Sampling new architecture
+SPS: 751, pg_loss=0.0528, v_loss=0.0250
+Epoch: 542, global_step=13849600
+Sampling new architecture
+SPS: 751, pg_loss=0.0305, v_loss=0.0156
+Epoch: 543, global_step=13875200
+Sampling new architecture
+SPS: 751, pg_loss=0.0463, v_loss=0.0164
+Epoch: 544, global_step=13900800
+Sampling new architecture
+SPS: 751, pg_loss=0.0318, v_loss=0.0218
+Epoch: 545, global_step=13926400
+Sampling new architecture
+SPS: 751, pg_loss=0.0323, v_loss=0.0151
+Epoch: 546, global_step=13952000
+Sampling new architecture
+SPS: 751, pg_loss=0.0348, v_loss=0.0285
+Epoch: 547, global_step=13977600
+Sampling new architecture
+SPS: 751, pg_loss=0.0793, v_loss=0.0187
+Epoch: 548, global_step=14003200
+Sampling new architecture
+SPS: 751, pg_loss=0.0259, v_loss=0.0242
+Epoch: 549, global_step=14028800
+Sampling new architecture
+SPS: 751, pg_loss=0.0576, v_loss=0.0235
+Epoch: 550, global_step=14054400
+Sampling new architecture
+SPS: 751, pg_loss=0.0592, v_loss=0.0194
+Epoch: 551, global_step=14080000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 35.87597954273224
+eval_success_once_mean=0.0
+eval_return_mean=4.4844970703125
+eval_episode_len_mean=50.0
+eval_reward_mean=0.0896899476647377
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747420421/ckpt_551.pt
+SPS: 751, pg_loss=0.0542, v_loss=0.0184
+Epoch: 552, global_step=14105600
+Sampling new architecture
+SPS: 750, pg_loss=0.0333, v_loss=0.0218
+Epoch: 553, global_step=14131200
+Sampling new architecture
+Traceback (most recent call last):
+  File "/home/swarajh/ContextualManiskill/Contextual_hyperppo.py", line 557, in <module>
+    _, new_logprob, entropy, new_value = agent.get_action_and_value(obs_batch, act_batch)
+  File "/home/swarajh/ContextualManiskill/Contextual_hyperppo.py", line 205, in get_action_and_value
+    dist = Normal(mu, std)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/torch/distributions/normal.py", line 59, in __init__
+    super().__init__(batch_shape, validate_args=validate_args)
+  File "/home/swarajh/miniconda3/envs/hyper/lib/python3.9/site-packages/torch/distributions/distribution.py", line 71, in __init__
+    raise ValueError(
+ValueError: Expected parameter loc (Tensor of shape (800, 7)) of distribution Normal(loc: torch.Size([800, 7]), scale: torch.Size([800, 7])) to satisfy the constraint Real(), but found invalid values:
+tensor([[nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        ...,
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan],
+        [nan, nan, nan,  ..., nan, nan, nan]], device='cuda:0',
+       grad_fn=<CatBackward0>)
