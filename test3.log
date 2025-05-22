@@ -8191,3 +8191,89 @@ Initializing ContextualPandaStick...
 Initializing ContextualPandaStick...
 Evaluated 400 steps resulting in 8 episodes
 Total reward during evaluation: 76.2822373509407
+eval_success_once_mean=0.0
+eval_return_mean=9.535279273986816
+eval_episode_len_mean=50.0
+eval_reward_mean=0.1907055824995041
+eval_success_at_end_mean=0.0
+model saved to runs/ContextualPushT-v1__Contextual_hyperppo__1__1747880113/ckpt_2376.pt
+SPS: 1117, pg_loss=0.0177, v_loss=0.0008
+Epoch: 2377, global_step=60825600
+Sampling new architecture
+SPS: 1117, pg_loss=0.0116, v_loss=0.0008
+Epoch: 2378, global_step=60851200
+Sampling new architecture
+SPS: 1117, pg_loss=0.0266, v_loss=0.0009
+Epoch: 2379, global_step=60876800
+Sampling new architecture
+SPS: 1117, pg_loss=0.0142, v_loss=0.0011
+Epoch: 2380, global_step=60902400
+Sampling new architecture
+SPS: 1117, pg_loss=0.0105, v_loss=0.0011
+Epoch: 2381, global_step=60928000
+Sampling new architecture
+SPS: 1117, pg_loss=0.0308, v_loss=0.0011
+Epoch: 2382, global_step=60953600
+Sampling new architecture
+SPS: 1117, pg_loss=0.0281, v_loss=0.0009
+Epoch: 2383, global_step=60979200
+Sampling new architecture
+SPS: 1117, pg_loss=0.0072, v_loss=0.0016
+Epoch: 2384, global_step=61004800
+Sampling new architecture
+SPS: 1117, pg_loss=0.0147, v_loss=0.0011
+Epoch: 2385, global_step=61030400
+Sampling new architecture
+SPS: 1117, pg_loss=0.0332, v_loss=0.0009
+Epoch: 2386, global_step=61056000
+Sampling new architecture
+SPS: 1117, pg_loss=0.0463, v_loss=0.0006
+Epoch: 2387, global_step=61081600
+Sampling new architecture
+SPS: 1117, pg_loss=0.0327, v_loss=0.0006
+Epoch: 2388, global_step=61107200
+Sampling new architecture
+SPS: 1117, pg_loss=0.0215, v_loss=0.0010
+Epoch: 2389, global_step=61132800
+Sampling new architecture
+SPS: 1117, pg_loss=0.0311, v_loss=0.0012
+Epoch: 2390, global_step=61158400
+Sampling new architecture
+SPS: 1117, pg_loss=0.0484, v_loss=0.0008
+Epoch: 2391, global_step=61184000
+Sampling new architecture
+SPS: 1117, pg_loss=0.0006, v_loss=0.0010
+Epoch: 2392, global_step=61209600
+Sampling new architecture
+SPS: 1117, pg_loss=-0.0025, v_loss=0.0013
+Epoch: 2393, global_step=61235200
+Sampling new architecture
+SPS: 1117, pg_loss=0.0304, v_loss=0.0007
+Epoch: 2394, global_step=61260800
+Sampling new architecture
+SPS: 1117, pg_loss=0.0073, v_loss=0.0006
+Epoch: 2395, global_step=61286400
+Sampling new architecture
+SPS: 1117, pg_loss=0.0230, v_loss=0.0008
+Epoch: 2396, global_step=61312000
+Sampling new architecture
+SPS: 1118, pg_loss=0.0246, v_loss=0.0007
+Epoch: 2397, global_step=61337600
+Sampling new architecture
+SPS: 1117, pg_loss=0.0141, v_loss=0.0010
+Epoch: 2398, global_step=61363200
+Sampling new architecture
+SPS: 1118, pg_loss=0.0316, v_loss=0.0009
+Epoch: 2399, global_step=61388800
+Sampling new architecture
+SPS: 1117, pg_loss=0.0195, v_loss=0.0011
+Epoch: 2400, global_step=61414400
+Sampling new architecture
+SPS: 1118, pg_loss=0.0249, v_loss=0.0013
+Epoch: 2401, global_step=61440000
+Sampling new architecture
+Evaluating
+Initializing ContextualPandaStick...
+Initializing ContextualPandaStick...
+Evaluated 400 steps resulting in 8 episodes
+Total reward during evaluation: 78.92660665512085
