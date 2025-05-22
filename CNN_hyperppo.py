@@ -25,7 +25,7 @@ import contextual_maniskill.envs.contextual_pickcube
 import contextual_maniskill.envs.contextual_push_t
 
 # HyperPPO-specific import: Graph HyperNetwork-based actor
-from hyperppo_model.core import hyperActor 
+from hyperppoCNN_model.core import hyperActor 
 
 @dataclass
 class Args:
@@ -53,13 +53,25 @@ class Args:
     """path to a pretrained checkpoint file to start evaluation/training from"""
 
     # Algorithm specific arguments
-    env_id: str = "ContextualPushT-v1"
+    env_id: str = "PickCube-v1"
     """the id of the environment"""
     total_timesteps: int = 1_000_000_000_000
     """total timesteps of the experiments"""
 
+    # HyperPPO specific arguments
+    allow_conv_layers: bool = True
+    """whether to allow CNN layers in the generated architectures"""
+    max_conv_layers: int = 2
+    """maximum number of CNN layers to allow in generated architectures"""
+    meta_batch_size: int = 8
+    """number of architectures to sample at once"""
+    architecture_sampling_mode: str = "biased"
+    """sampling mode for architectures: 'biased', 'sequential', or 'uniform'"""
+    std_mode: str = "single"
+    """standard deviation mode: 'single', 'multi', or 'arch_conditioned'"""
+
     # Turned this down from 1e-4 to 1e-5
-    learning_rate: float = 1e-3
+    learning_rate: float = 1e-4
     """the learning rate of the optimizer"""
     num_envs: int = 512
     """the number of parallel environments"""
@@ -79,7 +91,7 @@ class Args:
     """for benchmarking purposes we want to reconfigure the eval environment each reset to ensure objects are randomized in some tasks"""
     control_mode: Optional[str] = "pd_joint_delta_pos"
     """the control mode to use for the environment"""
-    anneal_lr: bool = True
+    anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
     gamma: float = 0.9
     """the discount factor gamma"""
@@ -95,7 +107,7 @@ class Args:
     """the surrogate clipping coefficient"""
     clip_vloss: bool = True
     """Toggles whether or not to use a clipped loss for the value function, as per the paper."""
-    ent_coef: float = 0.01
+    ent_coef: float = 0.00
     """coefficient of the entropy"""
     vf_coef: float = 0.8
     """coefficient of the value function"""
@@ -106,7 +118,7 @@ class Args:
     """the target KL divergence threshold"""
     reward_scale: float = 1.0
     """Scale the reward by this factor"""
-    eval_freq: int = 25
+    eval_freq: int = 5
     """evaluation frequency in terms of iterations"""
     save_train_video_freq: Optional[int] = None
     """frequency to save training videos in terms of iterations"""
@@ -152,13 +164,17 @@ class HyperAgent(nn.Module):
     Replaces the fixed-architecture MLP with a HyperPPO-based GHN actor
     plus a standard MLP critic for value estimation.
     """
-    def __init__(self, envs):
+    def __init__(self, envs, args):
         super().__init__()
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print("Initializing HyperAgent...")
+        self.device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
+        print(f"Using device: {self.device}")
         obs_dim = np.prod(envs.single_observation_space.shape)
         act_dim = np.prod(envs.single_action_space.shape)
+        print(f"Observation dimension: {obs_dim}, Action dimension: {act_dim}")
 
         # -- Critic (Value Function) as a simple MLP --
+        print("Initializing critic network...")
         self.critic = nn.Sequential(
             layer_init(nn.Linear(obs_dim, 256)),
             nn.Tanh(),
@@ -167,21 +183,44 @@ class HyperAgent(nn.Module):
             layer_init(nn.Linear(256, 256)),
             nn.Tanh(),
             layer_init(nn.Linear(256, 1)),
-        )
+        ).to(self.device)
+        print("Critic network initialized")
 
         # -- HyperNetwork-based Actor (Policy) --
-        # allowable_layers = [16, 32, 64, 128]
-        allowable_layers = [8, 16, 32, 64]
+        print("Setting up layer options...")
+        # Define both MLP and CNN layer options
+        # Increase allowable layers here... to 5ish...
+        mlp_layers = [16, 32, 64]  # MLP layer sizes
+        
+        # CNN layer options that make sense given our input dimensions
+        # Input is 42-dimensional state, which we'll reshape to 6x7
+        # We want to gradually reduce spatial dimensions while increasing channels
+        # to eventually get to a reasonable size for the final MLP layers
+        cnn_layers = [
+            (1, 8, 3),     # First layer: 1 input channel -> 8 output channels
+            (8, 16, 3),    # Second layer: 8 input channels -> 16 output channels
+            # add a 5x5 kernel...
+            (16, 32, 5)
+        ]
+        
+        # Combine MLP and CNN layers
+        allowable_layers = mlp_layers + cnn_layers
+        print(f"Allowable layers: {allowable_layers}")
+        
+        print("Initializing hyper_actor...")
         self.hyper_actor = hyperActor(
             act_dim=act_dim,
             obs_dim=obs_dim,
             allowable_layers=allowable_layers,
-            meta_batch_size=8,            # Sample multiple architectures at once
+            meta_batch_size=args.meta_batch_size,
             device=self.device,
-            architecture_sampling_mode="biased",
+            architecture_sampling_mode=args.architecture_sampling_mode,
             multi_gpu=False,              # set True if using multiple GPUs
-            std_mode='single',  # can be 'single', 'multi', or 'arch_conditioned'
-        )
+            std_mode=args.std_mode,
+            allow_conv_layers=args.allow_conv_layers,
+            max_conv_layers=args.max_conv_layers,
+        ).to(self.device)
+        print("hyper_actor initialized successfully")
 
     def get_value(self, x: torch.Tensor) -> torch.Tensor:
         """Return the value function estimate from the MLP critic."""
@@ -196,8 +235,10 @@ class HyperAgent(nn.Module):
         Generate action & log-probs from GHN-based actor,
         also return entropy & MLP critic value for PPO updates.
         """
-        # We call "change_graph()" to sample a new architecture (or re-use one).
-        # self.hyper_actor.change_graph(repeat_sample=False)
+        # Ensure inputs are on the correct device
+        obs = obs.to(self.device)
+        if action_in is not None:
+            action_in = action_in.to(self.device)
 
         # Forward pass through GHN-based actor
         mu, log_std = self.hyper_actor(obs, track=False)
@@ -219,28 +260,34 @@ class HyperAgent(nn.Module):
 #                             Main Training Script                            #
 ###############################################################################
 if __name__ == "__main__":
+    print("Starting script...", flush=True)
     args = tyro.cli(Args)
+    print(f"Args parsed: {args}", flush=True)
     args.batch_size = int(args.num_envs * args.num_steps)
     args.minibatch_size = int(args.batch_size // args.num_minibatches)
     args.num_iterations = args.total_timesteps // args.batch_size
 
     if args.exp_name is None:
-        # e.g. "PickCube-v1__ppo__<seed>__<timestamp>"
         args.exp_name = os.path.basename(__file__)[:-3]
     run_name = f"{args.env_id}__{args.exp_name}__{args.seed}__{int(time.time())}"
+    print(f"Run name: {run_name}", flush=True)
 
     # Seeding
+    print("Setting up random seeds...", flush=True)
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     torch.backends.cudnn.deterministic = args.torch_deterministic
 
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
+    print(f"Using device: {device}", flush=True)
+    if torch.cuda.is_available():
+        print(f"CUDA available: {torch.cuda.is_available()}", flush=True)
+        print(f"CUDA device count: {torch.cuda.device_count()}", flush=True)
+        print(f"CUDA device name: {torch.cuda.get_device_name(0)}", flush=True)
 
     # Environment setup
-        # Environment setup
-
-    
+    print("Setting up environments...", flush=True)
     if args.env_id == "ContextualPickCube-v1":
         env_kwargs = dict(
             obs_mode="state", 
@@ -254,7 +301,6 @@ if __name__ == "__main__":
             obs_mode="state", 
             render_mode="rgb_array", 
             sim_backend="physx_cuda",
-     #       robot_uids="panda_stick"
             robot_uids="contextual_panda_stick",
             panda_link5_z_scale=args.panda_link5_z_scale
         )
@@ -275,19 +321,14 @@ if __name__ == "__main__":
     if args.control_mode is not None:
         env_kwargs["control_mode"] = args.control_mode
 
-        
-    # Old Environment Setup 
-
-    # env_kwargs = dict(obs_mode="state", render_mode="rgb_array", sim_backend="physx_cuda")
-    # if args.control_mode is not None:
-    #     env_kwargs["control_mode"] = args.control_mode
-
+    print("Creating training environment...", flush=True)
     envs = gym.make(
         args.env_id,
         num_envs=args.num_envs if not args.evaluate else 1,
         reconfiguration_freq=args.reconfiguration_freq,
         **env_kwargs
     )
+    print("Creating evaluation environment...", flush=True)
     eval_envs = gym.make(
         args.env_id,
         num_envs=args.num_eval_envs,
@@ -297,15 +338,17 @@ if __name__ == "__main__":
 
     # Flatten Dict action spaces if needed
     if isinstance(envs.action_space, gym.spaces.Dict):
+        print("Flattening action spaces...", flush=True)
         envs = FlattenActionSpaceWrapper(envs)
         eval_envs = FlattenActionSpaceWrapper(eval_envs)
 
     # Video capture
     if args.capture_video:
+        print("Setting up video capture...", flush=True)
         eval_output_dir = f"runs/{run_name}/videos"
         if args.evaluate:
             eval_output_dir = f"{os.path.dirname(args.checkpoint)}/test_videos"
-        print(f"Saving eval videos to {eval_output_dir}")
+        print(f"Saving eval videos to {eval_output_dir}", flush=True)
 
         if args.save_train_video_freq is not None:
             save_video_trigger = lambda x: (x // args.num_steps) % args.save_train_video_freq == 0
@@ -326,6 +369,7 @@ if __name__ == "__main__":
             video_fps=30
         )
 
+    print("Wrapping environments...", flush=True)
     envs = ManiSkillVectorEnv(envs, args.num_envs, ignore_terminations=not args.partial_reset, record_metrics=True)
     eval_envs = ManiSkillVectorEnv(eval_envs, args.num_eval_envs, ignore_terminations=not args.eval_partial_reset, record_metrics=True)
     assert isinstance(envs.single_action_space, gym.spaces.Box), "only continuous action space is supported"
@@ -333,9 +377,10 @@ if __name__ == "__main__":
     max_episode_steps = gym_utils.find_max_episode_steps_value(envs._env)
 
     # Setup logging
+    print("Setting up logging...", flush=True)
     logger = None
     if not args.evaluate:
-        print("Running training")
+        print("Running training", flush=True)
         if args.track:
             import wandb
             config = vars(args)
@@ -374,20 +419,25 @@ if __name__ == "__main__":
         )
         logger = Logger(log_wandb=args.track, tensorboard=writer)
     else:
-        print("Running evaluation")
+        print("Running evaluation", flush=True)
 
     ########################################################################
     # Replace the old Agent with the HyperAgent
     ########################################################################
-    agent = HyperAgent(envs).to(device)
+    print("Initializing HyperAgent...", flush=True)
+    agent = HyperAgent(envs, args).to(device)
+    print("HyperAgent initialized successfully", flush=True)
 
     # If resuming from checkpoint
     if args.checkpoint:
+        print(f"Loading checkpoint from {args.checkpoint}", flush=True)
         agent.load_state_dict(torch.load(args.checkpoint, map_location=device))
 
+    print("Setting up optimizer...", flush=True)
     optimizer = optim.Adam(agent.parameters(), lr=args.learning_rate, eps=1e-5)
 
     # PPO storage
+    print("Initializing PPO storage...", flush=True)
     obs = torch.zeros((args.num_steps, args.num_envs) + envs.single_observation_space.shape).to(device)
     actions = torch.zeros((args.num_steps, args.num_envs) + envs.single_action_space.shape).to(device)
     logprobs = torch.zeros((args.num_steps, args.num_envs)).to(device)
@@ -396,10 +446,20 @@ if __name__ == "__main__":
     values = torch.zeros((args.num_steps, args.num_envs)).to(device)
 
     # Start the game
+    print("Starting training loop...", flush=True)
     global_step = 0
     start_time = time.time()
     next_obs, _ = envs.reset(seed=args.seed)
+    # Handle tensor conversion properly
+    if isinstance(next_obs, torch.Tensor):
+        next_obs = next_obs.to(device)
+    else:
+        next_obs = torch.FloatTensor(next_obs).to(device)
     eval_obs, _ = eval_envs.reset(seed=args.seed)
+    if isinstance(eval_obs, torch.Tensor):
+        eval_obs = eval_obs.to(device)
+    else:
+        eval_obs = torch.FloatTensor(eval_obs).to(device)
     next_done = torch.zeros(args.num_envs, device=device)
 
     print("####")
@@ -418,7 +478,7 @@ if __name__ == "__main__":
         return torch.clamp(action.detach(), action_space_low, action_space_high)
 
     for iteration in range(1, args.num_iterations + 1):
-        print(f"Epoch: {iteration}, global_step={global_step}")
+        print(f"\nEpoch: {iteration}/{args.num_iterations}, global_step={global_step}", flush=True)
         print(f"Sampling new architecture")
         agent.hyper_actor.change_graph(repeat_sample=False)
 
@@ -427,19 +487,27 @@ if __name__ == "__main__":
         # Evaluate periodically
         agent.eval()
         if iteration % args.eval_freq == 1:
-            print("Evaluating")
+            print("Evaluating...")
             eval_obs, _ = eval_envs.reset()
+            if isinstance(eval_obs, torch.Tensor):
+                eval_obs = eval_obs.to(device)
+            else:
+                eval_obs = torch.FloatTensor(eval_obs).to(device)
             eval_metrics = defaultdict(list)
             num_episodes = 0
             total_reward = 0
-            for _ in range(args.num_eval_steps):
+            for step in range(args.num_eval_steps):
                 with torch.no_grad():
                     # Use deterministic actions for eval
                     det_action, _, _, _ = agent.get_action_and_value(eval_obs)
                     eval_obs, eval_rew, eval_terminations, eval_truncations, eval_infos = eval_envs.step(
-                        clip_action(det_action)
+                        clip_action(det_action).cpu().numpy()
                     )
-                    total_reward += eval_rew.sum().item()  # Sum rewards across all environments
+                    if isinstance(eval_obs, torch.Tensor):
+                        eval_obs = eval_obs.to(device)
+                    else:
+                        eval_obs = torch.FloatTensor(eval_obs).to(device)
+                    total_reward += eval_rew.sum().item()
                     if "final_info" in eval_infos:
                         mask = eval_infos["_final_info"]
                         num_episodes += mask.sum()
@@ -482,10 +550,18 @@ if __name__ == "__main__":
                 values[step] = val.flatten()
 
             # Step environment
-            next_obs, reward, terminations, truncations, infos = envs.step(clip_action(actions[step]))
+            next_obs, reward, terminations, truncations, infos = envs.step(clip_action(actions[step]).cpu().numpy())
+            if isinstance(next_obs, torch.Tensor):
+                next_obs = next_obs.to(device)
+            else:
+                next_obs = torch.FloatTensor(next_obs).to(device)
             next_done = torch.logical_or(terminations, truncations).float().to(device)
-            rewards[step] = reward.view(-1) * args.reward_scale
-            # print(f"Reward: {reward.mean().item()}, Min: {reward.min().item()}, Max: {reward.max().item()}")
+            
+            # Handle reward tensor conversion properly
+            if isinstance(reward, torch.Tensor):
+                rewards[step] = reward.to(device) * args.reward_scale
+            else:
+                rewards[step] = torch.FloatTensor(reward).to(device) * args.reward_scale
 
             # Log episodic returns
             if "final_info" in infos:
@@ -496,11 +572,18 @@ if __name__ == "__main__":
                         logger.add_scalar(f"train/{k}", v[done_mask].float().mean(), global_step)
                 # For partial resets: store final state values
                 with torch.no_grad():
-                    final_values[step, torch.arange(args.num_envs, device=device)[done_mask]] = agent.get_value(
-                        infos["final_observation"][done_mask]
-                    ).view(-1)
+                    final_obs = infos["final_observation"][done_mask]
+                    if isinstance(final_obs, torch.Tensor):
+                        final_values[step, torch.arange(args.num_envs, device=device)[done_mask]] = agent.get_value(
+                            final_obs.to(device)
+                        ).view(-1)
+                    else:
+                        final_values[step, torch.arange(args.num_envs, device=device)[done_mask]] = agent.get_value(
+                            torch.FloatTensor(final_obs).to(device)
+                        ).view(-1)
 
         rollout_time = time.time() - rollout_time
+        print(f"Rollout completed in {rollout_time:.2f}s")
 
         # GAE or finite-horizon advantage
         with torch.no_grad():
