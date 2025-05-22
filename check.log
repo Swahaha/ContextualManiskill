@@ -1,0 +1,8 @@
+nohup: ignoring input
+Loaded state_dict from sampled_policy.pt
+
+=== MLP Architecture (in_features -> out_features per layer) ===
+Layer 0: 42 -> 8 (classifier.0.weight)
+Layer 1: 8 -> 8 (classifier.2.weight)
+
+Total layers: 2

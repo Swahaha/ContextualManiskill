@@ -1,0 +1,10 @@
+nohup: ignoring input
+Generating modified URDF for /home/swarajh/miniforge3/envs/hyper/lib/python3.9/site-packages/mani_skill/assets/robots/panda/panda_v2.urdf with z-scale of 0.5...
+Successfully modified link5 with z-scale of 0.5
+Adjusted joint5 origin: added -0.1 to y coordinate
+Adjusted joint6 origin: added 0.005 to y coordinate
+Modified URDF saved to /tmp/panda_scaled_0.5.urdf
+Initializing ContextualPanda...
+Initializing ContextualPickCubeEnv...
+
+✅ Architecture [64, 64, 64] | Reward Mean across 1 envs: 7.60

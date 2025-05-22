@@ -59,7 +59,7 @@ class Args:
     """total timesteps of the experiments"""
 
     # Turned this down from 1e-4 to 1e-5
-    learning_rate: float = 3e-5
+    learning_rate: float = 1e-4
     """the learning rate of the optimizer"""
     num_envs: int = 512
     """the number of parallel environments"""
@@ -81,9 +81,9 @@ class Args:
     """the control mode to use for the environment"""
     anneal_lr: bool = False
     """Toggle learning rate annealing for policy and value networks"""
-    gamma: float = 0.99
+    gamma: float = 0.9
     """the discount factor gamma"""
-    gae_lambda: float = 0.95
+    gae_lambda: float = 0.8
     """the lambda for the general advantage estimation"""
     num_minibatches: int = 32
     """the number of mini-batches"""
@@ -171,7 +171,7 @@ class HyperAgent(nn.Module):
 
         # -- HyperNetwork-based Actor (Policy) --
         # allowable_layers = [16, 32, 64, 128]
-        allowable_layers = [16, 32, 64]
+        allowable_layers = [8, 16, 32, 64]
         self.hyper_actor = hyperActor(
             act_dim=act_dim,
             obs_dim=obs_dim,
